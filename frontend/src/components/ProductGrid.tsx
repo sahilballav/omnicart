@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Product } from '../types/product';
 import { ProductCard } from './ProductCard';
 import { SlidersHorizontal, ArrowUpDown, CheckCircle2 } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 interface ProductGridProps {
   products: Product[];
@@ -86,79 +87,87 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   return (
     <section id="catalog" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       {/* Controls Bar */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-4 mb-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-        {/* Left: Stats & Tag Chips */}
-        <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-2 text-sm font-semibold text-slate-800 pr-3 border-r border-slate-200">
-            <SlidersHorizontal className="w-4 h-4 text-indigo-600" />
-            <span>{filteredProducts.length} Products</span>
-          </div>
+      <ScrollReveal direction="up" delay={0}>
+        <div className="bg-white rounded-2xl border border-slate-200 p-4 mb-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          {/* Left: Stats & Tag Chips */}
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 text-sm font-semibold text-slate-800 pr-3 border-r border-slate-200">
+              <SlidersHorizontal className="w-4 h-4 text-indigo-600" />
+              <span>{filteredProducts.length} Products</span>
+            </div>
 
-          {/* Quick attribute tags */}
-          <div className="flex flex-wrap items-center gap-1.5">
-            <button
-              onClick={() => setSelectedTag(null)}
-              className={`text-xs px-2.5 py-1 rounded-full font-medium transition-colors ${
-                selectedTag === null
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-            >
-              All Tags
-            </button>
-            {allTags.slice(0, 6).map((tag) => (
+            {/* Quick attribute tags */}
+            <div className="flex flex-wrap items-center gap-1.5">
               <button
-                key={tag}
-                onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
+                onClick={() => setSelectedTag(null)}
                 className={`text-xs px-2.5 py-1 rounded-full font-medium transition-colors ${
-                  selectedTag === tag
+                  selectedTag === null
                     ? 'bg-indigo-600 text-white'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
-                #{tag}
+                All Tags
               </button>
-            ))}
+              {allTags.slice(0, 6).map((tag) => (
+                <button
+                  key={tag}
+                  onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
+                  className={`text-xs px-2.5 py-1 rounded-full font-medium transition-colors ${
+                    selectedTag === tag
+                      ? 'bg-indigo-600 text-white'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  #{tag}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: In-stock toggle & Sort Dropdown */}
+          <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0">
+            <label className="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={inStockOnly}
+                onChange={(e) => setInStockOnly(e.target.checked)}
+                className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4"
+              />
+              <span>In Stock Only</span>
+            </label>
+
+            <div className="flex items-center gap-1.5 text-xs text-slate-600">
+              <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+              <select
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value as SortOption)}
+                className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="featured">Featured First</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating-desc">Highest Rated</option>
+              </select>
+            </div>
           </div>
         </div>
-
-        {/* Right: In-stock toggle & Sort Dropdown */}
-        <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0">
-          <label className="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              checked={inStockOnly}
-              onChange={(e) => setInStockOnly(e.target.checked)}
-              className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4"
-            />
-            <span>In Stock Only</span>
-          </label>
-
-          <div className="flex items-center gap-1.5 text-xs text-slate-600">
-            <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
-            <select
-              value={sortOption}
-              onChange={(e) => setSortOption(e.target.value as SortOption)}
-              className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="featured">Featured First</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="rating-desc">Highest Rated</option>
-            </select>
-          </div>
-        </div>
-      </div>
+      </ScrollReveal>
 
       {/* Grid Results */}
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard
+          {filteredProducts.map((product, idx) => (
+            <ScrollReveal
               key={product.id}
-              product={product}
-              onQuickView={onQuickView}
-            />
+              direction="up"
+              delay={(idx % 4) * 80}
+              className="h-full"
+            >
+              <ProductCard
+                product={product}
+                onQuickView={onQuickView}
+              />
+            </ScrollReveal>
           ))}
         </div>
       ) : (
