@@ -1,12 +1,20 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product, CartItem, CartState } from '../types/product';
 
+export interface ToastData {
+  product: Product;
+  quantity: number;
+}
+
 interface CartContextType extends CartState {
   addToCart: (product: Product, quantity?: number, selectedLicense?: string) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   toggleCart: (open?: boolean) => void;
+  toast: ToastData | null;
+  dismissToast: () => void;
+  cartJustUpdated: boolean;
 }
 
 const CART_STORAGE_KEY = 'omnicart_digital_cart';
@@ -24,6 +32,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [toast, setToast] = useState<ToastData | null>(null);
+  const [cartJustUpdated, setCartJustUpdated] = useState<boolean>(false);
 
   useEffect(() => {
     try {
@@ -35,9 +45,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
   const subtotal = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  const digitalDeliveryFee = 0.0; // 100% Free Instant Cloud & Git Delivery
-  const estimatedTax = subtotal * 0.0825; // 8.25%
+  const digitalDeliveryFee = 0.0;
+  const estimatedTax = subtotal * 0.0825;
   const total = subtotal + digitalDeliveryFee + estimatedTax;
+
+  const dismissToast = () => {
+    setToast(null);
+  };
 
   const addToCart = (product: Product, quantity = 1, selectedLicense?: string) => {
     setItems((prev) => {
@@ -61,6 +75,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
       ];
     });
+
+    // Trigger visual pop animation on cart badge
+    setCartJustUpdated(true);
+    setTimeout(() => setCartJustUpdated(false), 500);
+
+    // Trigger toast notification
+    setToast({ product, quantity });
     setIsOpen(true);
   };
 
@@ -106,7 +127,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         removeFromCart,
         updateQuantity,
         clearCart,
-        toggleCart
+        toggleCart,
+        toast,
+        dismissToast,
+        cartJustUpdated
       }}
     >
       {children}

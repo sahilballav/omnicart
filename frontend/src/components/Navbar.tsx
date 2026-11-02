@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, Search, ShieldCheck, Sparkles, Layers } from 'lucide-react';
+import { ShoppingBag, Search, ShieldCheck, Sparkles, Layers, RefreshCw } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 interface NavbarProps {
@@ -8,6 +8,7 @@ interface NavbarProps {
   selectedCategory: string;
   onSelectCategory: (cat: string) => void;
   categories: string[];
+  onReplayLoader?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,9 +16,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSearchChange,
   selectedCategory,
   onSelectCategory,
-  categories
+  categories,
+  onReplayLoader
 }) => {
-  const { totalQuantity, toggleCart } = useCart();
+  const { totalQuantity, toggleCart, cartJustUpdated } = useCart();
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all">
@@ -33,9 +35,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </div>
           <div className="flex items-center gap-4 text-[11px] font-medium text-slate-400">
+            {onReplayLoader && (
+              <button
+                onClick={onReplayLoader}
+                className="hidden lg:flex items-center gap-1 text-slate-400 hover:text-cyan-300 transition-colors"
+                title="Re-play System Boot Loader"
+              >
+                <RefreshCw className="w-3 h-3" /> Boot Animation
+              </button>
+            )}
             <span className="flex items-center gap-1 text-emerald-400">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Redis Cache Sync: Active
+              Redis Session Sync
             </span>
             <span className="hidden md:inline text-indigo-300">Instant S3 / GitHub CDN</span>
           </div>
@@ -84,16 +95,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>Admin Preview</span>
             </div>
 
-            {/* Cart Trigger */}
+            {/* Cart Trigger with Pop Animation */}
             <button
               onClick={() => toggleCart(true)}
-              className="relative flex items-center gap-2 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-sm hover:shadow-indigo-500/25 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className={`relative flex items-center gap-2 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-sm hover:shadow-indigo-500/25 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                cartJustUpdated ? 'animate-cart-pop ring-2 ring-indigo-400' : ''
+              }`}
               aria-label="Digital Cart"
             >
               <ShoppingBag className="w-5 h-5" />
               <span className="text-sm font-semibold hidden sm:inline">Licenses</span>
               {totalQuantity > 0 && (
-                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1.5 text-xs font-bold leading-none text-indigo-700 bg-white rounded-full shadow-sm animate-scale-in">
+                <span
+                  className={`inline-flex items-center justify-center min-w-5 h-5 px-1.5 text-xs font-bold leading-none text-indigo-700 bg-white rounded-full shadow-sm transition-transform ${
+                    cartJustUpdated ? 'scale-125 bg-emerald-300 text-slate-900' : ''
+                  }`}
+                >
                   {totalQuantity}
                 </span>
               )}
