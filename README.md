@@ -25,35 +25,14 @@
 
 ---
 
-## 10-Day Engineering Roadmap
+## Core System Modules
 
-- [x] **Day 1: React Storefront Prototyping**
-  - Vite + React 18 + TypeScript + Tailwind CSS setup.
-  - Digital assets catalog with dynamic PostgreSQL JSONB attribute modeling.
-  - Interactive slide-out cart drawer, toast notifications, cyber boot loader, and scroll-reveal animations.
-- [ ] **Day 2: React Admin Dashboard & AI Interface**
-  - Protected admin routes with role-based mock authentication.
-  - Real-time inventory table, predictive sales charts, and Agentic AI chat assistant.
-- [ ] **Day 3: Infrastructure Provisioning & Data Layer**
-  - Local `docker-compose.yml` for PostgreSQL, Redis, and Apache Kafka.
-  - Spring Boot 21 project scaffolding with Flyway migrations supporting `JSONB`.
-- [ ] **Day 4: Spring Boot Core APIs & Redis Caching**
-  - JPA entities with JSONB type mappings, CRUD REST endpoints, and JWT authentication.
-  - RedisTemplate volatile shopping cart and session management.
-- [ ] **Day 5: Agentic AI Integration & Resilience4j**
-  - Intent-parsing natural language search mapped to PostgreSQL JSONB queries.
-  - Resilience4j circuit breakers and fallbacks for external payment gateways.
-- [ ] **Day 6: Kafka Event Streaming Pipeline**
-  - Asynchronous `OrderPlaced` Kafka producer and consumer services.
-  - Comprehensive JUnit test suite for checkout and inventory streams.
-- [ ] **Day 7: Web Integration & End-to-End Testing**
-  - Live Axios REST integration, JWT auth interceptors, and Kafka-backed admin metrics updates.
-- [ ] **Day 8: Flutter Mobile Scaffold & State Management**
-  - Cross-platform Flutter mobile app setup with BLoC architecture.
-- [ ] **Day 9: Mobile Backend Integration**
-  - Mobile REST connectivity, real-time Redis cart synchronization, and native AI search.
-- [ ] **Day 10: Containerization & Cloud Deployment**
-  - Production Dockerfiles, Kubernetes manifests, AWS EKS configuration, and CI/CD pipelines.
+- **Web Storefront & Admin Portal**: Responsive client interface with cyber loading screen, product detail inspectors, and a synchronized slide-out cart drawer.
+- **Spring Boot 21 Backend Engine**: Microservices architecture powered by Java 21, Spring Data JPA, and Resilience4j circuit breakers.
+- **Apache Kafka Event Broker**: Asynchronous event streams handling order placements, inventory updates, and analytical data pipelines.
+- **PostgreSQL JSONB Dynamic Schema**: Schema-less storage for versatile product specs, licensing metadata, and dynamic configurations.
+- **Redis Session Tier**: High-speed volatile memory caching for sub-millisecond cross-platform cart synchronization.
+- **Flutter Native Mobile Client**: Native mobile experience using BLoC state management synchronized with the cloud backend.
 
 ---
 
@@ -65,12 +44,12 @@ Omnicart/
 │   ├── src/
 │   │   ├── components/   # UI components (Navbar, CartDrawer, LoadingScreen, etc.)
 │   │   ├── context/      # React Cart & Session State Management
-│   │   ├── data/         # Dynamic JSONB Mock Catalog
+│   │   ├── data/         # Dynamic JSONB Digital Asset Catalog
 │   │   └── types/        # TypeScript Interfaces & Models
 │   └── package.json
-├── backend/              # Java 21 + Spring Boot Microservices (Upcoming Day 3-6)
-├── mobile/               # Flutter + BLoC Mobile App (Upcoming Day 8-9)
-├── infra/                # Docker Compose & Kubernetes Manifests (Upcoming Day 3, 10)
+├── backend/              # Java 21 + Spring Boot Microservices
+├── mobile/               # Flutter + BLoC Mobile App
+├── infra/                # Docker Compose & Kubernetes Manifests
 └── README.md
 ```
 

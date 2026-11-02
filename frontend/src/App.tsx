@@ -113,14 +113,14 @@ export const AppContent: React.FC = () => {
 
                 <div>
                   <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
-                    Roadmap Architecture
+                    Platform Core
                   </h4>
                   <ul className="text-xs space-y-2 text-slate-400">
-                    <li className="text-indigo-400 font-semibold">• Day 1: Digital Storefront (Done)</li>
-                    <li>• Day 2: Admin Dashboard & Agentic AI</li>
-                    <li>• Day 3: Docker & PostgreSQL JSONB</li>
-                    <li>• Day 4: Spring Boot REST & Redis Cache</li>
-                    <li>• Day 5: Agentic AI & Resilience4j</li>
+                    <li className="text-slate-300 font-medium">• React Storefront & Admin</li>
+                    <li>• Spring Boot Microservices</li>
+                    <li>• PostgreSQL JSONB Modeling</li>
+                    <li>• Redis Session Cluster</li>
+                    <li>• Kafka Event Streaming</li>
                   </ul>
                 </div>
 
