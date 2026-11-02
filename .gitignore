@@ -49,3 +49,4 @@ pnpm-debug.log*
 
 # Docker / Local run
 *.pid
+

@@ -2,14 +2,14 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product, CartItem, CartState } from '../types/product';
 
 interface CartContextType extends CartState {
-  addToCart: (product: Product, quantity?: number, selectedAttributes?: Record<string, string>) => void;
+  addToCart: (product: Product, quantity?: number, selectedLicense?: string) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   toggleCart: (open?: boolean) => void;
 }
 
-const CART_STORAGE_KEY = 'omnicart_session_cart';
+const CART_STORAGE_KEY = 'omnicart_digital_cart';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -35,11 +35,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
   const subtotal = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  const estimatedShipping = subtotal > 150 || items.length === 0 ? 0 : 15.0;
-  const estimatedTax = subtotal * 0.0825; // standard 8.25%
-  const total = subtotal + estimatedShipping + estimatedTax;
+  const digitalDeliveryFee = 0.0; // 100% Free Instant Cloud & Git Delivery
+  const estimatedTax = subtotal * 0.0825; // 8.25%
+  const total = subtotal + digitalDeliveryFee + estimatedTax;
 
-  const addToCart = (product: Product, quantity = 1, selectedAttributes?: Record<string, string>) => {
+  const addToCart = (product: Product, quantity = 1, selectedLicense?: string) => {
     setItems((prev) => {
       const existingIndex = prev.findIndex((item) => item.product.id === product.id);
       if (existingIndex > -1) {
@@ -48,11 +48,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         next[existingIndex] = {
           ...next[existingIndex],
           quantity: newQty,
-          selectedAttributes: selectedAttributes || next[existingIndex].selectedAttributes
+          selectedLicense: selectedLicense || next[existingIndex].selectedLicense
         };
         return next;
       }
-      return [...prev, { product, quantity: Math.min(quantity, product.inventoryCount), selectedAttributes }];
+      return [
+        ...prev,
+        {
+          product,
+          quantity: Math.min(quantity, product.inventoryCount),
+          selectedLicense: selectedLicense || String(product.attributes.license_type || 'Commercial License')
+        }
+      ];
     });
     setIsOpen(true);
   };
@@ -93,7 +100,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         totalQuantity,
         subtotal,
         estimatedTax,
-        estimatedShipping,
+        digitalDeliveryFee,
         total,
         addToCart,
         removeFromCart,

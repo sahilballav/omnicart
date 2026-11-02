@@ -2,15 +2,23 @@ export interface ProductAttributes {
   [key: string]: string | number | boolean | string[] | number[] | Record<string, unknown>;
 }
 
+export type DigitalCategory =
+  | 'Cloud & DevOps'
+  | 'AI & Agent Kits'
+  | 'Developer Tools'
+  | 'UI Systems & Figma'
+  | 'Microservices & APIs'
+  | 'Courses & Masterclasses';
+
 export interface Product {
   id: string;
   name: string;
   slug: string;
   brand: string;
-  category: 'Electronics' | 'Audio' | 'Wearables' | 'Smart Home' | 'Fashion' | 'Accessories';
+  category: DigitalCategory;
   price: number;
   compareAtPrice?: number;
-  inventoryCount: number;
+  inventoryCount: number; // For digital products: available license keys / seats
   rating: number;
   reviewCount: number;
   images: string[];
@@ -29,7 +37,7 @@ export interface Product {
 export interface CartItem {
   product: Product;
   quantity: number;
-  selectedAttributes?: Record<string, string>;
+  selectedLicense?: string;
 }
 
 export interface CartState {
@@ -38,6 +46,6 @@ export interface CartState {
   totalQuantity: number;
   subtotal: number;
   estimatedTax: number;
-  estimatedShipping: number;
+  digitalDeliveryFee: number;
   total: number;
 }
