@@ -1,0 +1,9 @@
+{
+  "name": "omnicart-workspace",
+  "private": true,
+  "description": "OmniCart: Cloud-Native Multi-Platform E-Commerce System",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build"
+  }
+}
