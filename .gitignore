@@ -12,6 +12,7 @@ build/
 target/
 *.jar
 *.war
+*.tsbuildinfo
 
 # Environment files
 .env

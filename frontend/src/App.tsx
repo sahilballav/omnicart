@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CartProvider } from './context/CartContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { HeroBanner } from './components/HeroBanner';
 import { ProductGrid } from './components/ProductGrid';
@@ -8,9 +9,11 @@ import { ProductDetailModal } from './components/ProductDetailModal';
 import { CartDrawer } from './components/CartDrawer';
 import { Toast } from './components/Toast';
 import { ArchitectureShowcase } from './components/ArchitectureShowcase';
+import { AdminDashboard } from './components/admin/AdminDashboard';
+import { AiShoppingAssistant } from './components/ai/AiShoppingAssistant';
 import { MOCK_PRODUCTS } from './data/mockProducts';
 import { Product } from './types/product';
-import { Github, Layers, Cpu, Database, Server } from 'lucide-react';
+import { Github, Layers, Cpu, Database, Server, Sparkles } from 'lucide-react';
 
 const CATEGORIES = [
   'All',
@@ -23,9 +26,18 @@ const CATEGORIES = [
 ];
 
 export const AppContent: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>(MOCK_PRODUCTS);
+  const [currentView, setCurrentView] = useState<'storefront' | 'admin'>('storefront');
+  const [isAiAssistantOpen, setIsAiAssistantOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeModalProduct, setActiveModalProduct] = useState<Product | null>(null);
+
+  const handleUpdateInventory = (productId: string, newCount: number) => {
+    setProducts((prev) =>
+      prev.map((p) => (p.id === productId ? { ...p, inventoryCount: Math.max(0, newCount) } : p))
+    );
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white transition-colors duration-200">
@@ -37,22 +49,58 @@ export const AppContent: React.FC = () => {
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
           categories={CATEGORIES}
+          currentView={currentView}
+          onNavigate={(view) => setCurrentView(view)}
+          onOpenAiAssistant={() => setIsAiAssistantOpen(true)}
         />
 
-        {/* Hero Section */}
-        <HeroBanner />
+        {/* View Routing: Storefront vs Admin Dashboard */}
+        {currentView === 'storefront' ? (
+          <main>
+            {/* Hero Section */}
+            <HeroBanner />
 
-        {/* Architecture Section */}
-        <ArchitectureShowcase />
+            {/* Architecture Section */}
+            <ArchitectureShowcase />
 
-        {/* Digital Asset Catalog Grid */}
-        <ProductGrid
-          products={MOCK_PRODUCTS}
-          selectedCategory={selectedCategory}
-          searchQuery={searchQuery}
-          onQuickView={(prod) => setActiveModalProduct(prod)}
-        />
+            {/* Digital Asset Catalog Grid */}
+            <ProductGrid
+              products={products}
+              selectedCategory={selectedCategory}
+              searchQuery={searchQuery}
+              onQuickView={(prod) => setActiveModalProduct(prod)}
+            />
+          </main>
+        ) : (
+          <main>
+            <AdminDashboard
+              products={products}
+              onUpdateInventory={handleUpdateInventory}
+              onNavigateStorefront={() => setCurrentView('storefront')}
+            />
+          </main>
+        )}
       </div>
+
+      {/* Floating Action Button for AI Shopping Assistant on Storefront */}
+      {currentView === 'storefront' && (
+        <button
+          onClick={() => setIsAiAssistantOpen(true)}
+          className="fixed bottom-6 right-6 z-30 px-3.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-lg flex items-center gap-2 text-xs font-semibold transition-transform hover:scale-105"
+          title="Open OmniCart Agentic Shopping Assistant"
+        >
+          <Sparkles className="w-4 h-4 text-white" />
+          <span>Ask AI Assistant</span>
+        </button>
+      )}
+
+      {/* Agentic AI Assistant Drawer */}
+      <AiShoppingAssistant
+        isOpen={isAiAssistantOpen}
+        onClose={() => setIsAiAssistantOpen(false)}
+        products={products}
+        onSelectProduct={(prod) => setActiveModalProduct(prod)}
+      />
 
       {/* Slide-out Cart Drawer */}
       <CartDrawer />
@@ -66,7 +114,7 @@ export const AppContent: React.FC = () => {
       {/* Toast Notification */}
       <Toast />
 
-      {/* Clean Technical Footer */}
+      {/* Technical Footer */}
       <footer className="mt-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -108,9 +156,25 @@ export const AppContent: React.FC = () => {
 
             <div>
               <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
-                Repository
+                Console & Tools
               </h4>
               <ul className="text-xs space-y-2 text-slate-500 dark:text-slate-400">
+                <li>
+                  <button
+                    onClick={() => setCurrentView('admin')}
+                    className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    Operator Admin Console
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => setIsAiAssistantOpen(true)}
+                    className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    Agentic Shopping Assistant
+                  </button>
+                </li>
                 <li>
                   <a
                     href="https://github.com/sahilballav/omnicart"
@@ -121,7 +185,6 @@ export const AppContent: React.FC = () => {
                     <Github className="w-3.5 h-3.5" /> GitHub Monorepo
                   </a>
                 </li>
-                <li>MIT Open Source License</li>
               </ul>
             </div>
           </div>
@@ -129,7 +192,7 @@ export const AppContent: React.FC = () => {
           <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
             <p>© 2026 OmniCart. Built for high-velocity software delivery.</p>
             <div className="flex items-center gap-4">
-              <span>Ready for Day 2 Admin Dashboard</span>
+              <span>Day 2 Complete: Protected Admin & Agentic AI Assistant</span>
             </div>
           </div>
         </div>
@@ -141,9 +204,11 @@ export const AppContent: React.FC = () => {
 export default function App() {
   return (
     <ThemeProvider>
-      <CartProvider>
-        <AppContent />
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <AppContent />
+        </CartProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
