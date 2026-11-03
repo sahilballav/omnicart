@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CartProvider } from './context/CartContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { HeroBanner } from './components/HeroBanner';
 import { ProductGrid } from './components/ProductGrid';
@@ -39,7 +40,7 @@ export const AppContent: React.FC = () => {
       {/* Animated Futuristic Boot Loading Screen */}
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
-      <div className={`min-h-screen bg-slate-50 flex flex-col justify-between selection:bg-indigo-500 selection:text-white transition-opacity duration-700 ${isLoading ? 'opacity-0' : 'opacity-100 animate-fade-in'}`}>
+      <div className={`min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white transition-colors duration-300 ${isLoading ? 'opacity-0' : 'opacity-100 animate-fade-in'}`}>
         <div>
           {/* Navigation Bar */}
           <Navbar
@@ -169,8 +170,10 @@ export const AppContent: React.FC = () => {
 
 export default function App() {
   return (
-    <CartProvider>
-      <AppContent />
-    </CartProvider>
+    <ThemeProvider>
+      <CartProvider>
+        <AppContent />
+      </CartProvider>
+    </ThemeProvider>
   );
 }

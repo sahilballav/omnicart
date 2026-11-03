@@ -43,9 +43,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
     : 0;
 
   return (
-    <div className="group bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-2xl hover:border-indigo-300 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden">
+    <div className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:border-indigo-300 dark:hover:border-indigo-500/50 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden">
       {/* Product Image Container */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+      <div className="relative aspect-[16/10] overflow-hidden bg-slate-900 dark:bg-slate-950">
         <img
           src={product.images[0]}
           alt={product.name}
@@ -73,11 +73,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         {/* Quick View Button on hover */}
         <button
           onClick={() => onQuickView(product)}
-          className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-white/95 text-slate-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl hover:bg-white hover:scale-110 z-20 backdrop-blur-sm"
+          className="absolute inset-0 m-auto w-10 h-10 rounded-full bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-200 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl hover:bg-white dark:hover:bg-slate-800 hover:scale-110 z-20 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700"
           title="Inspect Specs & Architecture"
           aria-label="Inspect Specs & Architecture"
         >
-          <Eye className="w-5 h-5 text-slate-800" />
+          <Eye className="w-5 h-5 text-slate-800 dark:text-slate-200" />
         </button>
 
         {/* Category tag */}
@@ -93,23 +93,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         <div>
           {/* Brand & Rating */}
           <div className="flex items-center justify-between mb-1.5 text-xs">
-            <span className="font-bold text-slate-400 uppercase tracking-wider text-[11px]">{product.brand}</span>
+            <span className="font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider text-[11px]">{product.brand}</span>
             <div className="flex items-center gap-1 text-amber-500 font-semibold">
               <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
               <span>{product.rating}</span>
-              <span className="text-slate-400 font-normal">({product.reviewCount})</span>
+              <span className="text-slate-400 dark:text-slate-500 font-normal">({product.reviewCount})</span>
             </div>
           </div>
 
           {/* Title */}
           <h3
             onClick={() => onQuickView(product)}
-            className="font-bold text-slate-900 text-base leading-snug hover:text-indigo-600 transition-colors cursor-pointer line-clamp-1 mb-1.5"
+            className="font-bold text-slate-900 dark:text-white text-base leading-snug hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer line-clamp-1 mb-1.5"
           >
             {product.name}
           </h3>
 
-          <p className="text-xs text-slate-500 line-clamp-2 mb-3 leading-relaxed">
+          <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3 leading-relaxed">
             {product.shortDescription}
           </p>
 
@@ -118,7 +118,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
             {previewBadges.slice(0, 2).map((badge, idx) => (
               <span
                 key={idx}
-                className="inline-flex items-center text-[10px] font-semibold text-indigo-700 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-md"
+                className="inline-flex items-center text-[10px] font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/60 px-2 py-0.5 rounded-md"
               >
                 {badge}
               </span>
@@ -127,21 +127,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         </div>
 
         {/* Price & Action Footer */}
-        <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+        <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3">
           <div>
             <div className="flex items-baseline gap-1.5">
-              <span className="text-lg font-black text-slate-900">
+              <span className="text-lg font-black text-slate-900 dark:text-white">
                 ${product.price.toFixed(2)}
               </span>
               {product.compareAtPrice && (
-                <span className="text-xs text-slate-400 line-through">
+                <span className="text-xs text-slate-400 dark:text-slate-500 line-through">
                   ${product.compareAtPrice.toFixed(2)}
                 </span>
               )}
             </div>
-            <div className="text-[10px] text-slate-400 font-medium flex items-center gap-1 mt-0.5">
+            <div className="text-[10px] text-slate-400 dark:text-slate-500 font-medium flex items-center gap-1 mt-0.5">
               <Key className="w-3 h-3 text-emerald-500" />
-              <span className="text-emerald-600 font-semibold">Instant Key Delivery</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Instant Key Delivery</span>
             </div>
           </div>
 
@@ -152,7 +152,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
               isPressing ? 'scale-90 ring-2 ring-indigo-400' : 'active:scale-95'
             } ${
               cartQty > 0
-                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100'
+                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/50'
                 : 'bg-indigo-600 hover:bg-indigo-700 text-white hover:shadow-indigo-500/25'
             }`}
           >

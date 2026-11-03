@@ -38,7 +38,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
           {val.map((item, idx) => (
             <span
               key={idx}
-              className="inline-block text-[11px] bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-mono font-medium border border-slate-200"
+              className="inline-block text-[11px] bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-2 py-0.5 rounded font-mono font-medium border border-slate-200 dark:border-slate-700"
             >
               {String(item)}
             </span>
@@ -50,23 +50,25 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
       return (
         <span
           className={`inline-flex items-center text-xs px-2 py-0.5 rounded font-semibold ${
-            val ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-600'
+            val
+              ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300'
+              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
           }`}
         >
           {val ? 'Included / Active' : 'Not Included'}
         </span>
       );
     }
-    return <span className="text-slate-800 font-medium text-xs font-mono">{String(val)}</span>;
+    return <span className="text-slate-800 dark:text-slate-200 font-medium text-xs font-mono">{String(val)}</span>;
   };
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 animate-fade-in">
-      <div className="relative bg-white rounded-3xl max-w-4xl w-full shadow-2xl border border-slate-200 overflow-hidden max-h-[92vh] flex flex-col">
+      <div className="relative bg-white dark:bg-slate-900 rounded-3xl max-w-4xl w-full shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden max-h-[92vh] flex flex-col transition-colors">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors"
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
@@ -77,7 +79,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Left: Product Media Preview */}
             <div>
-              <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 mb-3 relative shadow-inner">
+              <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950 border border-slate-200 dark:border-slate-800 mb-3 relative shadow-inner">
                 <img
                   src={product.images[selectedImageIndex] || product.images[0]}
                   alt={product.name}
@@ -103,7 +105,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                       className={`w-18 h-14 rounded-xl overflow-hidden border-2 transition-all ${
                         selectedImageIndex === idx
                           ? 'border-indigo-600 shadow-md scale-105'
-                          : 'border-slate-200 opacity-70 hover:opacity-100'
+                          : 'border-slate-200 dark:border-slate-800 opacity-70 hover:opacity-100'
                       }`}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
@@ -113,21 +115,21 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               )}
 
               {/* Digital Trust Badges */}
-              <div className="grid grid-cols-3 gap-2 p-3.5 bg-slate-50 rounded-2xl border border-slate-100 text-center text-[11px] text-slate-700">
+              <div className="grid grid-cols-3 gap-2 p-3.5 bg-slate-50 dark:bg-slate-950/80 rounded-2xl border border-slate-100 dark:border-slate-800 text-center text-[11px] text-slate-700 dark:text-slate-300">
                 <div className="flex flex-col items-center gap-1">
-                  <DownloadCloud className="w-4 h-4 text-indigo-600" />
+                  <DownloadCloud className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                   <span className="font-semibold">Instant Access</span>
-                  <span className="text-[9px] text-slate-400 leading-none">Cloud CDN / Git</span>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 leading-none">Cloud CDN / Git</span>
                 </div>
                 <div className="flex flex-col items-center gap-1">
-                  <RefreshCw className="w-4 h-4 text-emerald-600" />
+                  <RefreshCw className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span className="font-semibold">Lifetime Updates</span>
-                  <span className="text-[9px] text-slate-400 leading-none">Free patches</span>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 leading-none">Free patches</span>
                 </div>
                 <div className="flex flex-col items-center gap-1">
-                  <Shield className="w-4 h-4 text-purple-600" />
+                  <Shield className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                   <span className="font-semibold">Full Commercial</span>
-                  <span className="text-[9px] text-slate-400 leading-none">Royalty-free</span>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 leading-none">Royalty-free</span>
                 </div>
               </div>
             </div>
@@ -137,14 +139,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               <div>
                 {/* Brand & Category */}
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded-md">
+                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-0.5 rounded-md">
                     {product.brand}
                   </span>
                   <span className="text-xs text-slate-400">•</span>
-                  <span className="text-xs font-medium text-slate-500">{product.category}</span>
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">{product.category}</span>
                 </div>
 
-                <h2 className="text-2xl font-black text-slate-900 leading-snug mb-2">
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white leading-snug mb-2">
                   {product.name}
                 </h2>
 
@@ -157,26 +159,26 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                         className={`w-4 h-4 ${
                           i < Math.floor(product.rating)
                             ? 'fill-amber-400 text-amber-400'
-                            : 'text-slate-300'
+                            : 'text-slate-300 dark:text-slate-600'
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-xs font-bold text-slate-800">{product.rating}</span>
-                  <span className="text-xs text-slate-400">({product.reviewCount} verified developers)</span>
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200">{product.rating}</span>
+                  <span className="text-xs text-slate-400 dark:text-slate-500">({product.reviewCount} verified developers)</span>
                 </div>
 
                 {/* Price block */}
-                <div className="flex items-baseline gap-3 mb-4 p-3 bg-slate-50 rounded-xl border border-slate-100">
-                  <span className="text-3xl font-extrabold text-slate-900">
+                <div className="flex items-baseline gap-3 mb-4 p-3 bg-slate-50 dark:bg-slate-950/80 rounded-xl border border-slate-100 dark:border-slate-800">
+                  <span className="text-3xl font-extrabold text-slate-900 dark:text-white">
                     ${product.price.toFixed(2)}
                   </span>
                   {product.compareAtPrice && (
                     <>
-                      <span className="text-sm text-slate-400 line-through">
+                      <span className="text-sm text-slate-400 dark:text-slate-500 line-through">
                         ${product.compareAtPrice.toFixed(2)}
                       </span>
-                      <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">
+                      <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded">
                         Save ${(product.compareAtPrice - product.price).toFixed(2)}
                       </span>
                     </>
@@ -184,14 +186,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 </div>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
                   {product.description}
                 </p>
 
                 {/* Dynamic PostgreSQL JSONB Attributes Table */}
-                <div className="mb-6 bg-slate-50/90 rounded-2xl border border-slate-200 p-4">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 uppercase tracking-wider mb-3">
-                    <Database className="w-3.5 h-3.5 text-indigo-600" />
+                <div className="mb-6 bg-slate-50/90 dark:bg-slate-950/80 rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-3">
+                    <Database className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                     <span>Digital Asset Specs (PostgreSQL JSONB)</span>
                   </div>
 
@@ -199,9 +201,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                     {Object.entries(product.attributes).map(([key, val]) => (
                       <div
                         key={key}
-                        className="bg-white p-2.5 rounded-xl border border-slate-200/80 flex flex-col justify-between"
+                        className="bg-white dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between"
                       >
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-0.5">
                           {formatKey(key)}
                         </span>
                         <div>{renderAttributeValue(val)}</div>
@@ -212,40 +214,40 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               </div>
 
               {/* Purchase Actions */}
-              <div className="pt-4 border-t border-slate-200">
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
                 <div className="flex items-center justify-between gap-4 mb-3">
                   {/* License Seats Notice */}
                   <div className="text-xs">
-                    <span className="font-semibold text-slate-700">Digital Delivery: </span>
-                    <span className="font-bold text-emerald-600">
+                    <span className="font-semibold text-slate-700 dark:text-slate-300">Digital Delivery: </span>
+                    <span className="font-bold text-emerald-600 dark:text-emerald-400">
                       Instant Access Key & Signed Download
                     </span>
                     {existingQtyInCart > 0 && (
-                      <div className="text-[11px] text-indigo-600 font-medium">
+                      <div className="text-[11px] text-indigo-600 dark:text-indigo-400 font-medium">
                         ({existingQtyInCart} license seats currently in cart)
                       </div>
                     )}
                   </div>
 
                   {/* License Seats Modifier */}
-                  <div className="flex items-center border border-slate-300 rounded-xl bg-slate-50">
+                  <div className="flex items-center border border-slate-300 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800">
                     <button
                       onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                       disabled={quantity <= 1}
-                      className="p-2 hover:bg-slate-200 rounded-l-xl disabled:opacity-40 transition-colors"
+                      className="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-l-xl disabled:opacity-40 transition-colors"
                       title="Decrease seats"
                     >
-                      <Minus className="w-3.5 h-3.5 text-slate-700" />
+                      <Minus className="w-3.5 h-3.5 text-slate-700 dark:text-slate-300" />
                     </button>
-                    <span className="w-10 text-center font-bold text-xs text-slate-800">
+                    <span className="w-10 text-center font-bold text-xs text-slate-800 dark:text-slate-200">
                       {quantity} {quantity === 1 ? 'seat' : 'seats'}
                     </span>
                     <button
                       onClick={() => setQuantity((q) => q + 1)}
-                      className="p-2 hover:bg-slate-200 rounded-r-xl transition-colors"
+                      className="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-r-xl transition-colors"
                       title="Add seats"
                     >
-                      <Plus className="w-3.5 h-3.5 text-slate-700" />
+                      <Plus className="w-3.5 h-3.5 text-slate-700 dark:text-slate-300" />
                     </button>
                   </div>
                 </div>

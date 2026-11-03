@@ -6,7 +6,7 @@ export const ArchitectureShowcase: React.FC = () => {
   const features = [
     {
       icon: Database,
-      iconColor: 'text-indigo-400',
+      iconColor: 'text-indigo-500 dark:text-indigo-400',
       bgColor: 'bg-indigo-500/10',
       borderColor: 'border-indigo-500/20',
       title: 'PostgreSQL JSONB Dynamic Schema',
@@ -15,7 +15,7 @@ export const ArchitectureShowcase: React.FC = () => {
     },
     {
       icon: Zap,
-      iconColor: 'text-rose-400',
+      iconColor: 'text-rose-500 dark:text-rose-400',
       bgColor: 'bg-rose-500/10',
       borderColor: 'border-rose-500/20',
       title: 'Redis Sub-Millisecond Session Cache',
@@ -24,7 +24,7 @@ export const ArchitectureShowcase: React.FC = () => {
     },
     {
       icon: Server,
-      iconColor: 'text-amber-400',
+      iconColor: 'text-amber-500 dark:text-amber-400',
       bgColor: 'bg-amber-500/10',
       borderColor: 'border-amber-500/20',
       title: 'Apache Kafka Event Pipeline',
@@ -33,7 +33,7 @@ export const ArchitectureShowcase: React.FC = () => {
     },
     {
       icon: ShieldCheck,
-      iconColor: 'text-emerald-400',
+      iconColor: 'text-emerald-500 dark:text-emerald-400',
       bgColor: 'bg-emerald-500/10',
       borderColor: 'border-emerald-500/20',
       title: 'Resilience4j Circuit Breakers',
@@ -46,14 +46,14 @@ export const ArchitectureShowcase: React.FC = () => {
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 my-6">
       <ScrollReveal direction="up" delay={50}>
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold mb-3 border border-indigo-200/60">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 text-xs font-bold mb-3 border border-indigo-200/60 dark:border-indigo-800">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
             Enterprise Infrastructure Core
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
             Engineered for Resilient Multi-Platform Scale
           </h2>
-          <p className="text-sm text-slate-500 leading-relaxed">
+          <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
             OmniCart's decoupled architecture unifies dynamic catalog management, real-time cache synchronization, and asynchronous event streaming.
           </p>
         </div>
@@ -70,27 +70,27 @@ export const ArchitectureShowcase: React.FC = () => {
               delay={idx * 120}
               className="h-full"
             >
-              <div className="group h-full bg-white rounded-3xl border border-slate-200/90 p-6 shadow-sm hover:shadow-xl hover:border-indigo-300 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1">
+              <div className="group h-full bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200/90 dark:border-slate-800 p-6 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <div className={`p-3 rounded-2xl ${feature.bgColor} ${feature.borderColor} border`}>
                       <Icon className={`w-6 h-6 ${feature.iconColor}`} />
                     </div>
-                    <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-bold">
+                    <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold">
                       {feature.tag}
                     </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {feature.title}
                   </h3>
 
-                  <p className="text-xs text-slate-500 leading-relaxed">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <div className="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500 font-mono">
                   <span>LATENCY: &lt;1ms</span>
                   <span className="text-emerald-500 font-bold">ACTIVE</span>
                 </div>

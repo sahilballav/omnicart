@@ -29,7 +29,7 @@ export const BackToTop: React.FC = () => {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 left-6 z-40 p-3 rounded-2xl bg-white/90 hover:bg-white text-slate-700 hover:text-indigo-600 border border-slate-200/90 shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95 group animate-fade-in"
+      className="fixed bottom-6 left-6 z-40 p-3 rounded-2xl bg-white/90 dark:bg-slate-900/90 hover:bg-white dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 border border-slate-200/90 dark:border-slate-800 shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95 group animate-fade-in"
       aria-label="Back to top"
       title="Back to top"
     >
@@ -37,4 +37,3 @@ export const BackToTop: React.FC = () => {
     </button>
   );
 };
-

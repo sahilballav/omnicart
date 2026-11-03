@@ -47,6 +47,7 @@
   - [x] Animated floating Add-to-Cart toast notification (`Toast.tsx`).
   - [x] Bouncy cart badge pop animation (`Navbar.tsx`).
   - [x] Enterprise Architecture Showcase section (`ArchitectureShowcase.tsx`).
+  - [x] Full Dark Mode theme engine with animated Sun/Moon toggle and persistent preferences (`ThemeContext.tsx`, `ThemeToggle.tsx`).
 
 ---
 
@@ -177,3 +178,4 @@
                                                              - Inventory Deduction
                                                              - Predictive Analytics
 ```
+

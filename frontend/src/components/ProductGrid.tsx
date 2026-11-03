@@ -88,12 +88,12 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
     <section id="catalog" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       {/* Controls Bar */}
       <ScrollReveal direction="up" delay={0}>
-        <div className="bg-white rounded-2xl border border-slate-200 p-4 mb-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 mb-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors">
           {/* Left: Stats & Tag Chips */}
           <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center gap-2 text-sm font-semibold text-slate-800 pr-3 border-r border-slate-200">
-              <SlidersHorizontal className="w-4 h-4 text-indigo-600" />
-              <span>{filteredProducts.length} Products</span>
+            <div className="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200 pr-3 border-r border-slate-200 dark:border-slate-800">
+              <SlidersHorizontal className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <span>{filteredProducts.length} Assets</span>
             </div>
 
             {/* Quick attribute tags */}
@@ -103,7 +103,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                 className={`text-xs px-2.5 py-1 rounded-full font-medium transition-colors ${
                   selectedTag === null
                     ? 'bg-indigo-600 text-white'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                 }`}
               >
                 All Tags
@@ -115,7 +115,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                   className={`text-xs px-2.5 py-1 rounded-full font-medium transition-colors ${
                     selectedTag === tag
                       ? 'bg-indigo-600 text-white'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                   }`}
                 >
                   #{tag}
@@ -126,22 +126,22 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
 
           {/* Right: In-stock toggle & Sort Dropdown */}
           <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0">
-            <label className="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer select-none">
+            <label className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer select-none">
               <input
                 type="checkbox"
                 checked={inStockOnly}
                 onChange={(e) => setInStockOnly(e.target.checked)}
-                className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4"
+                className="rounded border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-indigo-600 focus:ring-indigo-500 w-4 h-4"
               />
-              <span>In Stock Only</span>
+              <span>Active Licenses Only</span>
             </label>
 
-            <div className="flex items-center gap-1.5 text-xs text-slate-600">
-              <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+            <div className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400">
+              <ArrowUpDown className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
               <select
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value as SortOption)}
-                className="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 <option value="featured">Featured First</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -171,13 +171,13 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300 p-8">
-          <div className="w-16 h-16 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-4">
+        <div className="text-center py-16 bg-white dark:bg-slate-900 rounded-3xl border border-dashed border-slate-300 dark:border-slate-800 p-8 transition-colors">
+          <div className="w-16 h-16 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mx-auto mb-4">
             <SlidersHorizontal className="w-8 h-8" />
           </div>
-          <h3 className="text-lg font-bold text-slate-800 mb-1">No products found</h3>
-          <p className="text-sm text-slate-500 max-w-md mx-auto mb-6">
-            We couldn't find any products matching your current filters or query. Try clearing your search or switching categories.
+          <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-1">No digital assets found</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-6">
+            We couldn't find any assets matching your current filters or query. Try clearing your search or switching categories.
           </p>
           <button
             onClick={() => {
@@ -193,4 +193,3 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
     </section>
   );
 };
-
