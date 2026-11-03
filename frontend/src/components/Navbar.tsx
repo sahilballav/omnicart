@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, Search, ShieldCheck, Sparkles, Layers, RefreshCw } from 'lucide-react';
+import { ShoppingBag, Search, Layers } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -9,7 +9,6 @@ interface NavbarProps {
   selectedCategory: string;
   onSelectCategory: (cat: string) => void;
   categories: string[];
-  onReplayLoader?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -17,104 +16,53 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSearchChange,
   selectedCategory,
   onSelectCategory,
-  categories,
-  onReplayLoader
+  categories
 }) => {
-  const { totalQuantity, toggleCart, cartJustUpdated } = useCart();
+  const { totalQuantity, toggleCart } = useCart();
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
-      {/* Top micro-announcement banner */}
-      <div className="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 text-slate-200 text-xs py-1.5 px-4 border-b border-slate-800/60">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full font-medium border border-indigo-400/30">
-              <Sparkles className="w-3 h-3 text-indigo-400" /> OmniCart Digital Hub
-            </span>
-            <span className="hidden sm:inline text-slate-300">
-              Cloud-Native Digital Assets • Instant License Key Generation & Automated Git Provisioning
-            </span>
-          </div>
-          <div className="flex items-center gap-4 text-[11px] font-medium text-slate-400">
-            {onReplayLoader && (
-              <button
-                onClick={onReplayLoader}
-                className="hidden lg:flex items-center gap-1 text-slate-400 hover:text-cyan-300 transition-colors"
-                title="Re-play System Boot Loader"
-              >
-                <RefreshCw className="w-3 h-3" /> Boot Animation
-              </button>
-            )}
-            <span className="flex items-center gap-1 text-emerald-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Redis Session Sync
-            </span>
-            <span className="hidden md:inline text-indigo-300">Instant S3 / GitHub CDN</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navbar */}
+    <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-4">
+        <div className="flex items-center justify-between h-16 gap-6">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <a href="#" className="flex items-center gap-2.5 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 via-indigo-700 to-indigo-900 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-                <Layers className="w-5 h-5 text-indigo-200" />
+            <a href="#" className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-slate-900 dark:bg-slate-100 flex items-center justify-center text-white dark:text-slate-900">
+                <Layers className="w-5 h-5" />
               </div>
-              <div>
-                <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-slate-950 dark:from-white to-indigo-700 dark:to-indigo-400 bg-clip-text text-transparent">
-                  Omni<span className="text-indigo-600 dark:text-indigo-400">Cart</span>
-                </span>
-                <span className="block text-[10px] tracking-wider text-slate-400 dark:text-slate-500 font-semibold uppercase -mt-1">
-                  Digital Hub
-                </span>
-              </div>
+              <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">
+                OmniCart
+              </span>
             </a>
           </div>
 
-          {/* Search Bar */}
-          <div className="flex-1 max-w-xl mx-2 hidden sm:block">
+          {/* Search Input */}
+          <div className="flex-1 max-w-lg hidden sm:block">
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search templates, SDKs, AI models, specs (e.g. Terraform, Kubernetes, Java 21, Figma)..."
+                placeholder="Search blueprints, modules, SDKs (e.g. Terraform, Kubernetes, Spring)..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-sm bg-slate-100 hover:bg-slate-50 focus:bg-white dark:bg-slate-900 dark:hover:bg-slate-800/80 dark:focus:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-900 dark:text-white transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-colors"
               />
-              <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
             </div>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Dark Mode Toggle */}
+          <div className="flex items-center gap-3">
             <ThemeToggle />
 
-            {/* Admin Badge Preview (for Day 2) */}
-            <div className="hidden lg:flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-medium">
-              <ShieldCheck className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-              <span>Admin Preview</span>
-            </div>
-
-            {/* Cart Trigger with Pop Animation */}
             <button
               onClick={() => toggleCart(true)}
-              className={`relative flex items-center gap-2 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-sm hover:shadow-indigo-500/25 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-                cartJustUpdated ? 'animate-cart-pop ring-2 ring-indigo-400' : ''
-              }`}
-              aria-label="Digital Cart"
+              className="flex items-center gap-2 px-3.5 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg text-sm font-medium transition-colors"
+              aria-label="Shopping Cart"
             >
-              <ShoppingBag className="w-5 h-5" />
-              <span className="text-sm font-semibold hidden sm:inline">Licenses</span>
+              <ShoppingBag className="w-4 h-4" />
+              <span className="hidden sm:inline">Cart</span>
               {totalQuantity > 0 && (
-                <span
-                  className={`inline-flex items-center justify-center min-w-5 h-5 px-1.5 text-xs font-bold leading-none text-indigo-700 bg-white rounded-full shadow-sm transition-transform ${
-                    cartJustUpdated ? 'scale-125 bg-emerald-300 text-slate-900' : ''
-                  }`}
-                >
+                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1.5 text-xs font-bold bg-indigo-500 dark:bg-white text-white dark:text-slate-900 rounded-full">
                   {totalQuantity}
                 </span>
               )}
@@ -122,31 +70,31 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Mobile Search input */}
+        {/* Mobile Search Input */}
         <div className="sm:hidden pb-3">
           <div className="relative">
             <input
               type="text"
-              placeholder="Search digital assets..."
+              placeholder="Search blueprints & modules..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 text-sm bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-slate-400 dark:placeholder:text-slate-500"
+              className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-slate-400"
             />
-            <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           </div>
         </div>
 
         {/* Category Navigation Bar */}
-        <div className="flex items-center gap-2 overflow-x-auto py-2.5 border-t border-slate-100 dark:border-slate-800/80 no-scrollbar">
+        <nav className="flex items-center gap-1 overflow-x-auto py-2 border-t border-slate-100 dark:border-slate-800/80 no-scrollbar">
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat;
             return (
               <button
                 key={cat}
                 onClick={() => onSelectCategory(cat)}
-                className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg whitespace-nowrap transition-all ${
+                className={`px-3 py-1.5 text-xs font-medium rounded-md whitespace-nowrap transition-colors ${
                   isSelected
-                    ? 'bg-slate-900 text-white shadow-sm dark:bg-indigo-600 dark:text-white'
+                    ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
@@ -154,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             );
           })}
-        </div>
+        </nav>
       </div>
     </header>
   );
