@@ -33,3 +33,4 @@
   <text x="235" y="357" font-family="monospace" font-size="11" fill="#f8fafc">KafkaProducer.publish("orders.placed")</text>
   <text x="420" y="357" font-family="monospace" font-size="11" fill="#c084fc">2.1ms</text>
 </svg>
+

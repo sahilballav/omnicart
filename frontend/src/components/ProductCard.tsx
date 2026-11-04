@@ -1,5 +1,5 @@
-import React from 'react';
-import { Plus, Eye, Check, DownloadCloud, Key } from 'lucide-react';
+import React, { useState } from 'react';
+import { Plus, Eye, Check, DownloadCloud, Key, Terminal } from 'lucide-react';
 import { Product } from '../types/product';
 import { useCart } from '../context/CartContext';
 
@@ -10,9 +10,17 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }) => {
   const { addToCart, items } = useCart();
+  const [copiedClone, setCopiedClone] = useState(false);
 
   const cartItem = items.find((i) => i.product.id === product.id);
   const cartQty = cartItem ? cartItem.quantity : 0;
+
+  const handleCopyClone = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(`git clone https://github.com/omnicart/${product.slug}.git`);
+    setCopiedClone(true);
+    setTimeout(() => setCopiedClone(false), 2000);
+  };
 
   // Extract key digital attributes for quick preview badges
   const previewBadges: string[] = [];
@@ -60,15 +68,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           )}
         </div>
 
-        {/* Quick View Button */}
-        <button
-          onClick={() => onQuickView(product)}
-          className="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-medium backdrop-blur-sm transition-colors flex items-center gap-1"
-          aria-label="Inspect specifications"
-        >
-          <Eye className="w-3.5 h-3.5" />
-          <span>Specs</span>
-        </button>
+        {/* Quick Actions */}
+        <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-10">
+          <button
+            onClick={handleCopyClone}
+            className="px-2 py-1 rounded bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-mono backdrop-blur-sm transition-colors flex items-center gap-1"
+            title="Copy Git clone URI"
+          >
+            {copiedClone ? <Check className="w-3 h-3 text-emerald-400" /> : <Terminal className="w-3 h-3 text-slate-300" />}
+            <span className="text-[10px]">{copiedClone ? 'Copied' : 'Clone'}</span>
+          </button>
+
+          <button
+            onClick={() => onQuickView(product)}
+            className="px-2.5 py-1 rounded bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-medium backdrop-blur-sm transition-colors flex items-center gap-1"
+            aria-label="Inspect specifications"
+          >
+            <Eye className="w-3.5 h-3.5" />
+            <span>Specs</span>
+          </button>
+        </div>
       </div>
 
       {/* Content Container */}

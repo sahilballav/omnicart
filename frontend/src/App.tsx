@@ -8,7 +8,6 @@ import { ProductGrid } from './components/ProductGrid';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { CartDrawer } from './components/CartDrawer';
 import { Toast } from './components/Toast';
-import { ArchitectureShowcase } from './components/ArchitectureShowcase';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { AiShoppingAssistant } from './components/ai/AiShoppingAssistant';
 import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
@@ -62,18 +61,16 @@ export const AppContent: React.FC = () => {
         {/* View Routing */}
         {currentView === 'storefront' ? (
           <main>
-            {/* Hero Section */}
+            {/* Workbench Header */}
             <HeroBanner />
 
-            {/* Architecture Section */}
-            <ArchitectureShowcase />
-
-            {/* Digital Asset Catalog Grid */}
+            {/* Digital Asset Catalog & Faceted Workbench */}
             <ProductGrid
               products={products}
               selectedCategory={selectedCategory}
               searchQuery={searchQuery}
               onQuickView={(prod) => setActiveModalProduct(prod)}
+              onSelectCategory={setSelectedCategory}
             />
           </main>
         ) : currentView === 'admin' ? (

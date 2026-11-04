@@ -96,3 +96,4 @@ export const TermsConditions: React.FC<TermsConditionsProps> = ({ onBack }) => {
     </div>
   );
 };
+
