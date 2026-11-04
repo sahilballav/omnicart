@@ -30,11 +30,10 @@
   <text x="325" y="320" font-family="monospace" font-size="10" fill="#10b981">PostgreSQL pgvector</text>
 
   <!-- Stage 3 -->
-  <rect x="540" y="150" width="180" height="260" rx="6" fill="#2d1d28" stroke="#be185d" stroke-width="1.5"/>
-  <text x="555" y="180" font-family="monospace" font-size="12" fill="#f472b6" font-weight="bold">03. Reranking</text>
+  <rect x="540" y="150" width="180" height="260" rx="6" fill="#0f172a" stroke="#d97706" stroke-width="1.5"/>
+  <text x="555" y="180" font-family="monospace" font-size="12" fill="#fbbf24" font-weight="bold">03. Reranking</text>
   <text x="555" y="210" font-family="monospace" font-size="10" fill="#94a3b8">- Cross-Encoder Model</text>
   <text x="555" y="235" font-family="monospace" font-size="10" fill="#94a3b8">- Context Compression</text>
   <text x="555" y="260" font-family="monospace" font-size="10" fill="#94a3b8">- Grounding Verification</text>
-  <text x="555" y="320" font-family="monospace" font-size="10" fill="#fb7185">Latency: 38ms</text>
+  <text x="555" y="320" font-family="monospace" font-size="10" fill="#f59e0b">Latency: 38ms</text>
 </svg>
-

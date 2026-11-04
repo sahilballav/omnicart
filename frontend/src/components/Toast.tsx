@@ -38,7 +38,7 @@ export const Toast: React.FC = () => {
               toggleCart(true);
               dismissToast();
             }}
-            className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white text-xs font-medium rounded transition-colors"
+            className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-medium rounded transition-colors"
           >
             View cart
           </button>

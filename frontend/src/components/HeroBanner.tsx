@@ -29,7 +29,7 @@ export const HeroBanner: React.FC = () => {
                 <span>Verified Code Quality</span>
               </span>
               <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700">
-                <Key className="w-3.5 h-3.5 text-indigo-500" />
+                <Key className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                 <span>Automated S3 & GitHub Grants</span>
               </span>
             </div>

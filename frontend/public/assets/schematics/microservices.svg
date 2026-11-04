@@ -21,13 +21,13 @@
   <text x="95" y="242" font-family="monospace" font-size="10" fill="#38bdf8">Port: 8080</text>
 
   <!-- Kafka Broker in Middle -->
-  <rect x="300" y="150" width="200" height="250" rx="6" fill="#1f182e" stroke="#9333ea" stroke-width="1.5"/>
-  <text x="315" y="180" font-family="monospace" font-size="12" fill="#c084fc" font-weight="bold">Apache Kafka Broker</text>
+  <rect x="300" y="150" width="200" height="250" rx="6" fill="#0f172a" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="315" y="180" font-family="monospace" font-size="12" fill="#38bdf8" font-weight="bold">Apache Kafka Broker</text>
   <text x="315" y="210" font-family="monospace" font-size="10" fill="#e2e8f0">- omnicart.orders.placed</text>
   <text x="315" y="235" font-family="monospace" font-size="10" fill="#e2e8f0">- omnicart.inventory.deduct</text>
   <text x="315" y="260" font-family="monospace" font-size="10" fill="#e2e8f0">- omnicart.licenses.issued</text>
   <text x="315" y="285" font-family="monospace" font-size="10" fill="#e2e8f0">- omnicart.cart.sync</text>
-  <text x="315" y="340" font-family="monospace" font-size="10" fill="#a855f7">KRaft Mode (3 Partitions)</text>
+  <text x="315" y="340" font-family="monospace" font-size="10" fill="#0284c7">KRaft Mode (3 Partitions)</text>
 
   <!-- Service 2: Order Service -->
   <rect x="540" y="150" width="180" height="110" rx="6" fill="#152822" stroke="#059669" stroke-width="1.5"/>
@@ -47,4 +47,3 @@
   <text x="555" y="342" font-family="monospace" font-size="10" fill="#94a3b8">JSONB Specs + GIN</text>
   <text x="555" y="364" font-family="monospace" font-size="10" fill="#94a3b8">HikariCP Max: 20</text>
 </svg>
-

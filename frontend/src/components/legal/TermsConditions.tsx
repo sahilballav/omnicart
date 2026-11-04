@@ -33,7 +33,7 @@ export const TermsConditions: React.FC<TermsConditionsProps> = ({ onBack }) => {
         <div className="space-y-6 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
           <section className="space-y-2">
             <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <FileText className="w-4 h-4 text-indigo-500" />
+              <FileText className="w-4 h-4 text-blue-600" />
               1. Acceptance and Agreement Scope
             </h2>
             <p>
@@ -78,7 +78,7 @@ export const TermsConditions: React.FC<TermsConditionsProps> = ({ onBack }) => {
 
           <section className="space-y-2">
             <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-indigo-500" />
+              <CheckCircle2 className="w-4 h-4 text-blue-600" />
               4. Warranties and Limitation of Liability
             </h2>
             <p>

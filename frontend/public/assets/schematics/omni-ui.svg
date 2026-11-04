@@ -34,12 +34,11 @@
   <text x="315" y="325" font-family="monospace" font-size="10" fill="#10b981">WCAG 2.2 AAA Validated</text>
 
   <!-- Level 3: Layouts -->
-  <rect x="540" y="145" width="180" height="275" rx="6" fill="#241b2a" stroke="#6b21a8" stroke-width="1"/>
-  <text x="555" y="172" font-family="monospace" font-size="12" fill="#c084fc" font-weight="bold">03. Templates</text>
+  <rect x="540" y="145" width="180" height="275" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="555" y="172" font-family="monospace" font-size="12" fill="#e2e8f0" font-weight="bold">03. Templates</text>
   <text x="555" y="200" font-family="monospace" font-size="10" fill="#94a3b8">- SaaS Billing Portal</text>
   <text x="555" y="222" font-family="monospace" font-size="10" fill="#94a3b8">- Inventory Console</text>
   <text x="555" y="244" font-family="monospace" font-size="10" fill="#94a3b8">- Cloud Topology Canvas</text>
   <text x="555" y="266" font-family="monospace" font-size="10" fill="#94a3b8">- Auth & Role Management</text>
-  <text x="555" y="325" font-family="monospace" font-size="10" fill="#a855f7">Figma Auto-Layout v5</text>
+  <text x="555" y="325" font-family="monospace" font-size="10" fill="#38bdf8">Figma Auto-Layout v5</text>
 </svg>
-

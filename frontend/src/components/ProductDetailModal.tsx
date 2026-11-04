@@ -112,7 +112,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                       onClick={() => setSelectedImageIndex(idx)}
                       className={`w-14 h-10 rounded overflow-hidden border transition-all ${
                         selectedImageIndex === idx
-                          ? 'border-indigo-600 ring-1 ring-indigo-600'
+                          ? 'border-blue-600 ring-1 ring-blue-600'
                           : 'border-slate-200 dark:border-slate-700 opacity-70 hover:opacity-100'
                       }`}
                     >
@@ -224,7 +224,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                   className={`w-full py-2.5 px-4 rounded-lg font-semibold text-xs flex items-center justify-center gap-2 transition-colors ${
                     justAdded
                       ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white'
+                      : 'bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white'
                   }`}
                 >
                   {justAdded ? (

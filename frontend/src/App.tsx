@@ -41,7 +41,7 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white transition-colors duration-200">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200">
       <div>
         {/* Navigation Bar */}
         <Navbar
@@ -96,7 +96,7 @@ export const AppContent: React.FC = () => {
       {currentView === 'storefront' && (
         <button
           onClick={() => setIsAiAssistantOpen(true)}
-          className="fixed bottom-6 right-6 z-30 px-3.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow-lg flex items-center gap-2 text-xs font-semibold transition-colors"
+          className="fixed bottom-6 right-6 z-30 px-3.5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg flex items-center gap-2 text-xs font-semibold transition-colors"
           title="Open OmniCart Agentic Shopping Assistant"
         >
           <Sparkles className="w-4 h-4 text-white" />
@@ -162,7 +162,7 @@ export const AppContent: React.FC = () => {
                       setCurrentView('admin');
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     Operator Admin Console
                   </button>
@@ -170,7 +170,7 @@ export const AppContent: React.FC = () => {
                 <li>
                   <button
                     onClick={() => setIsAiAssistantOpen(true)}
-                    className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     Agentic Shopping Assistant
                   </button>
@@ -180,13 +180,13 @@ export const AppContent: React.FC = () => {
                     href="https://github.com/sahilballav/omnicart"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1"
+                    className="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1"
                   >
                     <Github className="w-3.5 h-3.5" /> GitHub Monorepo
                   </a>
                 </li>
                 <li className="flex items-center gap-1 text-slate-400 font-mono">
-                  <Globe className="w-3.5 h-3.5 text-indigo-500" />
+                  <Globe className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                   <span>Domain: omnicart.io</span>
                 </li>
               </ul>
@@ -203,7 +203,7 @@ export const AppContent: React.FC = () => {
                       setCurrentView('privacy');
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors"
+                    className="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1.5 transition-colors"
                   >
                     <Shield className="w-3.5 h-3.5 text-slate-400" />
                     <span>Privacy Policy</span>
@@ -215,7 +215,7 @@ export const AppContent: React.FC = () => {
                       setCurrentView('terms');
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors"
+                    className="hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1.5 transition-colors"
                   >
                     <FileText className="w-3.5 h-3.5 text-slate-400" />
                     <span>Terms & Conditions</span>

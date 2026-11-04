@@ -104,7 +104,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           {/* Title */}
           <h3
             onClick={() => onQuickView(product)}
-            className="font-bold text-slate-900 dark:text-white text-base leading-snug hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors cursor-pointer line-clamp-1 mb-1.5"
+            className="font-bold text-slate-900 dark:text-white text-base leading-snug hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer line-clamp-1 mb-1.5"
           >
             {product.name}
           </h3>
@@ -151,7 +151,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
             className={`flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
               cartQty > 0
                 ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/70 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
-                : 'bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white'
+                : 'bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white'
             }`}
           >
             {cartQty > 0 ? (

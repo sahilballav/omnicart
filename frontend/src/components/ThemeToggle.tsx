@@ -9,7 +9,7 @@ export const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="relative p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all duration-300 border border-slate-200/80 dark:border-slate-700/80 shadow-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 group"
+      className="relative p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all duration-300 border border-slate-200/80 dark:border-slate-700/80 shadow-xs focus:outline-none focus:ring-2 focus:ring-blue-600 group"
       aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
       title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
@@ -22,7 +22,7 @@ export const ThemeToggle: React.FC = () => {
           }`}
         />
         <Moon
-          className={`w-4 h-4 text-indigo-400 absolute transition-all duration-500 transform ${
+          className={`w-4 h-4 text-blue-400 absolute transition-all duration-500 transform ${
             isDark
               ? 'opacity-100 rotate-0 scale-100'
               : 'opacity-0 -rotate-90 scale-0'

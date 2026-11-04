@@ -99,7 +99,7 @@ export const CartDrawer: React.FC = () => {
               </p>
               <button
                 onClick={() => toggleCart(false)}
-                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold transition-colors"
+                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition-colors"
               >
                 Explore Products
               </button>
@@ -200,7 +200,7 @@ export const CartDrawer: React.FC = () => {
               <button
                 onClick={handleSimulateCheckout}
                 disabled={isCheckingOut}
-                className="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 disabled:opacity-50 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-2 transition-colors"
+                className="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 disabled:opacity-50 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-2 transition-colors"
               >
                 {isCheckingOut ? (
                   <span>Processing Checkout...</span>

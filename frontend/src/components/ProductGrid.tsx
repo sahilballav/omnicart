@@ -166,7 +166,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                     name="licenseFilter"
                     checked={selectedLicense === lic}
                     onChange={() => setSelectedLicense(lic)}
-                    className="text-indigo-600 focus:ring-indigo-500 rounded"
+                    className="text-blue-600 focus:ring-blue-600 rounded"
                   />
                   <span>{lic === 'All' ? 'All License Models' : `${lic} License`}</span>
                 </label>
@@ -181,7 +181,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                 type="checkbox"
                 checked={inStockOnly}
                 onChange={(e) => setInStockOnly(e.target.checked)}
-                className="rounded border-slate-300 dark:border-slate-700 text-indigo-600 focus:ring-indigo-500 w-4 h-4"
+                className="rounded border-slate-300 dark:border-slate-700 text-blue-600 focus:ring-blue-600 w-4 h-4"
               />
               <span>In-Stock Licenses Only</span>
             </label>
@@ -196,7 +196,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
               {selectedTag && (
                 <button
                   onClick={() => setSelectedTag(null)}
-                  className="text-[10px] text-indigo-600 dark:text-indigo-400 hover:underline"
+                  className="text-[10px] text-blue-600 dark:text-blue-400 hover:underline"
                 >
                   Clear
                 </button>
@@ -251,7 +251,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                 <select
                   value={sortOption}
                   onChange={(e) => setSortOption(e.target.value as SortOption)}
-                  className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-blue-600"
                 >
                   <option value="featured">Featured First</option>
                   <option value="newest">Newest Releases</option>
@@ -333,7 +333,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                               <div>
                                 <div
                                   onClick={() => onQuickView(product)}
-                                  className="font-semibold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 cursor-pointer line-clamp-1"
+                                  className="font-semibold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer line-clamp-1"
                                 >
                                   {product.name}
                                 </div>
@@ -376,7 +376,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                                 className={`px-2.5 py-1 rounded text-xs font-semibold transition-colors flex items-center gap-1 ${
                                   cartQty > 0
                                     ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/70 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
-                                    : 'bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white'
+                                    : 'bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white'
                                 }`}
                               >
                                 {cartQty > 0 ? (
@@ -418,7 +418,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                   setInStockOnly(false);
                   onSelectCategory && onSelectCategory('All');
                 }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white text-xs font-semibold rounded transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-semibold rounded transition-colors"
               >
                 <CheckCircle2 className="w-3.5 h-3.5" /> Reset Filters
               </button>

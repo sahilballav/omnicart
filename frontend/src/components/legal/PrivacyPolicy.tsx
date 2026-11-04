@@ -33,7 +33,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
         <div className="space-y-6 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
           <section className="space-y-2">
             <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Shield className="w-4 h-4 text-indigo-500" />
+              <Shield className="w-4 h-4 text-blue-600" />
               1. Overview and Core Privacy Principles
             </h2>
             <p>
@@ -43,7 +43,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
 
           <section className="space-y-2">
             <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <FileText className="w-4 h-4 text-indigo-500" />
+              <FileText className="w-4 h-4 text-blue-600" />
               2. Information We Collect and Process
             </h2>
             <p>We process only the technical data required to deliver digital software licenses and maintain account security:</p>
@@ -75,7 +75,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
 
           <section className="space-y-2">
             <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Shield className="w-4 h-4 text-indigo-500" />
+              <Shield className="w-4 h-4 text-blue-600" />
               4. GDPR and CCPA Compliance Rights
             </h2>
             <p>

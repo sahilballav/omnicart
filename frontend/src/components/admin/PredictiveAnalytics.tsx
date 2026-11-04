@@ -97,7 +97,7 @@ export const PredictiveAnalytics: React.FC<PredictiveAnalyticsProps> = ({ produc
         <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Allocated Catalog Value</span>
-            <DollarSign className="w-4 h-4 text-indigo-500" />
+            <DollarSign className="w-4 h-4 text-blue-600" />
           </div>
           <div className="text-2xl font-bold text-slate-900 dark:text-white font-mono">
             ${totalValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -149,7 +149,7 @@ export const PredictiveAnalytics: React.FC<PredictiveAnalyticsProps> = ({ produc
                         product.inventoryCount < 50
                           ? 'bg-amber-500'
                           : product.inventoryCount < 100
-                          ? 'bg-indigo-500'
+                          ? 'bg-blue-600'
                           : 'bg-emerald-500'
                       }`}
                       style={{ width: `${fillPct}%` }}

@@ -54,7 +54,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           <div className="mt-6 space-y-3">
             <button
               onClick={loginAsAdmin}
-              className="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-xs"
+              className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-xs"
             >
               <ShieldCheck className="w-4 h-4" />
               Sign in as Demo Administrator
@@ -91,7 +91,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center">
               <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
@@ -99,7 +99,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 <h1 className="text-base font-bold text-slate-900 dark:text-white">
                   OmniCart Admin Console
                 </h1>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 font-semibold border border-indigo-200 dark:border-indigo-800/80">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 font-semibold border border-blue-200 dark:border-blue-800/80">
                   ADMIN ROLE
                 </span>
               </div>
@@ -169,7 +169,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-2 font-mono">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5">
-            <Database className="w-3.5 h-3.5 text-indigo-500" />
+            <Database className="w-3.5 h-3.5 text-blue-600" />
             PostgreSQL JSONB: Connected
           </span>
           <span className="flex items-center gap-1.5">
