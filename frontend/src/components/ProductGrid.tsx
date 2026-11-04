@@ -10,7 +10,7 @@ interface ProductGridProps {
   onQuickView: (product: Product) => void;
 }
 
-type SortOption = 'featured' | 'price-asc' | 'price-desc' | 'rating-desc';
+type SortOption = 'featured' | 'price-asc' | 'price-desc' | 'newest';
 
 export const ProductGrid: React.FC<ProductGridProps> = ({
   products,
@@ -74,8 +74,8 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
             return a.price - b.price;
           case 'price-desc':
             return b.price - a.price;
-          case 'rating-desc':
-            return b.rating - a.rating;
+          case 'newest':
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
           case 'featured':
           default:
             return (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0);
@@ -144,7 +144,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
               <option value="featured">Featured First</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
-              <option value="rating-desc">Highest Rated</option>
+              <option value="newest">Newest Releases</option>
             </select>
           </div>
         </div>

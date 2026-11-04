@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Star, Plus, Minus, ShoppingBag, Database, Check } from 'lucide-react';
+import { X, Plus, Minus, ShoppingBag, Database, Check, ShieldCheck } from 'lucide-react';
 import { Product } from '../types/product';
 import { useCart } from '../context/CartContext';
 
@@ -138,21 +138,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                   {product.name}
                 </h2>
 
-                <div className="flex items-center gap-2 mb-4 text-xs">
-                  <div className="flex items-center text-amber-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-3.5 h-3.5 ${
-                          i < Math.floor(product.rating)
-                            ? 'fill-amber-400 text-amber-400'
-                            : 'text-slate-300 dark:text-slate-700'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="font-semibold text-slate-800 dark:text-slate-200">{product.rating}</span>
-                  <span className="text-slate-400">({product.reviewCount} reviews)</span>
+                <div className="flex items-center gap-2 mb-4 text-xs font-mono text-slate-600 dark:text-slate-400">
+                  <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded text-slate-700 dark:text-slate-300">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+                    <span>Verified Architecture</span>
+                  </span>
+                  <span className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded">
+                    {String(product.attributes.version || 'v1.0.0')}
+                  </span>
                 </div>
 
                 <div className="flex items-baseline gap-2 mb-4">

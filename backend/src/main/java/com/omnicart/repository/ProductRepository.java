@@ -30,3 +30,4 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String>,
     @Query(value = "SELECT * FROM products WHERE attributes @> CAST(:jsonCriteria AS jsonb)", nativeQuery = true)
     List<ProductEntity> findByJsonbCriteria(@Param("jsonCriteria") String jsonCriteria);
 }
+

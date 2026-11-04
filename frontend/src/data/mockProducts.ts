@@ -10,14 +10,13 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 189.00,
     compareAtPrice: 249.00,
     inventoryCount: 99,
-    rating: 4.95,
-    reviewCount: 342,
+    rating: 5.0,
+    reviewCount: 0,
     images: [
-      'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&w=1000&q=80'
+      '/assets/schematics/eks-blueprint.svg'
     ],
-    shortDescription: 'Production-ready AWS EKS Kubernetes infrastructure module with multi-AZ VPC, Prometheus, Karpenter, and CI/CD pipelines.',
-    description: 'Complete battle-tested Infrastructure as Code (IaC) bundle for enterprise Kubernetes deployments. Includes Terraform modules, Helm charts, automated ArgoCD GitOps workflows, Karpenter autoscaling, and zero-trust IAM role bindings. Deploys a full AWS production cluster in under 15 minutes.',
+    shortDescription: 'Production AWS EKS Kubernetes infrastructure module with multi-AZ VPC, Prometheus, Karpenter, and CI/CD pipelines.',
+    description: 'Infrastructure as Code bundle for enterprise Kubernetes deployments. Includes Terraform modules, Helm charts, automated ArgoCD GitOps workflows, Karpenter autoscaling, and zero-trust IAM role bindings. Deploys an AWS production cluster via Terraform.',
     isFeatured: true,
     tags: ['kubernetes', 'aws-eks', 'terraform', 'devops', 'helm', 'argocd'],
     attributes: {
@@ -43,14 +42,13 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 149.00,
     compareAtPrice: 199.00,
     inventoryCount: 150,
-    rating: 4.9,
-    reviewCount: 418,
+    rating: 5.0,
+    reviewCount: 0,
     images: [
-      'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1000&q=80'
+      '/assets/schematics/agentic-llm.svg'
     ],
-    shortDescription: 'Python & TypeScript SDK for building hierarchical autonomous AI agents with memory, tool calling, and human-in-the-loop validation.',
-    description: 'An enterprise agentic AI foundation library engineered for production workloads. Features asynchronous graph orchestration, vector memory recall, streaming JSON output validators, automated subagent spawning, and built-in resilience circuits for OpenAI, Anthropic, and Gemini models.',
+    shortDescription: 'Python and TypeScript SDK for building hierarchical autonomous AI agents with memory, tool calling, and deterministic state.',
+    description: 'Agentic AI foundation library engineered for production workloads. Features asynchronous graph orchestration, vector memory recall, streaming JSON output validators, automated subagent spawning, and built-in resilience circuits for OpenAI, Anthropic, and Gemini models.',
     isFeatured: true,
     tags: ['agentic-ai', 'llm', 'autonomous-agents', 'python', 'typescript', 'rag'],
     attributes: {
@@ -75,14 +73,13 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 99.00,
     compareAtPrice: 139.00,
     inventoryCount: 300,
-    rating: 4.85,
-    reviewCount: 620,
+    rating: 5.0,
+    reviewCount: 0,
     images: [
-      'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80'
+      '/assets/schematics/omni-ui.svg'
     ],
     shortDescription: '4,000+ Figma components paired with 120+ accessible Tailwind CSS & React 18/19 components, charts, and dashboard layouts.',
-    description: 'The definitive design system for cloud platforms, analytics dashboards, and B2B SaaS. Includes meticulously organized Figma variants with auto-layout v5, dark/light theme tokens, and drop-in React components with full TypeScript support and WCAG AAA compliance.',
+    description: 'Design system for cloud platforms, analytics dashboards, and B2B SaaS. Includes Figma variants with auto-layout v5, dark and light theme tokens, and React components with TypeScript support and WCAG AAA compliance.',
     isFeatured: true,
     tags: ['figma', 'design-system', 'tailwind', 'react', 'dashboard', 'saas'],
     attributes: {
@@ -94,7 +91,7 @@ export const MOCK_PRODUCTS: Product[] = [
       design_tokens: ['Light & Dark Modes', 'Variable Fonts', 'High Contrast Mode'],
       delivery_format: 'Figma Community File Key + Private npm Token',
       accessibility: 'WCAG 2.2 Level AAA Compliant',
-      icon_pack_included: 'Lucide Pro & Feather 1,200+ SVG Icons'
+      icon_pack_included: 'Lucide Pro 1,200+ SVG Icons'
     },
     createdAt: '2026-01-25T14:15:00Z'
   },
@@ -107,14 +104,13 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 129.00,
     compareAtPrice: 179.00,
     inventoryCount: 80,
-    rating: 4.92,
-    reviewCount: 215,
+    rating: 5.0,
+    reviewCount: 0,
     images: [
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80'
+      '/assets/schematics/microservices.svg'
     ],
     shortDescription: 'Enterprise Java 21 template with Apache Kafka streams, PostgreSQL JSONB mappings, Redis session cache, and Resilience4j breakers.',
-    description: 'Jumpstart your distributed backend. Features Spring Cloud Eureka, Spring Security JWT authentication, Kafka Producer/Consumer abstractions, transactional outbox pattern, Flyway migration scripts, and Docker Compose environments for local development.',
+    description: 'Distributed backend starter. Features Spring Cloud Eureka, Spring Security JWT authentication, Kafka Producer and Consumer abstractions, transactional outbox pattern, Flyway migration scripts, and Docker Compose environments for local development.',
     isFeatured: true,
     tags: ['java-21', 'spring-boot-3', 'kafka', 'redis', 'postgresql', 'microservices'],
     attributes: {
@@ -138,14 +134,13 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 79.00,
     compareAtPrice: 119.00,
     inventoryCount: 190,
-    rating: 4.78,
-    reviewCount: 173,
+    rating: 5.0,
+    reviewCount: 0,
     images: [
-      'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1000&q=80'
+      '/assets/schematics/hypertrace.svg'
     ],
-    shortDescription: 'Zero-overhead OpenTelemetry wrapper for Java, Go, and Node.js with auto-instrumented database query profiling.',
-    description: 'Gain full microservice call-graph visibility without code pollution. Integrates seamlessly with Grafana Tempo, Datadog, and Jaeger. Automatically redacts sensitive PII headers and logs slow database JSONB queries.',
+    shortDescription: 'OpenTelemetry wrapper for Java, Go, and Node.js with database query profiling and trace propagation.',
+    description: 'Microservice call-graph visibility without code pollution. Integrates with Grafana Tempo, Datadog, and Jaeger. Redacts sensitive PII headers and logs slow database JSONB queries.',
     isFeatured: false,
     tags: ['observability', 'opentelemetry', 'tracing', 'apm', 'grafana', 'developer-tools'],
     attributes: {
@@ -153,8 +148,7 @@ export const MOCK_PRODUCTS: Product[] = [
       license_type: 'Single Organization Enterprise License',
       supported_runtimes: ['JVM (Java 17/21)', 'Node.js 18+', 'Go 1.22+'],
       telemetry_standard: 'OpenTelemetry (OTel) v1.31',
-      memory_overhead: '<1.2 MB RAM',
-      latency_impact: '<0.3 ms per span',
+      memory_overhead: '1.2 MB RAM',
       exporters: ['OTLP (gRPC & HTTP)', 'Jaeger', 'Prometheus', 'Datadog'],
       lifetime_updates: true
     },
@@ -169,14 +163,13 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 159.00,
     compareAtPrice: 220.00,
     inventoryCount: 500,
-    rating: 4.96,
-    reviewCount: 880,
+    rating: 5.0,
+    reviewCount: 0,
     images: [
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1000&q=80'
+      '/assets/schematics/kafka-masterclass.svg'
     ],
-    shortDescription: '18 hours of hands-on video, live lab code repositories, partition tuning strategies, and disaster recovery blueprints.',
-    description: 'Master enterprise event-driven architecture from industry veterans. Covers partition balancing, idempotent producers, consumer group rebalance protocols, exactly-once semantics (EOS), schema evolution, and deploying Kafka KRaft on AWS EKS.',
+    shortDescription: '18 hours of technical instruction, code repositories, partition tuning strategies, and disaster recovery blueprints.',
+    description: 'Enterprise event-driven architecture course. Covers partition balancing, idempotent producers, consumer group rebalance protocols, exactly-once semantics (EOS), schema evolution, and deploying Kafka KRaft on AWS EKS.',
     isFeatured: true,
     tags: ['kafka', 'event-driven', 'masterclass', 'system-design', 'video-course', 'architecture'],
     attributes: {
@@ -200,14 +193,13 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 119.00,
     compareAtPrice: 159.00,
     inventoryCount: 120,
-    rating: 4.88,
-    reviewCount: 290,
+    rating: 5.0,
+    reviewCount: 0,
     images: [
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1000&q=80'
+      '/assets/schematics/vectordb-rag.svg'
     ],
-    shortDescription: 'Plug-and-play RAG indexing pipeline with hybrid dense/sparse search, chunking algorithms, and reranking models.',
-    description: 'Transform raw documentation, PDF archives, and product catalogs into high-precision vector embeddings. Implements reciprocal rank fusion (RRF), Colbert reranking, and sub-50ms query routing with PostgreSQL pgvector and Redis.',
+    shortDescription: 'RAG indexing pipeline with hybrid dense/sparse search, chunking algorithms, and reranking models.',
+    description: 'Transform documentation, PDF archives, and product catalogs into vector embeddings. Implements reciprocal rank fusion (RRF), Colbert reranking, and query routing with PostgreSQL pgvector and Redis.',
     isFeatured: false,
     tags: ['rag', 'vector-search', 'pgvector', 'embeddings', 'ai-pipeline', 'semantic-search'],
     attributes: {
@@ -231,14 +223,13 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 89.00,
     compareAtPrice: 129.00,
     inventoryCount: 210,
-    rating: 4.84,
-    reviewCount: 164,
+    rating: 5.0,
+    reviewCount: 0,
     images: [
-      'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1000&q=80'
+      '/assets/schematics/zerotrust-gateway.svg'
     ],
-    shortDescription: 'High-speed reverse proxy with JWT validation, rotating public keys (JWKS), rate limiting, and role-based access control (RBAC).',
-    description: 'Protect all your microservices and REST endpoints with an enterprise security layer. Built with high-performance Go and Envoy proxy filters. Handles up to 25,000 req/sec per node with sub-millisecond crypto verification and Redis token blacklisting.',
+    shortDescription: 'Reverse proxy with JWT validation, rotating public keys (JWKS), rate limiting, and role-based access control (RBAC).',
+    description: 'Protect microservices and REST endpoints with an enterprise security layer. Built with Go and Envoy proxy filters. Handles crypto verification and Redis token blacklisting.',
     isFeatured: false,
     tags: ['jwt', 'oauth2', 'security', 'api-gateway', 'rbac', 'zero-trust'],
     attributes: {
@@ -247,7 +238,6 @@ export const MOCK_PRODUCTS: Product[] = [
       protocols: ['OAuth 2.1', 'OpenID Connect (OIDC)', 'mTLS'],
       key_rotation_mode: 'Automated RFC 7517 JWKS Caching & Refresh',
       session_store: 'Redis Cluster with Auto-Expiring Blacklist',
-      throughput_capacity: '25,000+ RPS per replica',
       docker_and_helm_charts: true,
       documentation_included: true,
       support: 'Standard Email & Slack Channel'

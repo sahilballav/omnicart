@@ -78,7 +78,7 @@ export const CartDrawer: React.FC = () => {
           {/* Checkout Completed State */}
           {checkoutComplete ? (
             <div className="flex-1 p-8 flex flex-col items-center justify-center text-center">
-              <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Order Completed</h3>

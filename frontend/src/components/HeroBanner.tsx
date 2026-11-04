@@ -46,7 +46,7 @@ export const HeroBanner: React.FC = () => {
               <Layers className="w-4 h-4 text-emerald-400" />
               <span>Redis Cluster</span>
             </div>
-            <p className="text-xs text-slate-400">Sub-millisecond session state</p>
+            <p className="text-xs text-slate-400">In-memory volatile cart tier</p>
           </div>
 
           <div>

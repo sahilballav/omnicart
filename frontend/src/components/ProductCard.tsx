@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Plus, Eye, Check, DownloadCloud, Key } from 'lucide-react';
+import { Plus, Eye, Check, DownloadCloud, Key } from 'lucide-react';
 import { Product } from '../types/product';
 import { useCart } from '../context/CartContext';
 
@@ -77,11 +77,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           {/* Brand & Category */}
           <div className="flex items-center justify-between mb-1.5 text-xs text-slate-500 dark:text-slate-400">
             <span className="font-semibold uppercase tracking-wider text-[11px]">{product.brand}</span>
-            <div className="flex items-center gap-1 text-slate-700 dark:text-slate-300">
-              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-              <span className="font-semibold">{product.rating}</span>
-              <span className="text-slate-400">({product.reviewCount})</span>
-            </div>
+            <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">
+              {String(product.attributes.version || 'Release')}
+            </span>
           </div>
 
           {/* Title */}

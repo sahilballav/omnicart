@@ -10,8 +10,8 @@ interface NavbarProps {
   selectedCategory: string;
   onSelectCategory: (cat: string) => void;
   categories: string[];
-  currentView: 'storefront' | 'admin';
-  onNavigate: (view: 'storefront' | 'admin') => void;
+  currentView: 'storefront' | 'admin' | 'privacy' | 'terms';
+  onNavigate: (view: 'storefront' | 'admin' | 'privacy' | 'terms') => void;
   onOpenAiAssistant: () => void;
 }
 
@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             ) : (
               <div className="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="w-2 h-2 rounded-xs bg-emerald-500" />
                 <span>Admin Operations Dashboard</span>
               </div>
             )}
@@ -214,7 +214,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ShoppingBag className="w-4 h-4" />
               <span className="hidden sm:inline">Cart</span>
               {totalQuantity > 0 && (
-                <span className="inline-flex items-center justify-center min-w-4 h-4 px-1 text-[10px] font-bold bg-indigo-500 dark:bg-white text-white dark:text-slate-900 rounded-full">
+                <span className="inline-flex items-center justify-center min-w-4 h-4 px-1 text-[10px] font-bold bg-indigo-500 dark:bg-white text-white dark:text-slate-900 rounded">
                   {totalQuantity}
                 </span>
               )}

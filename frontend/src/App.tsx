@@ -11,9 +11,11 @@ import { Toast } from './components/Toast';
 import { ArchitectureShowcase } from './components/ArchitectureShowcase';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { AiShoppingAssistant } from './components/ai/AiShoppingAssistant';
+import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
+import { TermsConditions } from './components/legal/TermsConditions';
 import { MOCK_PRODUCTS } from './data/mockProducts';
 import { Product } from './types/product';
-import { Github, Layers, Cpu, Database, Server, Sparkles } from 'lucide-react';
+import { Github, Layers, Cpu, Database, Server, Sparkles, Shield, FileText, Globe } from 'lucide-react';
 
 const CATEGORIES = [
   'All',
@@ -27,7 +29,7 @@ const CATEGORIES = [
 
 export const AppContent: React.FC = () => {
   const [products, setProducts] = useState<Product[]>(MOCK_PRODUCTS);
-  const [currentView, setCurrentView] = useState<'storefront' | 'admin'>('storefront');
+  const [currentView, setCurrentView] = useState<'storefront' | 'admin' | 'privacy' | 'terms'>('storefront');
   const [isAiAssistantOpen, setIsAiAssistantOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -50,11 +52,14 @@ export const AppContent: React.FC = () => {
           onSelectCategory={setSelectedCategory}
           categories={CATEGORIES}
           currentView={currentView}
-          onNavigate={(view) => setCurrentView(view)}
+          onNavigate={(view) => {
+            setCurrentView(view);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           onOpenAiAssistant={() => setIsAiAssistantOpen(true)}
         />
 
-        {/* View Routing: Storefront vs Admin Dashboard */}
+        {/* View Routing */}
         {currentView === 'storefront' ? (
           <main>
             {/* Hero Section */}
@@ -71,13 +76,21 @@ export const AppContent: React.FC = () => {
               onQuickView={(prod) => setActiveModalProduct(prod)}
             />
           </main>
-        ) : (
+        ) : currentView === 'admin' ? (
           <main>
             <AdminDashboard
               products={products}
               onUpdateInventory={handleUpdateInventory}
               onNavigateStorefront={() => setCurrentView('storefront')}
             />
+          </main>
+        ) : currentView === 'privacy' ? (
+          <main>
+            <PrivacyPolicy onBack={() => setCurrentView('storefront')} />
+          </main>
+        ) : (
+          <main>
+            <TermsConditions onBack={() => setCurrentView('storefront')} />
           </main>
         )}
       </div>
@@ -86,7 +99,7 @@ export const AppContent: React.FC = () => {
       {currentView === 'storefront' && (
         <button
           onClick={() => setIsAiAssistantOpen(true)}
-          className="fixed bottom-6 right-6 z-30 px-3.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-lg flex items-center gap-2 text-xs font-semibold transition-transform hover:scale-105"
+          className="fixed bottom-6 right-6 z-30 px-3.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow-lg flex items-center gap-2 text-xs font-semibold transition-colors"
           title="Open OmniCart Agentic Shopping Assistant"
         >
           <Sparkles className="w-4 h-4 text-white" />
@@ -126,7 +139,7 @@ export const AppContent: React.FC = () => {
                 <span className="text-base font-bold text-slate-900 dark:text-white">OmniCart</span>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-sm mb-4">
-                Enterprise cloud-native multi-platform architecture. Java 21, Spring Boot, React, Flutter, PostgreSQL JSONB, Redis, and Apache Kafka on AWS EKS.
+                Enterprise cloud-native software and digital asset distribution engine. Built with Java 21, Spring Boot, React, PostgreSQL JSONB, Redis, and Apache Kafka on AWS EKS.
               </p>
               <div className="flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400">
                 <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
@@ -143,25 +156,15 @@ export const AppContent: React.FC = () => {
 
             <div>
               <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
-                Core Stack
-              </h4>
-              <ul className="text-xs space-y-2 text-slate-500 dark:text-slate-400">
-                <li>React 18 & TypeScript</li>
-                <li>Spring Boot 3.3 Microservices</li>
-                <li>Redis 7 Session Tier</li>
-                <li>Apache Kafka Event Streams</li>
-                <li>Kubernetes (AWS EKS)</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
                 Console & Tools
               </h4>
               <ul className="text-xs space-y-2 text-slate-500 dark:text-slate-400">
                 <li>
                   <button
-                    onClick={() => setCurrentView('admin')}
+                    onClick={() => {
+                      setCurrentView('admin');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
                     className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                   >
                     Operator Admin Console
@@ -185,14 +188,57 @@ export const AppContent: React.FC = () => {
                     <Github className="w-3.5 h-3.5" /> GitHub Monorepo
                   </a>
                 </li>
+                <li className="flex items-center gap-1 text-slate-400 font-mono">
+                  <Globe className="w-3.5 h-3.5 text-indigo-500" />
+                  <span>Domain: omnicart.io</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
+                Compliance & Legal
+              </h4>
+              <ul className="text-xs space-y-2 text-slate-500 dark:text-slate-400">
+                <li>
+                  <button
+                    onClick={() => {
+                      setCurrentView('privacy');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors"
+                  >
+                    <Shield className="w-3.5 h-3.5 text-slate-400" />
+                    <span>Privacy Policy</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      setCurrentView('terms');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-slate-400" />
+                    <span>Terms & Conditions</span>
+                  </button>
+                </li>
+                <li className="font-mono text-[11px] text-slate-400">
+                  GDPR & CCPA Compliant
+                </li>
+                <li className="font-mono text-[11px] text-slate-400">
+                  Ed25519 Signed Licenses
+                </li>
               </ul>
             </div>
           </div>
 
           <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-            <p>© 2026 OmniCart. Built for high-velocity software delivery.</p>
+            <p>© 2026 OmniCart. All rights reserved. Zero third-party trackers.</p>
             <div className="flex items-center gap-4">
-              <span>Day 2 Complete: Protected Admin & Agentic AI Assistant</span>
+              <span className="font-mono text-[11px]">Domain: omnicart.io</span>
+              <span className="font-mono text-[11px]">Production Target: AWS EKS</span>
             </div>
           </div>
         </div>

@@ -13,3 +13,4 @@ public interface OrderRepository extends JpaRepository<OrderEntity, String> {
 
     List<OrderEntity> findByStatus(String status);
 }
+

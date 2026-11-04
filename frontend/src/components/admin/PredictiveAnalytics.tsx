@@ -172,7 +172,7 @@ export const PredictiveAnalytics: React.FC<PredictiveAnalyticsProps> = ({ produc
                 </h4>
               </div>
               <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="w-2 h-2 rounded-xs bg-emerald-500" />
                 Broker Active
               </span>
             </div>
@@ -219,3 +219,4 @@ export const PredictiveAnalytics: React.FC<PredictiveAnalyticsProps> = ({ produc
     </div>
   );
 };
+

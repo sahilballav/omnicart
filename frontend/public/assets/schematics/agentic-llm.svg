@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <rect width="800" height="500" fill="#0b1120"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.8"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#grid)"/>
+
+  <rect x="50" y="40" width="180" height="28" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="65" y="58" font-family="monospace" font-size="12" fill="#a78bfa" font-weight="bold">AGENTIC GRAPH // SDK</text>
+
+  <!-- Orchestration Container -->
+  <rect x="50" y="90" width="700" height="360" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="70" y="118" font-family="monospace" font-size="13" fill="#94a3b8">Hierarchical Multi-Agent Graph Engine</text>
+
+  <!-- Planner Node -->
+  <rect x="80" y="150" width="180" height="120" rx="6" fill="#172033" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="95" y="180" font-family="monospace" font-size="12" fill="#e2e8f0" font-weight="bold">Master Planner</text>
+  <text x="95" y="202" font-family="monospace" font-size="10" fill="#94a3b8">Task Decomposition</text>
+  <text x="95" y="222" font-family="monospace" font-size="10" fill="#38bdf8">State: GraphExecutor</text>
+  <text x="95" y="242" font-family="monospace" font-size="10" fill="#60a5fa">DAG Execution: Active</text>
+
+  <!-- Arrow -->
+  <path d="M260 210 L310 210" stroke="#60a5fa" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Subagent 1: Tool Worker -->
+  <rect x="310" y="140" width="180" height="100" rx="6" fill="#132328" stroke="#10b981" stroke-width="1.5"/>
+  <text x="325" y="170" font-family="monospace" font-size="12" fill="#e2e8f0" font-weight="bold">Code Analysis Agent</text>
+  <text x="325" y="192" font-family="monospace" font-size="10" fill="#94a3b8">AST Parsing + Linting</text>
+  <text x="325" y="212" font-family="monospace" font-size="10" fill="#34d399">Tool: sandbox.exec()</text>
+
+  <!-- Subagent 2: RAG Worker -->
+  <rect x="310" y="260" width="180" height="100" rx="6" fill="#1c192b" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="325" y="290" font-family="monospace" font-size="12" fill="#e2e8f0" font-weight="bold">Vector Memory Agent</text>
+  <text x="325" y="312" font-family="monospace" font-size="10" fill="#94a3b8">pgvector Cosine Sim</text>
+  <text x="325" y="332" font-family="monospace" font-size="10" fill="#c084fc">TopK: 5 // Colbert Rerank</text>
+
+  <!-- Evaluator / Human in the loop -->
+  <rect x="540" y="190" width="180" height="120" rx="6" fill="#2a1b18" stroke="#f97316" stroke-width="1.5"/>
+  <text x="555" y="220" font-family="monospace" font-size="12" fill="#e2e8f0" font-weight="bold">Critic & Evaluator</text>
+  <text x="555" y="242" font-family="monospace" font-size="10" fill="#94a3b8">JSON Schema Validation</text>
+  <text x="555" y="262" font-family="monospace" font-size="10" fill="#fb923c">Self-Correction Loop</text>
+  <text x="555" y="282" font-family="monospace" font-size="10" fill="#fdba74">Status: Verified 94.2%</text>
+</svg>

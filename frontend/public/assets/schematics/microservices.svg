@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <rect width="800" height="500" fill="#0b1120"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.8"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#grid)"/>
+
+  <rect x="50" y="40" width="240" height="28" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="65" y="58" font-family="monospace" font-size="12" fill="#38bdf8" font-weight="bold">SPRING BOOT 3.3 // TOPOLOGY</text>
+
+  <rect x="50" y="90" width="700" height="360" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <text x="70" y="118" font-family="monospace" font-size="13" fill="#94a3b8">Event-Driven Microservices Architecture</text>
+
+  <!-- Service 1: API Gateway -->
+  <rect x="80" y="150" width="180" height="110" rx="6" fill="#132338" stroke="#0284c7" stroke-width="1.5"/>
+  <text x="95" y="180" font-family="monospace" font-size="12" fill="#38bdf8" font-weight="bold">Spring Gateway</text>
+  <text x="95" y="202" font-family="monospace" font-size="10" fill="#94a3b8">Rate Limiting (Redis)</text>
+  <text x="95" y="222" font-family="monospace" font-size="10" fill="#94a3b8">JWT Auth Validation</text>
+  <text x="95" y="242" font-family="monospace" font-size="10" fill="#38bdf8">Port: 8080</text>
+
+  <!-- Kafka Broker in Middle -->
+  <rect x="300" y="150" width="200" height="250" rx="6" fill="#1f182e" stroke="#9333ea" stroke-width="1.5"/>
+  <text x="315" y="180" font-family="monospace" font-size="12" fill="#c084fc" font-weight="bold">Apache Kafka Broker</text>
+  <text x="315" y="210" font-family="monospace" font-size="10" fill="#e2e8f0">- omnicart.orders.placed</text>
+  <text x="315" y="235" font-family="monospace" font-size="10" fill="#e2e8f0">- omnicart.inventory.deduct</text>
+  <text x="315" y="260" font-family="monospace" font-size="10" fill="#e2e8f0">- omnicart.licenses.issued</text>
+  <text x="315" y="285" font-family="monospace" font-size="10" fill="#e2e8f0">- omnicart.cart.sync</text>
+  <text x="315" y="340" font-family="monospace" font-size="10" fill="#a855f7">KRaft Mode (3 Partitions)</text>
+
+  <!-- Service 2: Order Service -->
+  <rect x="540" y="150" width="180" height="110" rx="6" fill="#152822" stroke="#059669" stroke-width="1.5"/>
+  <text x="555" y="180" font-family="monospace" font-size="12" fill="#34d399" font-weight="bold">Order & License Svc</text>
+  <text x="555" y="202" font-family="monospace" font-size="10" fill="#94a3b8">Resilience4j Breaker</text>
+  <text x="555" y="222" font-family="monospace" font-size="10" fill="#94a3b8">Ed25519 Token Signer</text>
+  <text x="555" y="242" font-family="monospace" font-size="10" fill="#10b981">Transactional Outbox</text>
+
+  <!-- Databases -->
+  <rect x="80" y="290" width="180" height="110" rx="6" fill="#18253a" stroke="#2563eb" stroke-width="1"/>
+  <text x="95" y="320" font-family="monospace" font-size="12" fill="#60a5fa" font-weight="bold">Redis 7 Tier</text>
+  <text x="95" y="342" font-family="monospace" font-size="10" fill="#94a3b8">Session Cache & Cart</text>
+  <text x="95" y="364" font-family="monospace" font-size="10" fill="#94a3b8">Cluster TTL: 86400s</text>
+
+  <rect x="540" y="290" width="180" height="110" rx="6" fill="#18253a" stroke="#2563eb" stroke-width="1"/>
+  <text x="555" y="320" font-family="monospace" font-size="12" fill="#60a5fa" font-weight="bold">PostgreSQL 16</text>
+  <text x="555" y="342" font-family="monospace" font-size="10" fill="#94a3b8">JSONB Specs + GIN</text>
+  <text x="555" y="364" font-family="monospace" font-size="10" fill="#94a3b8">HikariCP Max: 20</text>
+</svg>

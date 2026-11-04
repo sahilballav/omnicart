@@ -182,7 +182,7 @@ export const AiShoppingAssistant: React.FC<AiShoppingAssistantProps> = ({
       }
 
       const whereString = sqlWhereClauses.length > 0 ? `\nWHERE ${sqlWhereClauses.join(' AND ')}` : '';
-      const sqlPreview = `SELECT id, name, price, attributes\nFROM products${whereString}\nORDER BY rating DESC LIMIT 5;`;
+      const sqlPreview = `SELECT id, name, price, attributes\nFROM products${whereString}\nORDER BY price ASC LIMIT 5;`;
 
       const assistantMsg: Message = {
         id: `assistant-${Date.now()}`,
@@ -390,8 +390,8 @@ export const AiShoppingAssistant: React.FC<AiShoppingAssistantProps> = ({
           ))}
 
           {isProcessing && (
-            <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 p-2">
-              <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+            <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 p-2 font-mono">
+              <span className="w-2 h-2 rounded-xs bg-indigo-500" />
               Parsing criteria and executing PostgreSQL JSONB query...
             </div>
           )}

@@ -10,3 +10,4 @@ public class OmniCartApplication {
         SpringApplication.run(OmniCartApplication.class, args);
     }
 }
+

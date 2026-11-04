@@ -188,3 +188,4 @@ export const InventoryTable: React.FC<InventoryTableProps> = ({ products, onUpda
     </div>
   );
 };
+
