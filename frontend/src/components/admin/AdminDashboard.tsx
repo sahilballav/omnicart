@@ -10,7 +10,6 @@ import {
   Activity,
   ArrowLeft,
   LogOut,
-  UserCheck,
   Database,
   Cpu
 } from 'lucide-react';
@@ -26,7 +25,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   onUpdateInventory,
   onNavigateStorefront
 }) => {
-  const { user, isAdmin, loginAsAdmin, loginAsUser, logout } = useAuth();
+  const { user, isAdmin, loginAsAdmin, logout } = useAuth();
   const [activeTab, setActiveTab] = useState<'inventory' | 'analytics'>('inventory');
 
   // RBAC Access Gate
@@ -57,27 +56,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-xs"
             >
               <ShieldCheck className="w-4 h-4" />
-              Sign in as Demo Administrator
-            </button>
-
-            <button
-              onClick={loginAsUser}
-              className="w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
-            >
-              <UserCheck className="w-4 h-4" />
-              Sign in as Customer (Read Only)
+              Sign in as Administrator (Operator SSO)
             </button>
 
             <button
               onClick={onNavigateStorefront}
-              className="w-full py-2 text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors"
+              className="w-full py-2.5 px-4 bg-slate-100 dark:bg-neutral-900 hover:bg-slate-200 dark:hover:bg-neutral-800 text-slate-800 dark:text-slate-200 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              Return to Storefront
+              Return to Customer Storefront
             </button>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400 font-mono text-center">
+          <div className="mt-6 pt-4 border-t border-slate-100 dark:border-neutral-800 text-[11px] text-slate-400 font-mono text-center">
             JWT Token Validation: Ed25519 JWKS Active
           </div>
         </div>

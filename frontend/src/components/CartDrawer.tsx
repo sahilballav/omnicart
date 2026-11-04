@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Trash2, Plus, Minus, ArrowRight, ShoppingCart, Key, CheckCircle2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -15,6 +16,7 @@ export const CartDrawer: React.FC = () => {
     removeFromCart,
     clearCart
   } = useCart();
+  const { addPurchasedLicenses, user, loginAsUser } = useAuth();
 
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [checkoutComplete, setCheckoutComplete] = useState(false);
@@ -26,6 +28,27 @@ export const CartDrawer: React.FC = () => {
     setTimeout(() => {
       setIsCheckingOut(false);
       setCheckoutComplete(true);
+
+      // Create issued Ed25519 licenses for all cart items
+      if (items.length > 0) {
+        if (!user) {
+          // If guest, initialize customer session
+          loginAsUser('customer@example.com', 'Acme Systems');
+        }
+        const newLicenses = items.map((item) => ({
+          id: `lic-${Date.now()}-${item.product.id.slice(-4)}`,
+          productId: item.product.id,
+          productName: item.product.name,
+          productSlug: item.product.slug,
+          licenseKey: `ED25519-${item.product.slug.slice(0, 4).toUpperCase()}-${Math.random().toString(36).substring(2, 7).toUpperCase()}-2026-OMNI`,
+          licenseType: item.selectedLicense || 'Commercial License',
+          issuedAt: new Date().toISOString(),
+          githubRepo: `https://github.com/omnicart/${item.product.slug}`,
+          version: String(item.product.attributes.version || 'v1.0.0')
+        }));
+        addPurchasedLicenses(newLicenses);
+      }
+
       setTimeout(() => {
         clearCart();
         setCheckoutComplete(false);

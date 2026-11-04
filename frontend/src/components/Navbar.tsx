@@ -13,6 +13,8 @@ interface NavbarProps {
   currentView: 'storefront' | 'admin' | 'privacy' | 'terms';
   onNavigate: (view: 'storefront' | 'admin' | 'privacy' | 'terms') => void;
   onOpenAiAssistant: () => void;
+  onOpenAuthModal: () => void;
+  onOpenAccountModal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -23,7 +25,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   categories,
   currentView,
   onNavigate,
-  onOpenAiAssistant
+  onOpenAiAssistant,
+  onOpenAuthModal,
+  onOpenAccountModal
 }) => {
   const { totalQuantity, toggleCart } = useCart();
   const { user, isAdmin, loginAsAdmin, loginAsUser, logout } = useAuth();
@@ -97,6 +101,32 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
               <span className="hidden sm:inline">AI Assistant</span>
             </button>
+
+            {/* Customer Authentication & Vault Button (Storefront View) */}
+            {currentView !== 'admin' && (
+              user && user.role === 'USER' ? (
+                <button
+                  onClick={onOpenAccountModal}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-100 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 rounded-lg text-xs font-medium text-slate-800 dark:text-slate-200 hover:border-slate-300 dark:hover:border-neutral-700 transition-colors shadow-2xs"
+                  title="Open Developer License Vault"
+                >
+                  <div className="w-2 h-2 rounded-xs bg-emerald-500 shadow-2xs" />
+                  <span className="hidden sm:inline font-mono text-[11px] truncate max-w-[110px]">
+                    {user.name}
+                  </span>
+                  <span className="sm:hidden font-mono text-[11px]">Vault</span>
+                </button>
+              ) : (
+                <button
+                  onClick={onOpenAuthModal}
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-neutral-800 rounded-lg hover:bg-slate-50 dark:hover:bg-neutral-900 transition-colors"
+                  title="Developer Account Sign-In"
+                >
+                  <User className="w-3.5 h-3.5" />
+                  <span>Sign In</span>
+                </button>
+              )
+            )}
 
             {/* Admin Console Controls - Only visible when inside Admin View */}
             {currentView === 'admin' && (

@@ -10,6 +10,8 @@ import { CartDrawer } from './components/CartDrawer';
 import { Toast } from './components/Toast';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { AiShoppingAssistant } from './components/ai/AiShoppingAssistant';
+import { CustomerAuthModal } from './components/auth/CustomerAuthModal';
+import { CustomerAccountModal } from './components/auth/CustomerAccountModal';
 import { LoadingScreen } from './components/LoadingScreen';
 import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
 import { TermsConditions } from './components/legal/TermsConditions';
@@ -35,6 +37,8 @@ export const AppContent: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeModalProduct, setActiveModalProduct] = useState<Product | null>(null);
   const [isBootLoading, setIsBootLoading] = useState(true);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
 
   // Hidden admin panel activation: URL query (?admin=true), hash (#admin), or Ctrl+Shift+A hotkey
   useEffect(() => {
@@ -87,6 +91,8 @@ export const AppContent: React.FC = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           onOpenAiAssistant={() => setIsAiAssistantOpen(true)}
+          onOpenAuthModal={() => setIsAuthModalOpen(true)}
+          onOpenAccountModal={() => setIsAccountModalOpen(true)}
         />
 
         {/* View Routing */}
@@ -141,6 +147,18 @@ export const AppContent: React.FC = () => {
         onClose={() => setIsAiAssistantOpen(false)}
         products={products}
         onSelectProduct={(prod) => setActiveModalProduct(prod)}
+      />
+
+      {/* Customer Authentication Modal */}
+      <CustomerAuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
+
+      {/* Customer License Vault & Account Modal */}
+      <CustomerAccountModal
+        isOpen={isAccountModalOpen}
+        onClose={() => setIsAccountModalOpen(false)}
       />
 
       {/* Slide-out Cart Drawer */}
