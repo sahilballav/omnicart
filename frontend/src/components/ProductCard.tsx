@@ -44,9 +44,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
     : 0;
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-colors flex flex-col justify-between overflow-hidden">
+    <div className="bg-white dark:bg-black rounded-xl border border-slate-200 dark:border-neutral-800 shadow-xs hover:border-slate-300 dark:hover:border-neutral-700 transition-colors flex flex-col justify-between overflow-hidden">
       {/* Product Image */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
+      <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-black">
         <img
           src={product.images[0]}
           alt={product.name}
@@ -57,7 +57,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         {/* Badges */}
         <div className="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 z-10">
           {product.isFeatured && (
-            <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-900 text-white dark:bg-white dark:text-slate-900 flex items-center gap-1">
+            <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-900 text-white dark:bg-white dark:text-black flex items-center gap-1">
               <DownloadCloud className="w-3 h-3" /> Featured
             </span>
           )}
@@ -72,7 +72,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-10">
           <button
             onClick={handleCopyClone}
-            className="px-2 py-1 rounded bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-mono backdrop-blur-sm transition-colors flex items-center gap-1"
+            className="px-2 py-1 rounded bg-black/80 hover:bg-black text-white text-xs font-mono backdrop-blur-sm transition-colors flex items-center gap-1 border border-neutral-800"
             title="Copy Git clone URI"
           >
             {copiedClone ? <Check className="w-3 h-3 text-emerald-400" /> : <Terminal className="w-3 h-3 text-slate-300" />}
@@ -81,7 +81,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
 
           <button
             onClick={() => onQuickView(product)}
-            className="px-2.5 py-1 rounded bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-medium backdrop-blur-sm transition-colors flex items-center gap-1"
+            className="px-2.5 py-1 rounded bg-black/80 hover:bg-black text-white text-xs font-medium backdrop-blur-sm transition-colors flex items-center gap-1 border border-neutral-800"
             aria-label="Inspect specifications"
           >
             <Eye className="w-3.5 h-3.5" />
@@ -96,7 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           {/* Brand & Category */}
           <div className="flex items-center justify-between mb-1.5 text-xs text-slate-500 dark:text-slate-400">
             <span className="font-semibold uppercase tracking-wider text-[11px]">{product.brand}</span>
-            <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">
+            <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-neutral-900 px-1.5 py-0.5 rounded border border-slate-200 dark:border-neutral-800">
               {String(product.attributes.version || 'Release')}
             </span>
           </div>
@@ -118,7 +118,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
             {previewBadges.slice(0, 2).map((badge, idx) => (
               <span
                 key={idx}
-                className="inline-flex items-center text-[11px] font-mono font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded"
+                className="inline-flex items-center text-[11px] font-mono font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 px-2 py-0.5 rounded"
               >
                 {badge}
               </span>
@@ -127,7 +127,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         </div>
 
         {/* Price & Action */}
-        <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3">
+        <div className="pt-3 border-t border-slate-100 dark:border-neutral-800 flex items-center justify-between gap-3">
           <div>
             <div className="flex items-baseline gap-1.5">
               <span className="text-lg font-bold text-slate-900 dark:text-white">

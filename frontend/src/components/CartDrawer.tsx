@@ -43,9 +43,9 @@ export const CartDrawer: React.FC = () => {
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-white dark:bg-slate-900 shadow-xl flex flex-col justify-between border-l border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="w-screen max-w-md bg-white dark:bg-black shadow-xl flex flex-col justify-between border-l border-slate-200 dark:border-neutral-800 transition-colors">
           {/* Header */}
-          <div className="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div className="p-4 sm:p-5 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ShoppingCart className="w-5 h-5 text-slate-700 dark:text-slate-300" />
               <div>
@@ -67,7 +67,7 @@ export const CartDrawer: React.FC = () => {
               )}
               <button
                 onClick={() => toggleCart(false)}
-                className="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-neutral-900 text-slate-500 dark:text-slate-400 flex items-center justify-center transition-colors"
                 aria-label="Close cart"
               >
                 <X className="w-4 h-4" />
@@ -110,13 +110,13 @@ export const CartDrawer: React.FC = () => {
               {items.map(({ product, quantity, selectedLicense }) => (
                 <div
                   key={product.id}
-                  className="flex gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-800"
+                  className="flex gap-3 p-3 bg-slate-50 dark:bg-black rounded-lg border border-slate-200 dark:border-neutral-800"
                 >
                   {/* Thumbnail */}
                   <img
                     src={product.images[0]}
                     alt={product.name}
-                    className="w-16 h-16 rounded object-cover bg-slate-200 dark:bg-slate-700 shrink-0"
+                    className="w-16 h-16 rounded object-cover bg-slate-200 dark:bg-black border border-slate-200 dark:border-neutral-800 shrink-0"
                   />
 
                   {/* Details */}

@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
-  <rect width="800" height="500" fill="#0b1120"/>
+  <rect width="800" height="500" fill="#000000"/>
   <defs>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.8"/>
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="0.8"/>
     </pattern>
   </defs>
   <rect width="800" height="500" fill="url(#grid)"/>
 
-  <rect x="50" y="40" width="220" height="28" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <rect x="50" y="40" width="220" height="28" rx="4" fill="#1a1a1a" stroke="#262626" stroke-width="1"/>
   <text x="65" y="58" font-family="monospace" font-size="12" fill="#38bdf8" font-weight="bold">RAG PIPELINE // PGVECTOR</text>
 
-  <rect x="50" y="90" width="700" height="360" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <rect x="50" y="90" width="700" height="360" rx="8" fill="#0a0a0a" stroke="#262626" stroke-width="1.5"/>
   <text x="70" y="118" font-family="monospace" font-size="13" fill="#94a3b8">VectorDB Neural Search &amp; Reciprocal Rank Fusion</text>
 
   <!-- Stage 1 -->
@@ -22,7 +22,7 @@
   <text x="95" y="320" font-family="monospace" font-size="10" fill="#38bdf8">Embedding: text-3-large</text>
 
   <!-- Stage 2 -->
-  <rect x="310" y="150" width="180" height="260" rx="6" fill="#132a26" stroke="#047857" stroke-width="1.5"/>
+  <rect x="310" y="150" width="180" height="260" rx="6" fill="#0d0d0d" stroke="#047857" stroke-width="1.5"/>
   <text x="325" y="180" font-family="monospace" font-size="12" fill="#34d399" font-weight="bold">02. Hybrid Index</text>
   <text x="325" y="210" font-family="monospace" font-size="10" fill="#94a3b8">- Dense HNSW Index</text>
   <text x="325" y="235" font-family="monospace" font-size="10" fill="#94a3b8">- Sparse BM25 / GIN</text>
@@ -30,12 +30,13 @@
   <text x="325" y="320" font-family="monospace" font-size="10" fill="#10b981">PostgreSQL pgvector</text>
 
   <!-- Stage 3 -->
-  <rect x="540" y="150" width="180" height="260" rx="6" fill="#0f172a" stroke="#d97706" stroke-width="1.5"/>
+  <rect x="540" y="150" width="180" height="260" rx="6" fill="#0a0a0a" stroke="#d97706" stroke-width="1.5"/>
   <text x="555" y="180" font-family="monospace" font-size="12" fill="#fbbf24" font-weight="bold">03. Reranking</text>
   <text x="555" y="210" font-family="monospace" font-size="10" fill="#94a3b8">- Cross-Encoder Model</text>
   <text x="555" y="235" font-family="monospace" font-size="10" fill="#94a3b8">- Context Compression</text>
   <text x="555" y="260" font-family="monospace" font-size="10" fill="#94a3b8">- Grounding Verification</text>
   <text x="555" y="320" font-family="monospace" font-size="10" fill="#f59e0b">Latency: 38ms</text>
 </svg>
+
 
 

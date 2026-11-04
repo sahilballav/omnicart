@@ -10,6 +10,12 @@
 
 html.dark {
   color-scheme: dark;
+  background-color: #000000;
+}
+
+html.dark body {
+  background-color: #000000;
+  color: #f8fafc;
 }
 
 /* Custom modern scrollbar */
@@ -28,7 +34,7 @@ html.dark {
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #262626;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -36,5 +42,5 @@ html.dark {
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #404040;
 }

@@ -65,24 +65,24 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 text-white select-none transition-opacity duration-300 ${
+      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-white select-none transition-opacity duration-300 ${
         isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
       {/* Subtle Blueprint Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#171717_1px,transparent_1px),linear-gradient(to_bottom,#171717_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
 
       {/* Skip Button */}
       <button
         onClick={handleSkip}
-        className="absolute top-6 right-6 text-xs text-slate-400 hover:text-white font-mono px-3 py-1.5 rounded-md border border-slate-800 hover:border-slate-700 bg-slate-900/80 transition-colors"
+        className="absolute top-6 right-6 text-xs text-slate-400 hover:text-white font-mono px-3 py-1.5 rounded-md border border-neutral-800 hover:border-neutral-700 bg-black/80 transition-colors"
       >
         Skip Boot [ESC] →
       </button>
 
       <div className="relative flex flex-col items-center text-center px-4 max-w-md w-full">
         {/* Central Terminal Icon */}
-        <div className="w-16 h-16 rounded-xl bg-slate-900 border border-blue-500/30 flex items-center justify-center mb-6 shadow-sm">
+        <div className="w-16 h-16 rounded-xl bg-black border border-blue-500/30 flex items-center justify-center mb-6 shadow-sm">
           <Layers className="w-8 h-8 text-blue-500" />
         </div>
 
@@ -90,7 +90,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="space-y-1 mb-6">
           <div className="flex items-center justify-center gap-2">
             <h1 className="text-xl font-bold tracking-tight text-white">OmniCart</h1>
-            <span className="text-[10px] font-mono text-blue-400 border border-blue-500/30 px-1.5 py-0.5 rounded bg-blue-950/40">
+            <span className="text-[10px] font-mono text-blue-400 border border-blue-500/30 px-1.5 py-0.5 rounded bg-neutral-950">
               v1.0.0
             </span>
           </div>
@@ -100,7 +100,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         </div>
 
         {/* Progress Bar Container */}
-        <div className="w-full bg-slate-900 rounded-sm h-1.5 border border-slate-800 p-0.5 mb-4 overflow-hidden">
+        <div className="w-full bg-neutral-950 rounded-sm h-1.5 border border-neutral-800 p-0.5 mb-4 overflow-hidden">
           <div
             className="h-full bg-blue-600 transition-all duration-100 rounded-xs"
             style={{ width: `${progress}%` }}
@@ -119,36 +119,36 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         </div>
 
         {/* Architecture Checklist Badges */}
-        <div className="grid grid-cols-4 gap-2 w-full pt-4 border-t border-slate-800/80">
-          <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+        <div className="grid grid-cols-4 gap-2 w-full pt-4 border-t border-neutral-800">
+          <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-black border border-neutral-800">
             <span className="text-[10px] text-slate-400 font-mono">POSTGRES</span>
             <span
               className={`w-1.5 h-1.5 rounded-xs ${
-                progress >= 75 ? 'bg-emerald-400' : 'bg-slate-700'
+                progress >= 75 ? 'bg-emerald-400' : 'bg-neutral-800'
               }`}
             />
           </div>
-          <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+          <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-black border border-neutral-800">
             <span className="text-[10px] text-slate-400 font-mono">REDIS</span>
             <span
               className={`w-1.5 h-1.5 rounded-xs ${
-                progress >= 30 ? 'bg-emerald-400' : 'bg-slate-700'
+                progress >= 30 ? 'bg-emerald-400' : 'bg-neutral-800'
               }`}
             />
           </div>
-          <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+          <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-black border border-neutral-800">
             <span className="text-[10px] text-slate-400 font-mono">KAFKA</span>
             <span
               className={`w-1.5 h-1.5 rounded-xs ${
-                progress >= 55 ? 'bg-emerald-400' : 'bg-slate-700'
+                progress >= 55 ? 'bg-emerald-400' : 'bg-neutral-800'
               }`}
             />
           </div>
-          <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+          <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-black border border-neutral-800">
             <span className="text-[10px] text-slate-400 font-mono">SPRING 21</span>
             <span
               className={`w-1.5 h-1.5 rounded-xs ${
-                progress >= 95 ? 'bg-emerald-400' : 'bg-slate-700'
+                progress >= 95 ? 'bg-emerald-400' : 'bg-neutral-800'
               }`}
             />
           </div>
@@ -157,3 +157,4 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     </div>
   );
 };
+

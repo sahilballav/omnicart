@@ -69,7 +69,7 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200">
+    <div className="min-h-screen bg-slate-50 dark:bg-black text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200">
       {/* System Boot Loading Screen */}
       {isBootLoading && <LoadingScreen onComplete={() => setIsBootLoading(false)} />}
 
@@ -156,7 +156,7 @@ export const AppContent: React.FC = () => {
       <Toast />
 
       {/* Technical Footer */}
-      <footer className="mt-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">
+      <footer className="mt-16 bg-white dark:bg-black border-t border-slate-200 dark:border-neutral-800 text-slate-600 dark:text-slate-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2">
@@ -170,13 +170,13 @@ export const AppContent: React.FC = () => {
                 Enterprise cloud-native software and digital asset distribution engine. Built with Java 21, Spring Boot, React, PostgreSQL JSONB, Redis, and Apache Kafka on AWS EKS.
               </p>
               <div className="flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400">
-                <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
+                <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-neutral-900 px-2 py-1 rounded">
                   <Cpu className="w-3.5 h-3.5" /> Java 21
                 </span>
-                <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
+                <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-neutral-900 px-2 py-1 rounded">
                   <Database className="w-3.5 h-3.5" /> PostgreSQL JSONB
                 </span>
-                <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
+                <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-neutral-900 px-2 py-1 rounded">
                   <Server className="w-3.5 h-3.5" /> Kafka KRaft
                 </span>
               </div>

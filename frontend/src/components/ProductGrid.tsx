@@ -123,7 +123,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
         {/* Left Filter Facets Sidebar */}
         <aside className="lg:col-span-1 space-y-5">
           {/* Categories Facet */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-xs">
+          <div className="bg-white dark:bg-black border border-slate-200 dark:border-neutral-800 rounded-xl p-4 shadow-xs">
             <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
               Catalog Category
             </h3>
@@ -137,13 +137,13 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                     onClick={() => onSelectCategory && onSelectCategory(cat)}
                     className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-medium flex items-center justify-between transition-colors ${
                       isSelected
-                        ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
-                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                        ? 'bg-slate-900 text-white dark:bg-white dark:text-black'
+                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-neutral-900'
                     }`}
                   >
                     <span className="truncate">{cat}</span>
                     <span className={`font-mono text-[10px] px-1.5 py-0.2 rounded ${
-                      isSelected ? 'bg-slate-800 text-slate-200 dark:bg-slate-200 dark:text-slate-900' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+                      isSelected ? 'bg-slate-800 text-slate-200 dark:bg-neutral-200 dark:text-black' : 'bg-slate-100 dark:bg-neutral-900 text-slate-500'
                     }`}>
                       {count}
                     </span>
@@ -154,7 +154,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
           </div>
 
           {/* License Tier Facet */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-xs">
+          <div className="bg-white dark:bg-black border border-slate-200 dark:border-neutral-800 rounded-xl p-4 shadow-xs">
             <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
               License Model
             </h3>
@@ -175,20 +175,20 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
           </div>
 
           {/* Stock Filter */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-xs">
+          <div className="bg-white dark:bg-black border border-slate-200 dark:border-neutral-800 rounded-xl p-4 shadow-xs">
             <label className="flex items-center gap-2.5 text-xs font-medium text-slate-700 dark:text-slate-300 cursor-pointer select-none">
               <input
                 type="checkbox"
                 checked={inStockOnly}
                 onChange={(e) => setInStockOnly(e.target.checked)}
-                className="rounded border-slate-300 dark:border-slate-700 text-blue-600 focus:ring-blue-600 w-4 h-4"
+                className="rounded border-slate-300 dark:border-neutral-700 text-blue-600 focus:ring-blue-600 w-4 h-4"
               />
               <span>In-Stock Licenses Only</span>
             </label>
           </div>
 
           {/* Technology Tags */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-xs">
+          <div className="bg-white dark:bg-black border border-slate-200 dark:border-neutral-800 rounded-xl p-4 shadow-xs">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 Tech Tags
@@ -209,8 +209,8 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                   onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
                   className={`text-[11px] font-mono px-2 py-0.5 rounded transition-colors ${
                     selectedTag === tag
-                      ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
-                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+                      ? 'bg-slate-900 text-white dark:bg-white dark:text-black'
+                      : 'bg-slate-100 dark:bg-neutral-900 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-neutral-800'
                   }`}
                 >
                   #{tag}
@@ -223,7 +223,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
         {/* Right Main Catalog Area */}
         <div className="lg:col-span-3 space-y-4">
           {/* Controls Header */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors">
+          <div className="bg-white dark:bg-black border border-slate-200 dark:border-neutral-800 rounded-xl p-3.5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors">
             <div className="flex items-center gap-2">
               <SlidersHorizontal className="w-3.5 h-3.5 text-slate-500" />
               <span className="text-xs font-bold text-slate-900 dark:text-white">
@@ -251,7 +251,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                 <select
                   value={sortOption}
                   onChange={(e) => setSortOption(e.target.value as SortOption)}
-                  className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  className="bg-slate-50 dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 text-slate-800 dark:text-slate-200 rounded px-2 py-1 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-blue-600"
                 >
                   <option value="featured">Featured First</option>
                   <option value="newest">Newest Releases</option>
@@ -261,12 +261,12 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
               </div>
 
               {/* View Toggle: Grid vs Table */}
-              <div className="inline-flex items-center p-0.5 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+              <div className="inline-flex items-center p-0.5 bg-slate-100 dark:bg-neutral-900 rounded-lg border border-slate-200 dark:border-neutral-800">
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-1.5 rounded-md transition-colors ${
                     viewMode === 'grid'
-                      ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs'
+                      ? 'bg-white dark:bg-black text-slate-900 dark:text-white shadow-2xs'
                       : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
                   }`}
                   title="Grid View"
@@ -277,7 +277,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                   onClick={() => setViewMode('table')}
                   className={`p-1.5 rounded-md transition-colors ${
                     viewMode === 'table'
-                      ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs'
+                      ? 'bg-white dark:bg-black text-slate-900 dark:text-white shadow-2xs'
                       : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
                   }`}
                   title="Dense Table View"
@@ -302,9 +302,9 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
               </div>
             ) : (
               /* Dense Engineering Table View */
-              <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xs">
+              <div className="bg-white dark:bg-black rounded-xl border border-slate-200 dark:border-neutral-800 overflow-hidden shadow-xs">
                 <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
+                  <thead className="bg-slate-50 dark:bg-neutral-900/60 text-slate-500 dark:text-slate-400 uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-neutral-800">
                     <tr>
                       <th className="py-3 px-4">Module</th>
                       <th className="py-3 px-4">Category</th>
@@ -314,14 +314,14 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                       <th className="py-3 px-4 text-right">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80">
+                  <tbody className="divide-y divide-slate-100 dark:divide-neutral-800/80">
                     {filteredProducts.map((product) => {
                       const cartItem = items.find((i) => i.product.id === product.id);
                       const cartQty = cartItem ? cartItem.quantity : 0;
                       return (
                         <tr
                           key={product.id}
-                          className="hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors"
+                          className="hover:bg-slate-50/80 dark:hover:bg-neutral-900/40 transition-colors"
                         >
                           <td className="py-3 px-4">
                             <div className="flex items-center gap-3">

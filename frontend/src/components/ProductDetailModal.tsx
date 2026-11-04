@@ -78,13 +78,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 dark:bg-black/75 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
     >
-      <div className="relative bg-white dark:bg-slate-900 rounded-xl max-w-3xl w-full shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden max-h-[90vh] flex flex-col">
+      <div className="relative bg-white dark:bg-black rounded-xl max-w-3xl w-full shadow-2xl border border-slate-200 dark:border-neutral-800 overflow-hidden max-h-[90vh] flex flex-col">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center justify-center transition-colors"
+          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-neutral-900 text-slate-500 dark:text-slate-400 flex items-center justify-center transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -95,7 +95,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Left Column: Image preview */}
             <div>
-              <div className="aspect-[16/10] rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 mb-3">
+              <div className="aspect-[16/10] rounded-lg overflow-hidden bg-slate-100 dark:bg-black border border-slate-200 dark:border-neutral-800 mb-3">
                 <img
                   src={product.images[selectedImageIndex] || product.images[0]}
                   alt={product.name}
@@ -113,7 +113,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                       className={`w-14 h-10 rounded overflow-hidden border transition-all ${
                         selectedImageIndex === idx
                           ? 'border-blue-600 ring-1 ring-blue-600'
-                          : 'border-slate-200 dark:border-slate-700 opacity-70 hover:opacity-100'
+                          : 'border-slate-200 dark:border-neutral-800 opacity-70 hover:opacity-100'
                       }`}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
