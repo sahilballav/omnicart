@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ShoppingBag, Search, Layers, Sparkles, LayoutDashboard, Store, Shield, User, ChevronDown, Check } from 'lucide-react';
+import { ShoppingBag, Search, Layers, Sparkles, Store, Shield, User, ChevronDown, Check } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { ThemeToggle } from './ThemeToggle';
@@ -98,109 +98,102 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="hidden sm:inline">AI Assistant</span>
             </button>
 
-            {/* Navigation View Switcher (Storefront <-> Admin) */}
-            {currentView === 'storefront' ? (
-              <button
-                onClick={() => onNavigate('admin')}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-medium transition-colors"
-                title="Open Admin Dashboard"
-              >
-                <LayoutDashboard className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Admin</span>
-              </button>
-            ) : (
-              <button
-                onClick={() => onNavigate('storefront')}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-medium transition-colors"
-                title="Return to Storefront"
-              >
-                <Store className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Storefront</span>
-              </button>
-            )}
+            {/* Admin Console Controls - Only visible when inside Admin View */}
+            {currentView === 'admin' && (
+              <>
+                <button
+                  onClick={() => onNavigate('storefront')}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-medium transition-colors"
+                  title="Return to Storefront"
+                >
+                  <Store className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Exit Admin</span>
+                </button>
 
-            {/* Role / User Switcher Popover */}
-            <div className="relative" ref={menuRef}>
-              <button
-                onClick={() => setRoleMenuOpen(!roleMenuOpen)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
-                title="Current Session Identity"
-              >
-                {isAdmin ? (
-                  <Shield className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                ) : (
-                  <User className="w-3.5 h-3.5 text-slate-500" />
-                )}
-                <span className="hidden md:inline font-mono text-[11px]">
-                  {user ? user.role : 'Guest'}
-                </span>
-                <ChevronDown className="w-3 h-3 text-slate-400" />
-              </button>
-
-              {roleMenuOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-lg p-2 z-50 text-xs">
-                  <div className="px-2.5 py-1.5 border-b border-slate-100 dark:border-slate-800 mb-1">
-                    <span className="text-[10px] uppercase font-mono text-slate-400 block font-semibold">
-                      Current Identity
-                    </span>
-                    <span className="font-semibold text-slate-900 dark:text-white truncate block">
-                      {user ? user.name : 'Unauthenticated Guest'}
-                    </span>
-                    <span className="text-[11px] text-slate-500 font-mono block">
-                      {user ? user.role : 'GUEST'}
-                    </span>
-                  </div>
-
-                  <div className="space-y-0.5">
-                    <button
-                      onClick={() => {
-                        loginAsAdmin();
-                        setRoleMenuOpen(false);
-                      }}
-                      className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between transition-colors text-slate-700 dark:text-slate-300"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Shield className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                        <div>
-                          <div className="font-medium text-xs">Admin Role</div>
-                          <div className="text-[10px] text-slate-400">admin@omnicart.io</div>
-                        </div>
-                      </div>
-                      {isAdmin && <Check className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />}
-                    </button>
-
-                    <button
-                      onClick={() => {
-                        loginAsUser();
-                        setRoleMenuOpen(false);
-                      }}
-                      className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between transition-colors text-slate-700 dark:text-slate-300"
-                    >
-                      <div className="flex items-center gap-2">
-                        <User className="w-3.5 h-3.5 text-slate-500" />
-                        <div>
-                          <div className="font-medium text-xs">Customer Role</div>
-                          <div className="text-[10px] text-slate-400">developer@example.com</div>
-                        </div>
-                      </div>
-                      {user?.role === 'USER' && <Check className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />}
-                    </button>
-
-                    {user && (
-                      <button
-                        onClick={() => {
-                          logout();
-                          setRoleMenuOpen(false);
-                        }}
-                        className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-xs font-medium transition-colors border-t border-slate-100 dark:border-slate-800 mt-1"
-                      >
-                        Reset to Guest Session
-                      </button>
+                {/* Role / User Switcher Popover (Admin Console only) */}
+                <div className="relative" ref={menuRef}>
+                  <button
+                    onClick={() => setRoleMenuOpen(!roleMenuOpen)}
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                    title="Current Session Identity"
+                  >
+                    {isAdmin ? (
+                      <Shield className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                    ) : (
+                      <User className="w-3.5 h-3.5 text-slate-500" />
                     )}
-                  </div>
+                    <span className="hidden md:inline font-mono text-[11px]">
+                      {user ? user.role : 'Guest'}
+                    </span>
+                    <ChevronDown className="w-3 h-3 text-slate-400" />
+                  </button>
+
+                  {roleMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-lg p-2 z-50 text-xs">
+                      <div className="px-2.5 py-1.5 border-b border-slate-100 dark:border-slate-800 mb-1">
+                        <span className="text-[10px] uppercase font-mono text-slate-400 block font-semibold">
+                          Current Identity
+                        </span>
+                        <span className="font-semibold text-slate-900 dark:text-white truncate block">
+                          {user ? user.name : 'Unauthenticated Guest'}
+                        </span>
+                        <span className="text-[11px] text-slate-500 font-mono block">
+                          {user ? user.role : 'GUEST'}
+                        </span>
+                      </div>
+
+                      <div className="space-y-0.5">
+                        <button
+                          onClick={() => {
+                            loginAsAdmin();
+                            setRoleMenuOpen(false);
+                          }}
+                          className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between transition-colors text-slate-700 dark:text-slate-300"
+                        >
+                          <div className="flex items-center gap-2">
+                            <Shield className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                            <div>
+                              <div className="font-medium text-xs">Admin Role</div>
+                              <div className="text-[10px] text-slate-400">admin@omnicart.io</div>
+                            </div>
+                          </div>
+                          {isAdmin && <Check className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />}
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            loginAsUser();
+                            setRoleMenuOpen(false);
+                          }}
+                          className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-between transition-colors text-slate-700 dark:text-slate-300"
+                        >
+                          <div className="flex items-center gap-2">
+                            <User className="w-3.5 h-3.5 text-slate-500" />
+                            <div>
+                              <div className="font-medium text-xs">Customer Role</div>
+                              <div className="text-[10px] text-slate-400">developer@example.com</div>
+                            </div>
+                          </div>
+                          {user?.role === 'USER' && <Check className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />}
+                        </button>
+
+                        {user && (
+                          <button
+                            onClick={() => {
+                              logout();
+                              setRoleMenuOpen(false);
+                            }}
+                            className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-rose-50 dark:hover:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-xs font-medium transition-colors border-t border-slate-100 dark:border-slate-800 mt-1"
+                          >
+                            Reset to Guest Session
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </>
+            )}
 
             {/* Dark Mode Toggle */}
             <ThemeToggle />

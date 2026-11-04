@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CartProvider } from './context/CartContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
@@ -10,11 +10,12 @@ import { CartDrawer } from './components/CartDrawer';
 import { Toast } from './components/Toast';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { AiShoppingAssistant } from './components/ai/AiShoppingAssistant';
+import { LoadingScreen } from './components/LoadingScreen';
 import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
 import { TermsConditions } from './components/legal/TermsConditions';
 import { MOCK_PRODUCTS } from './data/mockProducts';
 import { Product } from './types/product';
-import { Github, Layers, Cpu, Database, Server, Sparkles, Shield, FileText, Globe } from 'lucide-react';
+import { Github, Layers, Cpu, Database, Server, Sparkles, Shield, FileText, Globe, Code2 } from 'lucide-react';
 
 const CATEGORIES = [
   'All',
@@ -33,6 +34,33 @@ export const AppContent: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeModalProduct, setActiveModalProduct] = useState<Product | null>(null);
+  const [isBootLoading, setIsBootLoading] = useState(true);
+
+  // Hidden admin panel activation: URL query (?admin=true), hash (#admin), or Ctrl+Shift+A hotkey
+  useEffect(() => {
+    const checkAdminRoute = () => {
+      const search = window.location.search;
+      const hash = window.location.hash;
+      if (search.includes('admin=true') || hash === '#admin') {
+        setCurrentView('admin');
+      }
+    };
+    checkAdminRoute();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        setCurrentView((prev) => (prev === 'admin' ? 'storefront' : 'admin'));
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('hashchange', checkAdminRoute);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('hashchange', checkAdminRoute);
+    };
+  }, []);
 
   const handleUpdateInventory = (productId: string, newCount: number) => {
     setProducts((prev) =>
@@ -42,6 +70,9 @@ export const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200">
+      {/* System Boot Loading Screen */}
+      {isBootLoading && <LoadingScreen onComplete={() => setIsBootLoading(false)} />}
+
       <div>
         {/* Navigation Bar */}
         <Navbar
@@ -157,15 +188,10 @@ export const AppContent: React.FC = () => {
               </h4>
               <ul className="text-xs space-y-2 text-slate-500 dark:text-slate-400">
                 <li>
-                  <button
-                    onClick={() => {
-                      setCurrentView('admin');
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    Operator Admin Console
-                  </button>
+                  <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                    <Code2 className="w-3.5 h-3.5 text-slate-400" />
+                    <span>REST & Kafka APIs (v1)</span>
+                  </span>
                 </li>
                 <li>
                   <button
