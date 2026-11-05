@@ -47,29 +47,47 @@ export const AppContent: React.FC = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
 
-  // Hidden operator console activation: URL query (?admin=true), hash (#admin), or Ctrl+Shift+A hotkey
+  // Operator console activation: URL query (?admin=true), hash (#admin), or hotkey (Ctrl+Shift+A / Ctrl+Alt+A / Cmd+Shift+A)
   useEffect(() => {
     const checkAdminRoute = () => {
       const search = window.location.search;
       const hash = window.location.hash;
       if (search.includes('admin=true') || hash === '#admin') {
         setCurrentView('admin');
+      } else if (hash === '' || hash === '#storefront') {
+        setCurrentView('storefront');
       }
     };
     checkAdminRoute();
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      const isKeyA = e.key === 'a' || e.key === 'A' || e.code === 'KeyA' || e.keyCode === 65;
+      const isCtrlOrMeta = e.ctrlKey || e.metaKey;
+      const isShiftOrAlt = e.shiftKey || e.altKey;
+
+      // Matches Ctrl+Shift+A, Ctrl+Alt+A, Cmd+Shift+A, and Alt+Shift+A
+      if (isKeyA && (isCtrlOrMeta && isShiftOrAlt)) {
         e.preventDefault();
-        setCurrentView((prev) => (prev === 'admin' ? 'storefront' : 'admin'));
+        e.stopPropagation();
+        setCurrentView((prev) => {
+          const next = prev === 'admin' ? 'storefront' : 'admin';
+          if (next === 'admin') {
+            window.location.hash = 'admin';
+          } else {
+            window.location.hash = '';
+          }
+          return next;
+        });
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, { capture: true });
     window.addEventListener('hashchange', checkAdminRoute);
+    window.addEventListener('popstate', checkAdminRoute);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown, { capture: true });
       window.removeEventListener('hashchange', checkAdminRoute);
+      window.removeEventListener('popstate', checkAdminRoute);
     };
   }, []);
 
@@ -186,6 +204,11 @@ export const AppContent: React.FC = () => {
           onScrollToCatalog={handleScrollToCatalog}
           onScrollToDrops={handleScrollToDrops}
           onScrollToEarlyAccess={handleScrollToEarlyAccess}
+          onNavigateAdmin={() => {
+            window.location.hash = 'admin';
+            setCurrentView('admin');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
         />
       </div>
 

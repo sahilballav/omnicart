@@ -1,8 +1,10 @@
-import React from 'react';
-import { ShoppingBag, ArrowUpRight, Zap, Key, User, Store } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ShoppingBag, ArrowUpRight, Zap, Key, User, Store, ShieldAlert } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { ThemeToggle } from './ThemeToggle';
+
+type NavTabId = 'sale' | 'all-modules' | 'drops' | 'early-access' | 'ai-advisor';
 
 interface NavbarProps {
   searchQuery: string;
@@ -22,6 +24,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   currentView,
   onNavigate,
+  onSelectCategory,
   onOpenAiAssistant,
   onOpenAuthModal,
   onOpenAccountModal,
@@ -30,6 +33,71 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const { totalQuantity, toggleCart } = useCart();
   const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState<NavTabId>('sale');
+
+  // Automatic scroll-spy: moves highlighted bar as user scrolls through sections
+  useEffect(() => {
+    if (currentView !== 'storefront') return;
+
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPos = window.scrollY + 220;
+          const earlyEl = document.getElementById('early-access-section');
+          const dropsEl = document.getElementById('limited-drops');
+          const catalogEl = document.getElementById('catalog-selection');
+
+          if (earlyEl && scrollPos >= earlyEl.offsetTop) {
+            setActiveTab('early-access');
+          } else if (dropsEl && scrollPos >= dropsEl.offsetTop) {
+            setActiveTab('drops');
+          } else if (catalogEl && scrollPos >= catalogEl.offsetTop) {
+            setActiveTab('all-modules');
+          } else {
+            setActiveTab('sale');
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [currentView]);
+
+  // Handle Tab Click: moves highlight immediately and scrolls to section
+  const handleTabClick = (tabId: NavTabId) => {
+    setActiveTab(tabId);
+
+    if (tabId === 'sale') {
+      const el = document.getElementById('hero-sale') || document.getElementById('catalog-selection');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else if (tabId === 'all-modules') {
+      onSelectCategory('All');
+      const el = document.getElementById('catalog-selection');
+      el?.scrollIntoView({ behavior: 'smooth' });
+    } else if (tabId === 'drops') {
+      onScrollToDrops?.();
+    } else if (tabId === 'early-access') {
+      onScrollToEarlyAccess?.();
+    } else if (tabId === 'ai-advisor') {
+      onOpenAiAssistant();
+    }
+  };
+
+  const navTabs = [
+    { id: 'sale' as const, label: 'THE SALE', hasZap: true },
+    { id: 'all-modules' as const, label: 'ALL MODULES' },
+    { id: 'drops' as const, label: 'LIMITED DROPS' },
+    { id: 'early-access' as const, label: 'EARLY ACCESS', hasArrow: true },
+    { id: 'ai-advisor' as const, label: 'AI ADVISOR' },
+  ];
 
   return (
     <header className="sticky top-0 z-40 bg-white/90 dark:bg-black/90 text-black dark:text-white backdrop-blur-md border-b border-neutral-200 dark:border-[#222222] transition-colors">
@@ -38,7 +106,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => onNavigate('storefront')}
+              onClick={() => {
+                window.location.hash = '';
+                onNavigate('storefront');
+              }}
               className="flex items-baseline gap-1 focus:outline-none group"
             >
               <span className="text-2xl sm:text-3xl font-black italic tracking-tighter uppercase text-black dark:text-white group-hover:text-[#556900] dark:group-hover:text-[#d4ff00] transition-colors">
@@ -48,89 +119,83 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
 
-          {/* Center SNKS-Style Capsule Navigation (Storefront View) */}
+          {/* Center Dynamic Capsule Navigation with Moving Highlighted Pill */}
           {currentView === 'storefront' && (
-            <nav className="hidden lg:flex items-center gap-1.5 p-1 bg-neutral-100 dark:bg-[#111111] border border-neutral-200 dark:border-[#262626] rounded-full text-xs font-mono font-bold uppercase transition-colors">
-              <button
-                onClick={() => {
-                  const el = document.getElementById('catalog-selection');
-                  el?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="px-3.5 py-1.5 rounded-full bg-[#d4ff00] text-black border border-black/20 flex items-center gap-1.5 transition-all shadow-xs"
-              >
-                <Zap className="w-3 h-3 fill-black text-black" />
-                <span>THE SALE</span>
-              </button>
-
-              <button
-                onClick={() => {
-                  const el = document.getElementById('catalog-selection');
-                  el?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="px-3 py-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-200 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-neutral-900 transition-colors"
-              >
-                ALL MODULES
-              </button>
-
-              <button
-                onClick={onScrollToDrops}
-                className="px-3 py-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-200 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-neutral-900 transition-colors"
-              >
-                LIMITED DROPS
-              </button>
-
-              <button
-                onClick={onScrollToEarlyAccess}
-                className="px-3 py-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-200 dark:text-neutral-300 dark:hover:text-[#d4ff00] dark:hover:bg-neutral-900 flex items-center gap-1 transition-colors"
-              >
-                <span>EARLY ACCESS</span>
-                <ArrowUpRight className="w-3 h-3" />
-              </button>
-
-              <button
-                onClick={onOpenAiAssistant}
-                className="px-3 py-1.5 rounded-full text-neutral-600 hover:text-black hover:bg-neutral-200 dark:text-neutral-400 dark:hover:text-[#d4ff00] dark:hover:bg-neutral-900 transition-colors"
-                title="Agentic Assistant"
-              >
-                AI ADVISOR
-              </button>
+            <nav className="hidden lg:flex items-center gap-1 p-1 bg-neutral-100/90 dark:bg-[#111111]/90 border border-neutral-200 dark:border-[#262626] rounded-full text-xs font-mono font-bold uppercase transition-colors">
+              {navTabs.map((tab) => {
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabClick(tab.id)}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200 flex items-center gap-1.5 ${
+                      isActive
+                        ? 'bg-[#d4ff00] text-black font-black border border-black/20 shadow-xs scale-[1.02]'
+                        : 'text-neutral-700 hover:text-black hover:bg-neutral-200/80 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-neutral-800/80 font-bold border border-transparent'
+                    }`}
+                  >
+                    {tab.hasZap && (
+                      <Zap className={`w-3 h-3 ${isActive ? 'fill-black text-black' : 'text-[#7d9900] dark:text-[#d4ff00]'}`} />
+                    )}
+                    <span>{tab.label}</span>
+                    {tab.hasArrow && (
+                      <ArrowUpRight className={`w-3 h-3 stroke-[2.5] ${isActive ? 'text-black' : 'text-neutral-500'}`} />
+                    )}
+                  </button>
+                );
+              })}
             </nav>
           )}
 
           {/* Action Tools */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Operator Admin Console Exit Button (Visible only when inside Admin) */}
+            {/* Operator Admin Console Button - Direct 1-Click Access & Hotkey Status */}
             {currentView === 'admin' ? (
               <button
-                onClick={() => onNavigate('storefront')}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-[#d4ff00] text-black rounded-none font-mono text-xs font-bold uppercase hover:bg-[#bfff00] transition-colors"
+                onClick={() => {
+                  window.location.hash = '';
+                  onNavigate('storefront');
+                }}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-[#d4ff00] text-black rounded-none font-mono text-xs font-black uppercase hover:bg-[#bfff00] transition-colors border border-black shadow-xs"
                 title="Exit Admin Console"
               >
                 <Store className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>EXIT ADMIN</span>
               </button>
             ) : (
-              /* Customer Vault / Sign In */
-              user && user.role === 'USER' ? (
-                <button
-                  onClick={onOpenAccountModal}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-[#111111] border border-neutral-300 dark:border-[#2a2a2a] hover:border-black dark:hover:border-[#d4ff00] text-neutral-900 dark:text-neutral-200 rounded-none text-xs font-mono font-bold uppercase transition-colors"
-                  title="Open Customer License Vault"
-                >
-                  <Key className="w-3 h-3 text-[#7d9900] dark:text-[#d4ff00]" />
-                  <span className="hidden sm:inline truncate max-w-[100px]">{user.name}</span>
-                  <span className="sm:hidden">VAULT</span>
-                </button>
-              ) : (
-                <button
-                  onClick={onOpenAuthModal}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-transparent border border-neutral-300 dark:border-[#333333] hover:border-black dark:hover:border-white text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white rounded-none text-xs font-mono font-bold uppercase transition-colors"
-                  title="Developer Account Sign-In"
-                >
-                  <User className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">SIGN IN</span>
-                </button>
-              )
+              <button
+                onClick={() => {
+                  window.location.hash = 'admin';
+                  onNavigate('admin');
+                }}
+                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 bg-neutral-100 hover:bg-[#d4ff00] hover:text-black dark:bg-[#141414] dark:hover:bg-[#d4ff00] dark:hover:text-black border border-neutral-300 dark:border-[#2f2f2f] hover:border-black dark:hover:border-[#d4ff00] text-neutral-800 dark:text-neutral-200 rounded-none text-xs font-mono font-black uppercase transition-all shadow-xs group"
+                title="Open Admin Console (Click or press Shift+Ctrl+A)"
+              >
+                <ShieldAlert className="w-3.5 h-3.5 text-[#556900] dark:text-[#d4ff00] group-hover:text-black stroke-[2.5]" />
+                <span className="hidden sm:inline">ADMIN</span>
+              </button>
+            )}
+
+            {/* Customer Vault / Sign In */}
+            {user && user.role === 'USER' ? (
+              <button
+                onClick={onOpenAccountModal}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-[#111111] border border-neutral-300 dark:border-[#2a2a2a] hover:border-black dark:hover:border-[#d4ff00] text-neutral-900 dark:text-neutral-200 rounded-none text-xs font-mono font-bold uppercase transition-colors"
+                title="Open Customer License Vault"
+              >
+                <Key className="w-3 h-3 text-[#7d9900] dark:text-[#d4ff00]" />
+                <span className="hidden sm:inline truncate max-w-[100px]">{user.name}</span>
+                <span className="sm:hidden">VAULT</span>
+              </button>
+            ) : (
+              <button
+                onClick={onOpenAuthModal}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-transparent border border-neutral-300 dark:border-[#333333] hover:border-black dark:hover:border-white text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white rounded-none text-xs font-mono font-bold uppercase transition-colors"
+                title="Developer Account Sign-In"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">SIGN IN</span>
+              </button>
             )}
 
             {/* Dark Mode Toggle */}
