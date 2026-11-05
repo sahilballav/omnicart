@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const { user } = useAuth();
 
   return (
-    <header className="sticky top-0 z-40 bg-black/95 text-white backdrop-blur-md border-b border-[#222222] transition-colors">
+    <header className="sticky top-0 z-40 bg-white/95 text-black dark:bg-black/95 dark:text-white backdrop-blur-md border-b border-neutral-200 dark:border-[#222222] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
           {/* Logo & Brand */}
@@ -41,24 +41,24 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => onNavigate('storefront')}
               className="flex items-baseline gap-1 focus:outline-none group"
             >
-              <span className="text-2xl sm:text-3xl font-black italic tracking-tighter uppercase text-white group-hover:text-[#d4ff00] transition-colors">
+              <span className="text-2xl sm:text-3xl font-black italic tracking-tighter uppercase text-black dark:text-white group-hover:text-[#7d9900] dark:group-hover:text-[#d4ff00] transition-colors">
                 OMNICART
               </span>
-              <span className="text-[10px] font-bold text-[#d4ff00]">®</span>
+              <span className="text-[10px] font-bold text-[#7d9900] dark:text-[#d4ff00]">®</span>
             </button>
           </div>
 
           {/* Center SNKS-Style Capsule Navigation (Storefront View) */}
           {currentView === 'storefront' && (
-            <nav className="hidden lg:flex items-center gap-1.5 p-1 bg-[#111111] border border-[#262626] rounded-full text-xs font-mono font-bold uppercase">
+            <nav className="hidden lg:flex items-center gap-1.5 p-1 bg-neutral-100 dark:bg-[#111111] border border-neutral-200 dark:border-[#262626] rounded-full text-xs font-mono font-bold uppercase transition-colors">
               <button
                 onClick={() => {
                   const el = document.getElementById('catalog-selection');
                   el?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="px-3.5 py-1.5 rounded-full bg-[#1c2400] text-[#d4ff00] border border-[#d4ff00]/40 flex items-center gap-1.5 transition-all shadow-xs"
+                className="px-3.5 py-1.5 rounded-full bg-[#d4ff00] text-black dark:bg-[#1c2400] dark:text-[#d4ff00] border border-black/10 dark:border-[#d4ff00]/40 flex items-center gap-1.5 transition-all shadow-xs"
               >
-                <Zap className="w-3 h-3 fill-[#d4ff00]" />
+                <Zap className="w-3 h-3 fill-black dark:fill-[#d4ff00]" />
                 <span>THE SALE</span>
               </button>
 
@@ -67,21 +67,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                   const el = document.getElementById('catalog-selection');
                   el?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="px-3 py-1.5 rounded-full text-neutral-300 hover:text-white hover:bg-neutral-900 transition-colors"
+                className="px-3 py-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-200 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-neutral-900 transition-colors"
               >
                 ALL MODULES
               </button>
 
               <button
                 onClick={onScrollToDrops}
-                className="px-3 py-1.5 rounded-full text-neutral-300 hover:text-white hover:bg-neutral-900 transition-colors"
+                className="px-3 py-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-200 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-neutral-900 transition-colors"
               >
                 LIMITED DROPS
               </button>
 
               <button
                 onClick={onScrollToEarlyAccess}
-                className="px-3 py-1.5 rounded-full text-neutral-300 hover:text-[#d4ff00] hover:bg-neutral-900 flex items-center gap-1 transition-colors"
+                className="px-3 py-1.5 rounded-full text-neutral-700 hover:text-black hover:bg-neutral-200 dark:text-neutral-300 dark:hover:text-[#d4ff00] dark:hover:bg-neutral-900 flex items-center gap-1 transition-colors"
               >
                 <span>EARLY ACCESS</span>
                 <ArrowUpRight className="w-3 h-3" />
@@ -89,7 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               <button
                 onClick={onOpenAiAssistant}
-                className="px-3 py-1.5 rounded-full text-neutral-400 hover:text-[#d4ff00] transition-colors"
+                className="px-3 py-1.5 rounded-full text-neutral-600 hover:text-black hover:bg-neutral-200 dark:text-neutral-400 dark:hover:text-[#d4ff00] dark:hover:bg-neutral-900 transition-colors"
                 title="Agentic Assistant"
               >
                 AI ADVISOR
@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {currentView === 'admin' ? (
               <button
                 onClick={() => onNavigate('storefront')}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-[#d4ff00] text-black rounded font-mono text-xs font-bold uppercase hover:bg-[#bfff00] transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-[#d4ff00] text-black rounded-none font-mono text-xs font-bold uppercase hover:bg-[#bfff00] transition-colors"
                 title="Exit Admin Console"
               >
                 <Store className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -114,17 +114,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               user && user.role === 'USER' ? (
                 <button
                   onClick={onOpenAccountModal}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-[#111111] border border-[#2a2a2a] hover:border-[#d4ff00] text-neutral-200 rounded text-xs font-mono font-bold uppercase transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 dark:bg-[#111111] border border-neutral-300 dark:border-[#2a2a2a] hover:border-black dark:hover:border-[#d4ff00] text-neutral-900 dark:text-neutral-200 rounded-none text-xs font-mono font-bold uppercase transition-colors"
                   title="Open Customer License Vault"
                 >
-                  <Key className="w-3 h-3 text-[#d4ff00]" />
+                  <Key className="w-3 h-3 text-[#7d9900] dark:text-[#d4ff00]" />
                   <span className="hidden sm:inline truncate max-w-[100px]">{user.name}</span>
                   <span className="sm:hidden">VAULT</span>
                 </button>
               ) : (
                 <button
                   onClick={onOpenAuthModal}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-transparent border border-[#333333] hover:border-white text-neutral-300 hover:text-white rounded text-xs font-mono font-bold uppercase transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-transparent border border-neutral-300 dark:border-[#333333] hover:border-black dark:hover:border-white text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white rounded-none text-xs font-mono font-bold uppercase transition-colors"
                   title="Developer Account Sign-In"
                 >
                   <User className="w-3.5 h-3.5" />
@@ -139,10 +139,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* SNKS-Style Shopping Bag Capsule */}
             <button
               onClick={() => toggleCart(true)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-transparent border border-[#333333] hover:border-[#d4ff00] text-white transition-colors select-none"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200 dark:bg-transparent dark:hover:bg-neutral-900 border border-neutral-300 dark:border-[#333333] hover:border-black dark:hover:border-[#d4ff00] text-black dark:text-white transition-colors select-none"
               aria-label="Shopping Bag"
             >
-              <ShoppingBag className="w-4 h-4 text-neutral-200" />
+              <ShoppingBag className="w-4 h-4 text-neutral-800 dark:text-neutral-200" />
               <span className="text-xs font-mono font-bold uppercase tracking-wider hidden sm:inline">
                 BAG
               </span>

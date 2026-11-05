@@ -16,7 +16,7 @@ export const InsideTrackBanner: React.FC = () => {
   };
 
   return (
-    <section id="early-access-section" className="w-full bg-black text-white border-b border-[#222222]">
+    <section id="early-access-section" className="w-full bg-white dark:bg-black text-black dark:text-white border-b border-neutral-200 dark:border-[#222222] transition-colors">
       {/* Massive Neon Volt Lime Full-Bleed Container */}
       <div className="w-full bg-[#d4ff00] text-black py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -81,7 +81,7 @@ export const InsideTrackBanner: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full py-4 bg-black hover:bg-neutral-900 text-white font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-md"
+                    className="w-full py-4 bg-black hover:bg-neutral-900 text-white font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-md rounded-none"
                   >
                     <span>GET EARLY ACCESS</span>
                     <ArrowUpRight className="w-4 h-4 stroke-[3] text-[#d4ff00]" />
@@ -97,40 +97,40 @@ export const InsideTrackBanner: React.FC = () => {
         </div>
       </div>
 
-      {/* 3 SNKS Value Props Strip (Black & Volt Icons) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+      {/* 3 SNKS Value Props Strip (Adaptive in Light/Dark) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 bg-neutral-50 dark:bg-black transition-colors">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs font-mono">
           <div className="flex items-start gap-3">
-            <Truck className="w-5 h-5 text-[#d4ff00] shrink-0 mt-0.5 stroke-[2.5]" />
+            <Truck className="w-5 h-5 text-[#7d9900] dark:text-[#d4ff00] shrink-0 mt-0.5 stroke-[2.5]" />
             <div>
-              <div className="font-black uppercase tracking-wider text-white text-sm">
+              <div className="font-black uppercase tracking-wider text-black dark:text-white text-sm">
                 FREE DELIVERY
               </div>
-              <p className="text-neutral-400 mt-1 uppercase text-[11px] leading-relaxed">
+              <p className="text-neutral-600 dark:text-neutral-400 mt-1 uppercase text-[11px] leading-relaxed">
                 Automated private repo invitations and S3 bundles. Every sale order.
               </p>
             </div>
           </div>
 
           <div className="flex items-start gap-3">
-            <ShieldCheck className="w-5 h-5 text-[#d4ff00] shrink-0 mt-0.5 stroke-[2.5]" />
+            <ShieldCheck className="w-5 h-5 text-[#7d9900] dark:text-[#d4ff00] shrink-0 mt-0.5 stroke-[2.5]" />
             <div>
-              <div className="font-black uppercase tracking-wider text-white text-sm">
+              <div className="font-black uppercase tracking-wider text-black dark:text-white text-sm">
                 SECURE CHECKOUT
               </div>
-              <p className="text-neutral-400 mt-1 uppercase text-[11px] leading-relaxed">
+              <p className="text-neutral-600 dark:text-neutral-400 mt-1 uppercase text-[11px] leading-relaxed">
                 Ed25519 cryptographic signatures on all digital tokens. Protected.
               </p>
             </div>
           </div>
 
           <div className="flex items-start gap-3">
-            <Box className="w-5 h-5 text-[#d4ff00] shrink-0 mt-0.5 stroke-[2.5]" />
+            <Box className="w-5 h-5 text-[#7d9900] dark:text-[#d4ff00] shrink-0 mt-0.5 stroke-[2.5]" />
             <div>
-              <div className="font-black uppercase tracking-wider text-white text-sm">
+              <div className="font-black uppercase tracking-wider text-black dark:text-white text-sm">
                 FRESH OUT OF THE BOX
               </div>
-              <p className="text-neutral-400 mt-1 uppercase text-[11px] leading-relaxed">
+              <p className="text-neutral-600 dark:text-neutral-400 mt-1 uppercase text-[11px] leading-relaxed">
                 Docker Compose & Terraform verified. Ready for your deployment rotation.
               </p>
             </div>
@@ -140,3 +140,4 @@ export const InsideTrackBanner: React.FC = () => {
     </section>
   );
 };
+

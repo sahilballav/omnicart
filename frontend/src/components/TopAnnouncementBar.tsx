@@ -32,3 +32,4 @@ export const TopAnnouncementBar: React.FC<TopAnnouncementBarProps> = ({ onEarlyA
     </div>
   );
 };
+

@@ -78,13 +78,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 font-mono"
     >
-      <div className="relative bg-black text-white rounded-none max-w-3xl w-full shadow-2xl border border-[#262626] overflow-hidden max-h-[90vh] flex flex-col">
+      <div className="relative bg-white dark:bg-black text-black dark:text-white rounded-none max-w-3xl w-full shadow-2xl border border-neutral-300 dark:border-[#262626] overflow-hidden max-h-[90vh] flex flex-col transition-colors">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-none hover:bg-[#1a1a1a] text-neutral-400 hover:text-white flex items-center justify-center transition-colors border border-[#333]"
+          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-none bg-white hover:bg-neutral-100 dark:bg-black dark:hover:bg-[#1a1a1a] text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white flex items-center justify-center transition-colors border border-neutral-300 dark:border-[#333]"
           aria-label="Close modal"
         >
           <X className="w-4 h-4" />
@@ -95,7 +95,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Left Column: Image preview */}
             <div>
-              <div className="aspect-[16/10] rounded-none overflow-hidden bg-[#0d0d0d] border border-[#262626] mb-3">
+              <div className="aspect-[16/10] rounded-none overflow-hidden bg-[#0d0d0d] border border-neutral-300 dark:border-[#262626] mb-3">
                 <img
                   src={product.images[selectedImageIndex] || product.images[0]}
                   alt={product.name}
@@ -112,8 +112,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                       onClick={() => setSelectedImageIndex(idx)}
                       className={`w-14 h-10 rounded-none overflow-hidden border transition-all ${
                         selectedImageIndex === idx
-                          ? 'border-[#d4ff00] ring-1 ring-[#d4ff00]'
-                          : 'border-[#262626] opacity-60 hover:opacity-100'
+                          ? 'border-[#7d9900] dark:border-[#d4ff00] ring-1 ring-[#d4ff00]'
+                          : 'border-neutral-300 dark:border-[#262626] opacity-60 hover:opacity-100'
                       }`}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
@@ -127,46 +127,46 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
             <div className="flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-1.5 text-xs font-mono">
-                  <span className="font-bold text-[#d4ff00] uppercase tracking-wider text-[11px]">
+                  <span className="font-bold text-[#7d9900] dark:text-[#d4ff00] uppercase tracking-wider text-[11px]">
                     {product.brand}
                   </span>
-                  <span className="text-neutral-600">/</span>
-                  <span className="text-neutral-400 uppercase text-[11px]">{product.category}</span>
+                  <span className="text-neutral-400 dark:text-neutral-600">/</span>
+                  <span className="text-neutral-600 dark:text-neutral-400 uppercase text-[11px]">{product.category}</span>
                 </div>
 
-                <h2 id="modal-title" className="text-xl font-black uppercase text-white leading-snug mb-2 tracking-tight">
+                <h2 id="modal-title" className="text-xl font-black uppercase text-black dark:text-white leading-snug mb-2 tracking-tight">
                   {product.name}
                 </h2>
 
-                <div className="flex items-center gap-2 mb-4 text-xs font-mono text-neutral-400">
-                  <span className="flex items-center gap-1 bg-[#111111] border border-[#262626] px-2 py-0.5 rounded-none text-neutral-200">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#d4ff00]" />
+                <div className="flex items-center gap-2 mb-4 text-xs font-mono text-neutral-600 dark:text-neutral-400">
+                  <span className="flex items-center gap-1 bg-neutral-100 dark:bg-[#111111] border border-neutral-200 dark:border-[#262626] px-2 py-0.5 rounded-none text-neutral-800 dark:text-neutral-200">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#7d9900] dark:text-[#d4ff00]" />
                     <span>VERIFIED ARCHITECTURE</span>
                   </span>
-                  <span className="bg-[#111111] border border-[#262626] px-2 py-0.5 rounded-none text-[#d4ff00]">
+                  <span className="bg-neutral-100 dark:bg-[#111111] border border-neutral-200 dark:border-[#262626] px-2 py-0.5 rounded-none text-[#7d9900] dark:text-[#d4ff00] font-bold">
                     {String(product.attributes.version || 'v1.0.0')}
                   </span>
                 </div>
 
                 <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-2xl font-black text-white">
+                  <span className="text-2xl font-black text-black dark:text-white">
                     ${product.price.toFixed(2)}
                   </span>
                   {product.compareAtPrice && (
-                    <span className="text-xs text-neutral-500 line-through">
+                    <span className="text-xs text-neutral-400 dark:text-neutral-500 line-through">
                       ${product.compareAtPrice.toFixed(2)}
                     </span>
                   )}
                 </div>
 
-                <p className="text-xs text-neutral-300 leading-relaxed mb-5 font-sans">
+                <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed mb-5 font-sans">
                   {product.description}
                 </p>
 
                 {/* PostgreSQL JSONB Attribute Inspector */}
-                <div className="mb-6 bg-[#0a0a0a] rounded-none border border-[#222222] p-3.5">
-                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-neutral-200 uppercase tracking-wider mb-2.5">
-                    <Database className="w-3.5 h-3.5 text-[#d4ff00]" />
+                <div className="mb-6 bg-neutral-50 dark:bg-[#0a0a0a] rounded-none border border-neutral-200 dark:border-[#222222] p-3.5 transition-colors">
+                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider mb-2.5">
+                    <Database className="w-3.5 h-3.5 text-[#7d9900] dark:text-[#d4ff00]" />
                     <span>Technical Specifications (JSONB)</span>
                   </div>
 
@@ -174,12 +174,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                     {Object.entries(product.attributes).map(([key, val]) => (
                       <div
                         key={key}
-                        className="bg-black p-2 rounded-none border border-[#1f1f1f] flex items-start justify-between gap-2"
+                        className="bg-white dark:bg-black p-2 rounded-none border border-neutral-200 dark:border-[#1f1f1f] flex items-start justify-between gap-2"
                       >
-                        <span className="text-[11px] font-mono text-neutral-400 shrink-0 uppercase">
+                        <span className="text-[11px] font-mono text-neutral-500 dark:text-neutral-400 shrink-0 uppercase">
                           {formatKey(key)}:
                         </span>
-                        <div className="text-right text-neutral-200 text-xs font-mono">{renderAttributeValue(val)}</div>
+                        <div className="text-right text-neutral-800 dark:text-neutral-200 text-xs font-mono">{renderAttributeValue(val)}</div>
                       </div>
                     ))}
                   </div>
@@ -187,55 +187,55 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               </div>
 
               {/* Purchase Actions */}
-              <div className="pt-4 border-t border-[#222222]">
+              <div className="pt-4 border-t border-neutral-200 dark:border-[#222222]">
                 <div className="flex items-center justify-between gap-4 mb-3">
-                  <div className="text-xs font-mono text-neutral-400">
+                  <div className="text-xs font-mono text-neutral-600 dark:text-neutral-400 uppercase">
                     <span>LICENSE SEATS: </span>
                     {existingQtyInCart > 0 && (
-                      <span className="text-[#d4ff00]">({existingQtyInCart} IN BAG)</span>
+                      <span className="text-[#7d9900] dark:text-[#d4ff00] font-bold">({existingQtyInCart} IN BAG)</span>
                     )}
                   </div>
 
                   {/* Quantity Modifier */}
-                  <div className="flex items-center border border-[#333] rounded-none bg-black">
+                  <div className="flex items-center border border-neutral-300 dark:border-[#333] rounded-none bg-neutral-50 dark:bg-black">
                     <button
                       onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                       disabled={quantity <= 1}
-                      className="px-2.5 py-1 hover:bg-[#1a1a1a] transition-colors"
+                      className="px-2.5 py-1 hover:bg-neutral-200 dark:hover:bg-[#1a1a1a] transition-colors text-black dark:text-white"
                       aria-label="Decrease quantity"
                     >
-                      <Minus className="w-3.5 h-3.5 text-neutral-300" />
+                      <Minus className="w-3.5 h-3.5" />
                     </button>
-                    <span className="w-8 text-center font-mono text-xs text-white font-bold">
+                    <span className="w-8 text-center font-mono text-xs text-black dark:text-white font-bold">
                       {quantity}
                     </span>
                     <button
                       onClick={() => setQuantity((q) => q + 1)}
-                      className="px-2.5 py-1 hover:bg-[#1a1a1a] transition-colors"
+                      className="px-2.5 py-1 hover:bg-neutral-200 dark:hover:bg-[#1a1a1a] transition-colors text-black dark:text-white"
                       aria-label="Increase quantity"
                     >
-                      <Plus className="w-3.5 h-3.5 text-neutral-300" />
+                      <Plus className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
 
                 <button
                   onClick={handleAddToCart}
-                  className={`w-full py-3 px-4 rounded font-mono font-bold uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-colors ${
+                  className={`w-full py-3.5 px-4 rounded-none font-mono font-black uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-transform active:scale-95 ${
                     justAdded
-                      ? 'bg-white text-black'
-                      : 'bg-[#d4ff00] hover:bg-[#bfff00] text-black'
+                      ? 'bg-black text-white dark:bg-white dark:text-black'
+                      : 'bg-[#d4ff00] hover:bg-[#bfff00] text-black shadow-md'
                   }`}
                 >
                   {justAdded ? (
                     <>
                       <Check className="w-4 h-4 stroke-[3]" />
-                      <span>Added to Bag</span>
+                      <span>ADDED TO BAG</span>
                     </>
                   ) : (
                     <>
                       <ShoppingBag className="w-4 h-4" />
-                      <span>Add to Bag: ${(product.price * quantity).toFixed(2)}</span>
+                      <span>ADD TO BAG: ${(product.price * quantity).toFixed(2)}</span>
                     </>
                   )}
                 </button>

@@ -37,27 +37,27 @@ export const TechnicalFaq: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-black text-white py-16 sm:py-24 border-b border-[#222222]">
+    <section className="w-full bg-white dark:bg-black text-black dark:text-white py-16 sm:py-24 border-b border-neutral-200 dark:border-[#222222] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column: SNKS Editorial Section Header */}
           <div className="lg:col-span-5 space-y-3">
-            <div className="text-xs font-mono font-bold tracking-widest text-[#d4ff00] uppercase">
+            <div className="text-xs font-mono font-bold tracking-widest text-[#7d9900] dark:text-[#d4ff00] uppercase">
               GOOD TO KNOW / 004
             </div>
-            <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter leading-none">
+            <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter leading-none text-black dark:text-white">
               NO GUESSWORK.
             </h2>
-            <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter leading-none text-[#d4ff00]">
+            <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter leading-none text-black bg-[#d4ff00] px-2.5 inline-block dark:bg-transparent dark:text-[#d4ff00] dark:p-0">
               JUST GOOD CODE.
             </h2>
-            <p className="text-xs font-mono uppercase text-neutral-400 max-w-sm pt-2 leading-relaxed">
+            <p className="text-xs font-mono uppercase text-neutral-600 dark:text-neutral-400 max-w-sm pt-2 leading-relaxed">
               Clear answers on digital licensing, automated GitHub repository provisioning, and cryptographic key issuance.
             </p>
           </div>
 
           {/* Right Column: Clean Brutalist Accordion */}
-          <div className="lg:col-span-7 divide-y divide-[#222222] border-t border-b border-[#222222]">
+          <div className="lg:col-span-7 divide-y divide-neutral-200 dark:divide-[#222222] border-t border-b border-neutral-200 dark:border-[#222222]">
             {FAQS.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (
@@ -66,16 +66,16 @@ export const TechnicalFaq: React.FC = () => {
                     onClick={() => toggleIndex(idx)}
                     className="w-full flex items-center justify-between text-left group"
                   >
-                    <span className="text-sm sm:text-base font-bold text-white group-hover:text-[#d4ff00] transition-colors pr-4">
+                    <span className="text-sm sm:text-base font-bold text-black dark:text-white group-hover:text-[#7d9900] dark:group-hover:text-[#d4ff00] transition-colors pr-4">
                       {faq.q}
                     </span>
-                    <span className="text-neutral-400 group-hover:text-[#d4ff00] transition-colors shrink-0">
+                    <span className="text-neutral-500 group-hover:text-black dark:text-neutral-400 dark:group-hover:text-[#d4ff00] transition-colors shrink-0">
                       {isOpen ? <Minus className="w-5 h-5 stroke-[2.5]" /> : <Plus className="w-5 h-5 stroke-[2.5]" />}
                     </span>
                   </button>
 
                   {isOpen && (
-                    <p className="mt-3 text-xs sm:text-sm text-neutral-400 font-mono leading-relaxed max-w-xl">
+                    <p className="mt-3 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-mono leading-relaxed max-w-xl">
                       {faq.a}
                     </p>
                   )}
@@ -88,3 +88,4 @@ export const TechnicalFaq: React.FC = () => {
     </section>
   );
 };
+

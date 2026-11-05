@@ -28,9 +28,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
     : 0;
 
   return (
-    <div className="bg-black text-white rounded-none border border-[#222222] hover:border-[#444444] transition-colors flex flex-col justify-between overflow-hidden group">
+    <div className="bg-white dark:bg-black text-black dark:text-white rounded-none border border-neutral-200 dark:border-[#222222] hover:border-black dark:hover:border-[#444444] transition-colors flex flex-col justify-between overflow-hidden group">
       {/* Top Visual Image Container */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-[#0d0d0d] border-b border-[#1c1c1c]">
+      <div className="relative aspect-[16/10] overflow-hidden bg-[#0d0d0d] border-b border-neutral-200 dark:border-[#1c1c1c]">
         {!imageError && product.images && product.images.length > 0 ? (
           <img
             src={product.images[0]}
@@ -59,7 +59,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
             </span>
           )}
           {discountPercent > 0 && (
-            <span className="px-2 py-0.5 text-[10px] font-mono font-black uppercase bg-white text-black">
+            <span className="px-2 py-0.5 text-[10px] font-mono font-black uppercase bg-black text-white dark:bg-white dark:text-black">
               -{discountPercent}%
             </span>
           )}
@@ -92,7 +92,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         <div>
           {/* Brand & Version Index */}
           <div className="flex items-center justify-between mb-2 text-xs font-mono">
-            <span className="text-[#d4ff00] font-bold uppercase tracking-wider text-[11px]">
+            <span className="text-[#7d9900] dark:text-[#d4ff00] font-bold uppercase tracking-wider text-[11px]">
               {product.brand}
             </span>
             <span className="text-neutral-500 text-[10px]">
@@ -103,26 +103,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           {/* Title */}
           <h3
             onClick={() => onQuickView(product)}
-            className="font-black text-white text-base uppercase tracking-tight leading-snug hover:text-[#d4ff00] transition-colors cursor-pointer line-clamp-1 mb-1.5"
+            className="font-black text-black dark:text-white text-base uppercase tracking-tight leading-snug hover:text-[#7d9900] dark:hover:text-[#d4ff00] transition-colors cursor-pointer line-clamp-1 mb-1.5"
           >
             {product.name}
           </h3>
 
           {/* Description */}
-          <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed">
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
             {product.shortDescription}
           </p>
         </div>
 
         {/* Pricing & Add To Bag Action */}
-        <div className="pt-3 border-t border-[#1a1a1a] flex items-center justify-between gap-3">
+        <div className="pt-3 border-t border-neutral-200 dark:border-[#1a1a1a] flex items-center justify-between gap-3">
           <div>
             <div className="flex items-baseline gap-1.5 font-mono">
-              <span className="text-lg font-black text-white">
+              <span className="text-lg font-black text-black dark:text-white">
                 ${product.price.toFixed(2)}
               </span>
               {product.compareAtPrice && (
-                <span className="text-xs text-neutral-600 line-through">
+                <span className="text-xs text-neutral-400 dark:text-neutral-600 line-through">
                   ${product.compareAtPrice.toFixed(2)}
                 </span>
               )}
@@ -135,9 +135,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           <button
             onClick={() => addToCart(product, 1)}
             disabled={product.inventoryCount === 0}
-            className={`px-4 py-2 font-mono text-xs font-black uppercase tracking-wider transition-colors flex items-center gap-1.5 ${
+            className={`px-4 py-2 font-mono text-xs font-black uppercase tracking-wider transition-colors flex items-center gap-1.5 rounded-none ${
               cartQty > 0
-                ? 'bg-neutral-800 text-[#d4ff00] border border-[#d4ff00]'
+                ? 'bg-neutral-200 text-black border border-black dark:bg-neutral-800 dark:text-[#d4ff00] dark:border-[#d4ff00]'
                 : 'bg-[#d4ff00] hover:bg-[#bfff00] text-black active:scale-95'
             }`}
           >

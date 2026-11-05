@@ -42,25 +42,25 @@ export const CustomerAccountModal: React.FC<CustomerAccountModalProps> = ({ isOp
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 font-mono"
     >
-      <div className="relative bg-white dark:bg-black rounded-xl max-w-2xl w-full border border-slate-200 dark:border-neutral-800 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col transition-colors">
+      <div className="relative bg-white dark:bg-black rounded-none max-w-2xl w-full border border-neutral-300 dark:border-[#222222] shadow-2xl overflow-hidden max-h-[90vh] flex flex-col transition-colors">
         {/* Header */}
-        <div className="p-5 sm:p-6 border-b border-slate-200 dark:border-neutral-800 flex items-center justify-between">
+        <div className="p-5 sm:p-6 border-b border-neutral-200 dark:border-[#222222] flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold">
-              <Key className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-none bg-[#d4ff00] text-black flex items-center justify-center font-bold">
+              <Key className="w-5 h-5 stroke-[2.5]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-base font-bold text-slate-900 dark:text-white">
-                  Developer License Vault
+                <h2 className="text-base font-black uppercase text-black dark:text-white tracking-tight">
+                  DEVELOPER LICENSE VAULT
                 </h2>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 font-semibold border border-emerald-200 dark:border-emerald-800/80">
-                  VERIFIED CUSTOMER
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-[#d4ff00]/20 text-[#7d9900] dark:text-[#d4ff00] font-bold border border-[#d4ff00]/50 uppercase">
+                  VERIFIED
                 </span>
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-0.5 uppercase">
                 {user.name} ({user.email})
               </p>
             </div>
@@ -68,7 +68,7 @@ export const CustomerAccountModal: React.FC<CustomerAccountModalProps> = ({ isOp
 
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-neutral-900 text-slate-500 dark:text-slate-400 flex items-center justify-center transition-colors"
+            className="w-8 h-8 rounded-none border border-neutral-300 dark:border-[#333] hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-600 dark:text-neutral-400 flex items-center justify-center transition-colors"
             aria-label="Close"
           >
             <X className="w-4 h-4" />
@@ -76,29 +76,29 @@ export const CustomerAccountModal: React.FC<CustomerAccountModalProps> = ({ isOp
         </div>
 
         {/* Navigation Tabs */}
-        <div className="px-6 pt-3 border-b border-slate-100 dark:border-neutral-800/80 flex items-center gap-4 text-xs font-semibold">
+        <div className="px-6 pt-3 border-b border-neutral-200 dark:border-[#222222] flex items-center gap-4 text-xs font-bold uppercase">
           <button
             onClick={() => setActiveTab('licenses')}
             className={`pb-2.5 transition-colors border-b-2 flex items-center gap-1.5 ${
               activeTab === 'licenses'
-                ? 'border-blue-600 text-blue-600 dark:text-blue-400'
-                : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                ? 'border-black text-black dark:border-[#d4ff00] dark:text-[#d4ff00]'
+                : 'border-transparent text-neutral-500 hover:text-black dark:hover:text-white'
             }`}
           >
             <Key className="w-3.5 h-3.5" />
-            <span>Active Licenses ({user.licenses?.length || 0})</span>
+            <span>ACTIVE LICENSES ({user.licenses?.length || 0})</span>
           </button>
 
           <button
             onClick={() => setActiveTab('security')}
             className={`pb-2.5 transition-colors border-b-2 flex items-center gap-1.5 ${
               activeTab === 'security'
-                ? 'border-blue-600 text-blue-600 dark:text-blue-400'
-                : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                ? 'border-black text-black dark:border-[#d4ff00] dark:text-[#d4ff00]'
+                : 'border-transparent text-neutral-500 hover:text-black dark:hover:text-white'
             }`}
           >
             <Shield className="w-3.5 h-3.5" />
-            <span>Session & PKI Tokens</span>
+            <span>SESSION & PKI TOKENS</span>
           </button>
         </div>
 
@@ -110,85 +110,85 @@ export const CustomerAccountModal: React.FC<CustomerAccountModalProps> = ({ isOp
                 {user.licenses.map((lic) => (
                   <div
                     key={lic.id}
-                    className="p-4 bg-slate-50 dark:bg-neutral-950 border border-slate-200 dark:border-neutral-800 rounded-lg space-y-3"
+                    className="p-4 bg-neutral-50 dark:bg-[#0a0a0a] border border-neutral-200 dark:border-[#222222] rounded-none space-y-3 transition-colors"
                   >
                     {/* Item Top */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="text-xs font-bold text-slate-900 dark:text-white">
+                          <h4 className="text-xs font-black uppercase text-black dark:text-white">
                             {lic.productName}
                           </h4>
-                          <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-slate-200 dark:bg-neutral-800 text-slate-700 dark:text-slate-300">
+                          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-none bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-300 font-bold">
                             {lic.version}
                           </span>
                         </div>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                          {lic.licenseType} &bull; Issued {new Date(lic.issuedAt).toLocaleDateString()}
+                        <p className="text-[11px] text-neutral-500 uppercase mt-0.5">
+                          {lic.licenseType} &bull; ISSUED {new Date(lic.issuedAt).toLocaleDateString()}
                         </p>
                       </div>
 
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleDownloadCertificate(lic.productName, lic.licenseKey)}
-                          className="px-2.5 py-1 text-[11px] font-medium bg-white dark:bg-black border border-slate-200 dark:border-neutral-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-neutral-900 rounded flex items-center gap-1 transition-colors"
+                          className="px-2.5 py-1 text-[11px] font-bold uppercase bg-white dark:bg-black border border-neutral-300 dark:border-[#333] text-neutral-800 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 rounded-none flex items-center gap-1 transition-colors"
                           title="Download cryptographic PEM certificate"
                         >
-                          <Download className="w-3 h-3 text-slate-400" />
-                          <span>Certificate (.pem)</span>
+                          <Download className="w-3 h-3 text-neutral-400" />
+                          <span>CERTIFICATE (.PEM)</span>
                         </button>
                       </div>
                     </div>
 
                     {/* License Key Box */}
-                    <div className="p-2.5 bg-white dark:bg-black border border-slate-200 dark:border-neutral-800 rounded flex items-center justify-between gap-2">
+                    <div className="p-2.5 bg-white dark:bg-black border border-neutral-300 dark:border-[#222222] rounded-none flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2 truncate">
-                        <span className="text-[10px] font-mono text-slate-400 uppercase">Token:</span>
-                        <code className="text-xs font-mono text-blue-600 dark:text-blue-400 truncate">
+                        <span className="text-[10px] text-neutral-400 uppercase">TOKEN:</span>
+                        <code className="text-xs font-mono font-bold text-black dark:text-[#d4ff00] truncate">
                           {lic.licenseKey}
                         </code>
                       </div>
                       <button
                         onClick={() => handleCopyKey(lic.id, lic.licenseKey)}
-                        className="px-2 py-1 text-[10px] font-mono bg-slate-100 hover:bg-slate-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-slate-700 dark:text-slate-300 rounded flex items-center gap-1 shrink-0 transition-colors"
+                        className="px-2 py-1 text-[10px] font-mono font-bold uppercase bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-black dark:text-white rounded-none flex items-center gap-1 shrink-0 transition-colors border border-neutral-200 dark:border-[#333]"
                       >
                         {copiedKeyId === lic.id ? (
-                          <Check className="w-3 h-3 text-emerald-500" />
+                          <Check className="w-3 h-3 text-[#7d9900] dark:text-[#d4ff00]" />
                         ) : (
-                          <Copy className="w-3 h-3 text-slate-400" />
+                          <Copy className="w-3 h-3 text-neutral-400" />
                         )}
-                        <span>{copiedKeyId === lic.id ? 'Copied' : 'Copy'}</span>
+                        <span>{copiedKeyId === lic.id ? 'COPIED' : 'COPY'}</span>
                       </button>
                     </div>
 
                     {/* Git Clone & GitHub Access */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs pt-1 border-t border-slate-100 dark:border-neutral-900">
-                      <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-[11px]">
-                        <Github className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                        <span>Repository Invite:</span>
-                        <span className="text-emerald-600 dark:text-emerald-400 font-medium">
-                          Active (Access Granted)
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs pt-1 border-t border-neutral-200 dark:border-[#1c1c1c]">
+                      <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 text-[11px]">
+                        <Github className="w-3.5 h-3.5 shrink-0" />
+                        <span className="uppercase">REPOSITORY INVITE:</span>
+                        <span className="text-[#7d9900] dark:text-[#d4ff00] font-bold uppercase">
+                          ACTIVE (GRANTED)
                         </span>
                       </div>
 
                       <button
                         onClick={() => handleCopyClone(lic.id, lic.productSlug)}
-                        className="text-left font-mono text-[11px] text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors"
+                        className="text-left font-mono text-[11px] text-neutral-500 hover:text-black dark:hover:text-[#d4ff00] flex items-center gap-1 transition-colors uppercase font-bold"
                       >
-                        <Terminal className="w-3 h-3 text-slate-400" />
-                        <span>{copiedCloneId === lic.id ? 'Copied clone URI!' : 'git clone URI'}</span>
+                        <Terminal className="w-3 h-3 text-neutral-400" />
+                        <span>{copiedCloneId === lic.id ? 'COPIED CLONE URI!' : 'GIT CLONE URI'}</span>
                       </button>
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 bg-slate-50 dark:bg-neutral-950 rounded-xl border border-dashed border-slate-200 dark:border-neutral-800 p-6">
-                <Key className="w-8 h-8 text-slate-400 mx-auto mb-2" />
-                <h4 className="text-xs font-semibold text-slate-900 dark:text-white">
-                  No active licenses in this session
+              <div className="text-center py-12 bg-neutral-50 dark:bg-[#0a0a0a] rounded-none border border-neutral-200 dark:border-[#222222] p-6 space-y-2">
+                <Key className="w-8 h-8 text-neutral-400 mx-auto mb-2" />
+                <h4 className="text-xs font-black uppercase text-black dark:text-white">
+                  NO ACTIVE LICENSES IN THIS SESSION
                 </h4>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 max-w-sm mx-auto">
+                <p className="text-[11px] text-neutral-600 dark:text-neutral-400 mt-1 max-w-sm mx-auto uppercase">
                   When you check out digital assets from the storefront, your Ed25519 cryptographic tokens and GitHub invites will appear here.
                 </p>
               </div>
@@ -196,32 +196,32 @@ export const CustomerAccountModal: React.FC<CustomerAccountModalProps> = ({ isOp
           ) : (
             /* Security Tab */
             <div className="space-y-4">
-              <div className="p-4 bg-slate-50 dark:bg-neutral-950 border border-slate-200 dark:border-neutral-800 rounded-lg space-y-2.5">
-                <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-                  Session Token Authentication
+              <div className="p-4 bg-neutral-50 dark:bg-[#0a0a0a] border border-neutral-200 dark:border-[#222222] rounded-none space-y-2.5">
+                <h4 className="text-xs font-black uppercase tracking-wider text-black dark:text-white">
+                  SESSION TOKEN AUTHENTICATION
                 </h4>
                 <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-                  <div className="p-2 bg-white dark:bg-black rounded border border-slate-200 dark:border-neutral-800">
-                    <span className="text-[10px] text-slate-400 block">Identity Provider:</span>
-                    <span className="font-semibold text-slate-800 dark:text-slate-200 uppercase">
+                  <div className="p-2 bg-white dark:bg-black rounded-none border border-neutral-300 dark:border-[#222222]">
+                    <span className="text-[10px] text-neutral-500 uppercase block">IDENTITY PROVIDER:</span>
+                    <span className="font-bold text-black dark:text-white uppercase">
                       {user.provider}
                     </span>
                   </div>
-                  <div className="p-2 bg-white dark:bg-black rounded border border-slate-200 dark:border-neutral-800">
-                    <span className="text-[10px] text-slate-400 block">JWT Signature:</span>
-                    <span className="font-semibold text-blue-600 dark:text-blue-400">Ed25519 RFC 8037</span>
+                  <div className="p-2 bg-white dark:bg-black rounded-none border border-neutral-300 dark:border-[#222222]">
+                    <span className="text-[10px] text-neutral-500 uppercase block">JWT SIGNATURE:</span>
+                    <span className="font-bold text-[#7d9900] dark:text-[#d4ff00] uppercase">ED25519 RFC 8037</span>
                   </div>
                 </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                <p className="text-[11px] text-neutral-600 dark:text-neutral-400 uppercase leading-relaxed">
                   Customer session is authenticated for asset access and GitHub invites. Tokens are validated against the distributed Redis blacklist cluster.
                 </p>
               </div>
 
-              <div className="p-4 bg-slate-50 dark:bg-neutral-950 border border-slate-200 dark:border-neutral-800 rounded-lg">
-                <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">
-                  Session Termination
+              <div className="p-4 bg-neutral-50 dark:bg-[#0a0a0a] border border-neutral-200 dark:border-[#222222] rounded-none">
+                <h4 className="text-xs font-black uppercase tracking-wider mb-2 text-black dark:text-white">
+                  SESSION TERMINATION
                 </h4>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-4 uppercase text-[11px]">
                   Logging out clears the active local JWT token and reverts your session to guest browsing.
                 </p>
                 <button
@@ -229,10 +229,10 @@ export const CustomerAccountModal: React.FC<CustomerAccountModalProps> = ({ isOp
                     logout();
                     onClose();
                   }}
-                  className="px-3.5 py-2 bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-900/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800 rounded-lg text-xs font-semibold flex items-center gap-2 transition-colors"
+                  className="px-4 py-2 bg-black hover:bg-neutral-800 text-white rounded-none text-xs font-black uppercase flex items-center gap-2 transition-colors border border-black"
                 >
                   <LogOut className="w-3.5 h-3.5" />
-                  <span>Sign Out of Account</span>
+                  <span>SIGN OUT OF ACCOUNT</span>
                 </button>
               </div>
             </div>
@@ -240,17 +240,17 @@ export const CustomerAccountModal: React.FC<CustomerAccountModalProps> = ({ isOp
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-slate-200 dark:border-neutral-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 bg-slate-50/50 dark:bg-black">
-          <span className="font-mono text-[11px]">OmniCart Customer Vault v1.0</span>
+        <div className="p-4 border-t border-neutral-200 dark:border-[#222222] flex items-center justify-between text-xs text-neutral-500 bg-neutral-50 dark:bg-black">
+          <span className="font-mono text-[11px] uppercase">OMNICART CUSTOMER VAULT v1.0</span>
           <button
             onClick={() => {
               logout();
               onClose();
             }}
-            className="hover:text-rose-600 dark:hover:text-rose-400 transition-colors flex items-center gap-1"
+            className="hover:text-black dark:hover:text-[#d4ff00] transition-colors flex items-center gap-1 uppercase font-bold text-[11px]"
           >
             <LogOut className="w-3.5 h-3.5" />
-            <span>Sign Out</span>
+            <span>SIGN OUT</span>
           </button>
         </div>
       </div>
