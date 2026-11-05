@@ -204,11 +204,6 @@ export const AppContent: React.FC = () => {
           onScrollToCatalog={handleScrollToCatalog}
           onScrollToDrops={handleScrollToDrops}
           onScrollToEarlyAccess={handleScrollToEarlyAccess}
-          onNavigateAdmin={() => {
-            window.location.hash = 'admin';
-            setCurrentView('admin');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
         />
       </div>
 

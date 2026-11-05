@@ -61,3 +61,4 @@ public class ProductDTO {
     private Instant createdAt;
     private Instant updatedAt;
 }
+

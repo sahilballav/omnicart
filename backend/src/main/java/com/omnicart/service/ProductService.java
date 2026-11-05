@@ -25,3 +25,4 @@ public interface ProductService {
 
     List<ProductDTO> searchByJsonbAttribute(String key, String value);
 }
+

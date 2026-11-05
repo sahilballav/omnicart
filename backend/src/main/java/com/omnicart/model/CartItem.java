@@ -28,3 +28,4 @@ public class CartItem implements Serializable {
         return price.multiply(BigDecimal.valueOf(quantity));
     }
 }
+

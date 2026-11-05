@@ -50,3 +50,4 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error("An internal error occurred: " + ex.getMessage()));
     }
 }
+

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, ArrowUpRight, Zap, Key, User, Store, ShieldAlert } from 'lucide-react';
+import { ShoppingBag, ArrowUpRight, Zap, Key, User, Store } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { ThemeToggle } from './ThemeToggle';
@@ -149,8 +149,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Action Tools */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Operator Admin Console Button - Direct 1-Click Access & Hotkey Status */}
-            {currentView === 'admin' ? (
+            {/* Operator Admin Console Exit Button (Visible ONLY when currently inside Admin mode) */}
+            {currentView === 'admin' && (
               <button
                 onClick={() => {
                   window.location.hash = '';
@@ -161,18 +161,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 <Store className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>EXIT ADMIN</span>
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  window.location.hash = 'admin';
-                  onNavigate('admin');
-                }}
-                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 bg-neutral-100 hover:bg-[#d4ff00] hover:text-black dark:bg-[#141414] dark:hover:bg-[#d4ff00] dark:hover:text-black border border-neutral-300 dark:border-[#2f2f2f] hover:border-black dark:hover:border-[#d4ff00] text-neutral-800 dark:text-neutral-200 rounded-none text-xs font-mono font-black uppercase transition-all shadow-xs group"
-                title="Open Admin Console (Click or press Shift+Ctrl+A)"
-              >
-                <ShieldAlert className="w-3.5 h-3.5 text-[#556900] dark:text-[#d4ff00] group-hover:text-black stroke-[2.5]" />
-                <span className="hidden sm:inline">ADMIN</span>
               </button>
             )}
 

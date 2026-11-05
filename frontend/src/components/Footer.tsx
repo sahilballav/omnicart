@@ -7,7 +7,6 @@ interface FooterProps {
   onScrollToCatalog: () => void;
   onScrollToDrops: () => void;
   onScrollToEarlyAccess: () => void;
-  onNavigateAdmin?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -15,8 +14,7 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateTerms,
   onScrollToCatalog,
   onScrollToDrops,
-  onScrollToEarlyAccess,
-  onNavigateAdmin
+  onScrollToEarlyAccess
 }) => {
   return (
     <footer className="w-full bg-neutral-100/75 dark:bg-black/75 backdrop-blur-md text-black dark:text-white border-t border-neutral-200 dark:border-[#222222] pt-16 sm:pt-20 pb-12 font-mono transition-colors">
@@ -93,17 +91,6 @@ export const Footer: React.FC<FooterProps> = ({
                   Terms of service
                 </button>
               </li>
-              {onNavigateAdmin && (
-                <li>
-                  <button
-                    onClick={onNavigateAdmin}
-                    className="hover:text-black dark:hover:text-[#d4ff00] text-[#556900] dark:text-[#d4ff00] font-bold transition-colors uppercase flex items-center gap-1"
-                  >
-                    <span>Admin console</span>
-                    <ArrowUpRight className="w-3 h-3" />
-                  </button>
-                </li>
-              )}
               <li className="text-neutral-500 uppercase text-[11px]">
                 Ed25519 PKI Sealed
               </li>

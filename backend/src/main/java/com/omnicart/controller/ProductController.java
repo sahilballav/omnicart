@@ -95,3 +95,4 @@ public class ProductController {
         return ResponseEntity.ok(ApiResponse.of("JSONB attribute search completed", results));
     }
 }
+
