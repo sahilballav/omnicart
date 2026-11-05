@@ -6,12 +6,51 @@ export const BackgroundMotionVideo: React.FC = () => {
   const darkVideoRef = useRef<HTMLVideoElement>(null);
   const lightVideoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [scrollProgress, setScrollProgress] = useState(0);
   const [scrollY, setScrollY] = useState(0);
 
-  // Dynamic scroll listener with animation frame throttling
+  // Guarantee video playback and bypass browser autoplay restrictions
+  useEffect(() => {
+    const playVideo = (video: HTMLVideoElement | null) => {
+      if (!video) return;
+      video.muted = true;
+      video.playsInline = true;
+      video.playbackRate = 0.95;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn('Background video autoplay initial block, retrying on first interaction:', err);
+        });
+      }
+    };
+
+    if (isDark) {
+      playVideo(darkVideoRef.current);
+    } else {
+      playVideo(lightVideoRef.current);
+    }
+
+    // Fallback: unlock playback on first user scroll or click
+    const handleFirstInteraction = () => {
+      playVideo(isDark ? darkVideoRef.current : lightVideoRef.current);
+      window.removeEventListener('scroll', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
+
+    window.addEventListener('scroll', handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener('click', handleFirstInteraction, { once: true });
+    window.addEventListener('touchstart', handleFirstInteraction, { passive: true, once: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
+  }, [isDark]);
+
+  // Dynamic scroll-scrub listener: scrubs and accelerates motion as user scrolls down
   useEffect(() => {
     let ticking = false;
 
@@ -28,11 +67,11 @@ export const BackgroundMotionVideo: React.FC = () => {
           setScrollY(y);
           setScrollProgress(progress);
 
-          // Video scroll scrub sync
+          // Dynamic video scrubbing tied to scroll position
           const activeVideo = isDark ? darkVideoRef.current : lightVideoRef.current;
           if (activeVideo && activeVideo.duration) {
             const targetTime = (progress * (activeVideo.duration * 1.5)) % activeVideo.duration;
-            if (Math.abs(activeVideo.currentTime - targetTime) > 2) {
+            if (Math.abs(activeVideo.currentTime - targetTime) > 1.2) {
               activeVideo.currentTime = targetTime;
             }
           }
@@ -47,169 +86,74 @@ export const BackgroundMotionVideo: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isDark]);
 
-  // Generative Cybernetic Particle Grid on Canvas
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', handleResize);
-
-    // Particle nodes for ambient tech constellation
-    const count = 35;
-    const particles = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      size: Math.random() * 2 + 1,
-      baseAlpha: Math.random() * 0.4 + 0.2
-    }));
-
-    let step = 0;
-
-    const render = () => {
-      step += 0.008;
-      ctx.clearRect(0, 0, width, height);
-
-      const color = isDark ? '212, 255, 0' : '85, 105, 0'; // Volt yellow in RGB
-
-      // Draw faint parallax grid lines
-      ctx.lineWidth = 0.5;
-      const gridOffset = (scrollY * 0.1) % 40;
-      ctx.strokeStyle = isDark
-        ? 'rgba(255, 255, 255, 0.02)'
-        : 'rgba(0, 0, 0, 0.025)';
-
-      ctx.beginPath();
-      for (let x = 0; x < width; x += 60) {
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-      }
-      for (let y = gridOffset; y < height; y += 40) {
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-      }
-      ctx.stroke();
-
-      // Render ambient nodes & micro-vectors
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy - scrollProgress * 0.2; // subtle scroll drift
-
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        // Draw particle dot
-        ctx.fillStyle = `rgba(${color}, ${p.baseAlpha * (isDark ? 0.35 : 0.25)})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Connect nearby nodes
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 120) {
-            const alpha = (1 - dist / 120) * (isDark ? 0.08 : 0.05);
-            ctx.strokeStyle = `rgba(${color}, ${alpha})`;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
-      });
-
-      animationFrameId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [isDark, scrollY, scrollProgress]);
-
-  // Subtle Parallax translation + scale zoom strictly in background
-  const translateY = -(scrollY * 0.12);
-  const scale = 1 + scrollProgress * 0.08;
+  // Parallax translation: subtle vertical shift + scale zoom on scroll
+  const translateY = -(scrollY * 0.15);
+  const scale = 1 + scrollProgress * 0.1;
 
   return (
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="fixed inset-0 w-full h-full pointer-events-none select-none overflow-hidden -z-10 bg-white dark:bg-black transition-colors duration-500"
+      className="fixed inset-0 w-full h-full pointer-events-none select-none overflow-hidden z-0 bg-neutral-100 dark:bg-black transition-colors duration-500"
     >
-      {/* Motion Video Parallax Layer */}
+      {/* Motion Video Parallax Viewport */}
       <div
-        className="absolute -top-[5%] -left-[5%] w-[110%] h-[115%] transition-transform duration-100 ease-out will-change-transform"
+        className="absolute -top-[8%] -left-[5%] w-[110%] h-[120%] transition-transform duration-100 ease-out will-change-transform"
         style={{
           transform: `translate3d(0, ${translateY}px, 0) scale(${scale})`
         }}
       >
-        {/* Dark Mode Video Asset */}
+        {/* Dark Mode Video Asset: Nocturnal Cybernetic Tech Flow */}
         <video
           ref={darkVideoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-            isDark ? 'opacity-20' : 'opacity-0'
+            isDark ? 'opacity-70' : 'opacity-0 pointer-events-none'
           }`}
         >
           <source src="/assets/videos/tech-flow.mp4" type="video/mp4" />
           <source src="/assets/videos/dark-motion.mp4" type="video/mp4" />
         </video>
 
-        {/* Light Mode Video Asset */}
+        {/* Light Mode Video Asset: Clean Architectural Geometric Daylight Motion */}
         <video
           ref={lightVideoRef}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-            !isDark ? 'opacity-15' : 'opacity-0'
+            !isDark ? 'opacity-65' : 'opacity-0 pointer-events-none'
           }`}
         >
           <source src="/assets/videos/light-motion.mp4" type="video/mp4" />
         </video>
       </div>
 
-      {/* Atmospheric Contrast Tint Mask to Guarantee 100% Text Legibility */}
+      {/* Atmospheric Contrast Tint: Balances Video Vibrancy with Foreground Contrast */}
       <div
         className={`absolute inset-0 transition-colors duration-500 ${
           isDark
-            ? 'bg-black/85'
-            : 'bg-white/88'
+            ? 'bg-black/45 backdrop-contrast-110'
+            : 'bg-white/45 backdrop-contrast-105'
         }`}
       />
 
-      {/* Real-time Generative Tech Constellation Canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none"
+      {/* Ambient Radial Vignette */}
+      <div
+        className={`absolute inset-0 pointer-events-none ${
+          isDark
+            ? 'bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.65)_100%)]'
+            : 'bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(255,255,255,0.6)_100%)]'
+        }`}
       />
 
-      {/* CRT Scanline Structure */}
+      {/* Subtle Scanline Texture for Authentic Street/Tech Engineering Character */}
       <div
         className={`absolute inset-0 pointer-events-none opacity-20 ${
           isDark

@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({
   onScrollToEarlyAccess
 }) => {
   return (
-    <footer className="w-full bg-neutral-100 dark:bg-black text-black dark:text-white border-t border-neutral-200 dark:border-[#222222] pt-16 sm:pt-20 pb-12 font-mono transition-colors">
+    <footer className="w-full bg-neutral-100/75 dark:bg-black/75 backdrop-blur-md text-black dark:text-white border-t border-neutral-200 dark:border-[#222222] pt-16 sm:pt-20 pb-12 font-mono transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">

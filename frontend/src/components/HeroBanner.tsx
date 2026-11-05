@@ -17,7 +17,7 @@ export const HeroBanner: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full bg-white text-black dark:bg-black dark:text-white overflow-hidden border-b border-neutral-200 dark:border-[#222222] transition-colors">
+    <section className="relative w-full bg-white/40 text-black dark:bg-black/40 dark:text-white overflow-hidden border-b border-neutral-200/80 dark:border-[#222222] transition-colors backdrop-blur-xs">
       {/* Editorial Vertical Side Labels (SNKS Style) */}
       <div className="hidden xl:block absolute left-4 bottom-24 -rotate-90 origin-bottom-left text-[9px] font-mono tracking-[0.25em] text-neutral-400 dark:text-neutral-600 uppercase select-none pointer-events-none z-10">
         OMNICART CAMPAIGN / 001

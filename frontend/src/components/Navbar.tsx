@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const { user } = useAuth();
 
   return (
-    <header className="sticky top-0 z-40 bg-white dark:bg-black text-black dark:text-white border-b border-neutral-200 dark:border-[#222222] transition-colors">
+    <header className="sticky top-0 z-40 bg-white/90 dark:bg-black/90 text-black dark:text-white backdrop-blur-md border-b border-neutral-200 dark:border-[#222222] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
           {/* Logo & Brand */}

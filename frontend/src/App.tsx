@@ -95,8 +95,8 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white flex flex-col justify-between selection:bg-[#d4ff00] selection:text-black transition-colors duration-200 relative">
-      {/* Dynamic Scroll-Driven Video & Motion Background (Strictly Behind Content at -z-10) */}
+    <div className="min-h-screen text-black dark:text-white flex flex-col justify-between selection:bg-[#d4ff00] selection:text-black transition-colors duration-200 relative bg-transparent">
+      {/* Dynamic Scroll-Driven Video & Motion Background (Dedicated Dark & Light Assets) */}
       <BackgroundMotionVideo />
 
       {/* System Boot Loading Screen */}

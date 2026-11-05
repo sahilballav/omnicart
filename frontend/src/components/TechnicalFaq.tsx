@@ -37,7 +37,7 @@ export const TechnicalFaq: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-white dark:bg-black text-black dark:text-white py-16 sm:py-24 border-b border-neutral-200 dark:border-[#222222] transition-colors">
+    <section className="w-full bg-white/65 dark:bg-black/65 backdrop-blur-md text-black dark:text-white py-16 sm:py-24 border-b border-neutral-200 dark:border-[#222222] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column: SNKS Editorial Section Header */}
