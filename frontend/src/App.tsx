@@ -19,6 +19,7 @@ import { AiShoppingAssistant } from './components/ai/AiShoppingAssistant';
 import { CustomerAuthModal } from './components/auth/CustomerAuthModal';
 import { CustomerAccountModal } from './components/auth/CustomerAccountModal';
 import { LoadingScreen } from './components/LoadingScreen';
+import { BackgroundMotionVideo } from './components/BackgroundMotionVideo';
 import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
 import { TermsConditions } from './components/legal/TermsConditions';
 import { MOCK_PRODUCTS } from './data/mockProducts';
@@ -94,7 +95,10 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white flex flex-col justify-between selection:bg-[#d4ff00] selection:text-black transition-colors duration-200">
+    <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white flex flex-col justify-between selection:bg-[#d4ff00] selection:text-black transition-colors duration-200 relative">
+      {/* Dynamic Scroll-Driven Video Background (Dark & Light Mode) */}
+      <BackgroundMotionVideo />
+
       {/* System Boot Loading Screen */}
       {isBootLoading && <LoadingScreen onComplete={() => setIsBootLoading(false)} />}
 
