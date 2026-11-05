@@ -45,11 +45,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
   const renderAttributeValue = (val: unknown): React.ReactNode => {
     if (Array.isArray(val)) {
       return (
-        <div className="flex flex-wrap gap-1 mt-1">
+        <div className="flex flex-wrap gap-1 mt-1 justify-end">
           {val.map((item, idx) => (
             <span
               key={idx}
-              className="inline-block text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700"
+              className="inline-block text-[10px] font-mono bg-[#141414] text-neutral-300 px-1.5 py-0.5 rounded-none border border-[#2b2b2b]"
             >
               {String(item)}
             </span>
@@ -60,17 +60,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
     if (typeof val === 'boolean') {
       return (
         <span
-          className={`inline-flex items-center text-xs px-2 py-0.5 rounded font-medium ${
+          className={`inline-flex items-center text-[10px] font-mono px-2 py-0.5 rounded-none font-bold uppercase ${
             val
-              ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300'
-              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+              ? 'bg-[#d4ff00]/20 text-[#d4ff00] border border-[#d4ff00]/40'
+              : 'bg-[#181818] text-neutral-500 border border-[#262626]'
           }`}
         >
-          {val ? 'Supported' : 'Not supported'}
+          {val ? 'YES' : 'NO'}
         </span>
       );
     }
-    return <span className="text-slate-800 dark:text-slate-200 font-mono text-xs">{String(val)}</span>;
+    return <span className="text-neutral-200 font-mono text-xs">{String(val)}</span>;
   };
 
   return (
@@ -80,14 +80,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
       aria-labelledby="modal-title"
       className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6"
     >
-      <div className="relative bg-white dark:bg-black rounded-xl max-w-3xl w-full shadow-2xl border border-slate-200 dark:border-neutral-800 overflow-hidden max-h-[90vh] flex flex-col">
+      <div className="relative bg-black text-white rounded-none max-w-3xl w-full shadow-2xl border border-[#262626] overflow-hidden max-h-[90vh] flex flex-col">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-neutral-900 text-slate-500 dark:text-slate-400 flex items-center justify-center transition-colors"
+          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-none hover:bg-[#1a1a1a] text-neutral-400 hover:text-white flex items-center justify-center transition-colors border border-[#333]"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         {/* Modal Scrollable Body */}
@@ -95,7 +95,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Left Column: Image preview */}
             <div>
-              <div className="aspect-[16/10] rounded-lg overflow-hidden bg-slate-100 dark:bg-black border border-slate-200 dark:border-neutral-800 mb-3">
+              <div className="aspect-[16/10] rounded-none overflow-hidden bg-[#0d0d0d] border border-[#262626] mb-3">
                 <img
                   src={product.images[selectedImageIndex] || product.images[0]}
                   alt={product.name}
@@ -110,10 +110,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                     <button
                       key={idx}
                       onClick={() => setSelectedImageIndex(idx)}
-                      className={`w-14 h-10 rounded overflow-hidden border transition-all ${
+                      className={`w-14 h-10 rounded-none overflow-hidden border transition-all ${
                         selectedImageIndex === idx
-                          ? 'border-blue-600 ring-1 ring-blue-600'
-                          : 'border-slate-200 dark:border-neutral-800 opacity-70 hover:opacity-100'
+                          ? 'border-[#d4ff00] ring-1 ring-[#d4ff00]'
+                          : 'border-[#262626] opacity-60 hover:opacity-100'
                       }`}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
@@ -126,47 +126,47 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
             {/* Right Column: Information & Specs */}
             <div className="flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2 mb-1.5 text-xs">
-                  <span className="font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-[11px]">
+                <div className="flex items-center gap-2 mb-1.5 text-xs font-mono">
+                  <span className="font-bold text-[#d4ff00] uppercase tracking-wider text-[11px]">
                     {product.brand}
                   </span>
-                  <span className="text-slate-300 dark:text-slate-700">/</span>
-                  <span className="text-slate-500 dark:text-slate-400">{product.category}</span>
+                  <span className="text-neutral-600">/</span>
+                  <span className="text-neutral-400 uppercase text-[11px]">{product.category}</span>
                 </div>
 
-                <h2 id="modal-title" className="text-xl font-bold text-slate-900 dark:text-white leading-snug mb-2">
+                <h2 id="modal-title" className="text-xl font-black uppercase text-white leading-snug mb-2 tracking-tight">
                   {product.name}
                 </h2>
 
-                <div className="flex items-center gap-2 mb-4 text-xs font-mono text-slate-600 dark:text-slate-400">
-                  <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded text-slate-700 dark:text-slate-300">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                    <span>Verified Architecture</span>
+                <div className="flex items-center gap-2 mb-4 text-xs font-mono text-neutral-400">
+                  <span className="flex items-center gap-1 bg-[#111111] border border-[#262626] px-2 py-0.5 rounded-none text-neutral-200">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#d4ff00]" />
+                    <span>VERIFIED ARCHITECTURE</span>
                   </span>
-                  <span className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded">
+                  <span className="bg-[#111111] border border-[#262626] px-2 py-0.5 rounded-none text-[#d4ff00]">
                     {String(product.attributes.version || 'v1.0.0')}
                   </span>
                 </div>
 
                 <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-2xl font-bold text-slate-900 dark:text-white">
+                  <span className="text-2xl font-black text-white">
                     ${product.price.toFixed(2)}
                   </span>
                   {product.compareAtPrice && (
-                    <span className="text-xs text-slate-400 line-through">
+                    <span className="text-xs text-neutral-500 line-through">
                       ${product.compareAtPrice.toFixed(2)}
                     </span>
                   )}
                 </div>
 
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+                <p className="text-xs text-neutral-300 leading-relaxed mb-5 font-sans">
                   {product.description}
                 </p>
 
                 {/* PostgreSQL JSONB Attribute Inspector */}
-                <div className="mb-6 bg-slate-50 dark:bg-slate-800/60 rounded-lg border border-slate-200 dark:border-slate-800 p-3.5">
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-2.5">
-                    <Database className="w-3.5 h-3.5 text-slate-600 dark:text-slate-400" />
+                <div className="mb-6 bg-[#0a0a0a] rounded-none border border-[#222222] p-3.5">
+                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-neutral-200 uppercase tracking-wider mb-2.5">
+                    <Database className="w-3.5 h-3.5 text-[#d4ff00]" />
                     <span>Technical Specifications (JSONB)</span>
                   </div>
 
@@ -174,12 +174,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                     {Object.entries(product.attributes).map(([key, val]) => (
                       <div
                         key={key}
-                        className="bg-white dark:bg-slate-900 p-2 rounded border border-slate-200/80 dark:border-slate-800 flex items-start justify-between gap-2"
+                        className="bg-black p-2 rounded-none border border-[#1f1f1f] flex items-start justify-between gap-2"
                       >
-                        <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 shrink-0">
+                        <span className="text-[11px] font-mono text-neutral-400 shrink-0 uppercase">
                           {formatKey(key)}:
                         </span>
-                        <div className="text-right">{renderAttributeValue(val)}</div>
+                        <div className="text-right text-neutral-200 text-xs font-mono">{renderAttributeValue(val)}</div>
                       </div>
                     ))}
                   </div>
@@ -187,34 +187,34 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               </div>
 
               {/* Purchase Actions */}
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+              <div className="pt-4 border-t border-[#222222]">
                 <div className="flex items-center justify-between gap-4 mb-3">
-                  <div className="text-xs text-slate-600 dark:text-slate-400">
-                    <span>License Seats: </span>
+                  <div className="text-xs font-mono text-neutral-400">
+                    <span>LICENSE SEATS: </span>
                     {existingQtyInCart > 0 && (
-                      <span className="text-slate-500">({existingQtyInCart} in cart)</span>
+                      <span className="text-[#d4ff00]">({existingQtyInCart} IN BAG)</span>
                     )}
                   </div>
 
                   {/* Quantity Modifier */}
-                  <div className="flex items-center border border-slate-200 dark:border-slate-700 rounded bg-slate-50 dark:bg-slate-800">
+                  <div className="flex items-center border border-[#333] rounded-none bg-black">
                     <button
                       onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                       disabled={quantity <= 1}
-                      className="px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-l transition-colors"
+                      className="px-2.5 py-1 hover:bg-[#1a1a1a] transition-colors"
                       aria-label="Decrease quantity"
                     >
-                      <Minus className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300" />
+                      <Minus className="w-3.5 h-3.5 text-neutral-300" />
                     </button>
-                    <span className="w-8 text-center font-mono text-xs text-slate-800 dark:text-slate-200">
+                    <span className="w-8 text-center font-mono text-xs text-white font-bold">
                       {quantity}
                     </span>
                     <button
                       onClick={() => setQuantity((q) => q + 1)}
-                      className="px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-r transition-colors"
+                      className="px-2.5 py-1 hover:bg-[#1a1a1a] transition-colors"
                       aria-label="Increase quantity"
                     >
-                      <Plus className="w-3.5 h-3.5 text-slate-600 dark:text-slate-300" />
+                      <Plus className="w-3.5 h-3.5 text-neutral-300" />
                     </button>
                   </div>
                 </div>

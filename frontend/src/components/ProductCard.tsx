@@ -11,6 +11,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }) => {
   const { addToCart, items } = useCart();
   const [copiedClone, setCopiedClone] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const cartItem = items.find((i) => i.product.id === product.id);
   const cartQty = cartItem ? cartItem.quantity : 0;
@@ -30,12 +31,25 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
     <div className="bg-black text-white rounded-none border border-[#222222] hover:border-[#444444] transition-colors flex flex-col justify-between overflow-hidden group">
       {/* Top Visual Image Container */}
       <div className="relative aspect-[16/10] overflow-hidden bg-[#0d0d0d] border-b border-[#1c1c1c]">
-        <img
-          src={product.images[0]}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          loading="lazy"
-        />
+        {!imageError && product.images && product.images.length > 0 ? (
+          <img
+            src={product.images[0]}
+            alt={product.name}
+            onError={() => setImageError(true)}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center p-4 bg-[#0a0a0a] text-neutral-500 font-mono text-center">
+            <div className="w-8 h-8 mb-2 border border-[#333] flex items-center justify-center text-[#d4ff00]">
+              <Terminal className="w-4 h-4" />
+            </div>
+            <div className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider">
+              {product.brand} // {String(product.attributes.version || 'v1.0')}
+            </div>
+            <div className="text-[9px] text-neutral-600 mt-1 uppercase">SCHEMATIC VERIFIED</div>
+          </div>
+        )}
 
         {/* High-Voltage Badges (SNKS style) */}
         <div className="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 z-10">

@@ -18,6 +18,20 @@ export const HeroBanner: React.FC = () => {
 
   return (
     <section className="relative w-full bg-black text-white overflow-hidden border-b border-[#222222]">
+      {/* Editorial Vertical Side Labels (SNKS Style) */}
+      <div className="hidden xl:block absolute left-4 bottom-24 -rotate-90 origin-bottom-left text-[9px] font-mono tracking-[0.25em] text-neutral-600 uppercase select-none pointer-events-none">
+        OMNICART CAMPAIGN / 001
+      </div>
+      <div className="hidden xl:block absolute right-4 top-24 rotate-90 origin-top-right text-[9px] font-mono tracking-[0.25em] text-neutral-600 uppercase select-none pointer-events-none">
+        27 NOV - 04 DEC 2026
+      </div>
+
+      {/* Bottom Ticker Indicator */}
+      <div className="absolute bottom-3 right-6 hidden md:flex items-center gap-2 text-[10px] font-mono tracking-widest text-neutral-500 uppercase select-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#d4ff00] animate-ping" />
+        <span>THE CLOCK IS TICKING</span>
+      </div>
+
       {/* Background Watermark Headline */}
       <div className="absolute -top-12 left-0 right-0 select-none pointer-events-none opacity-5 font-black text-[120px] sm:text-[220px] lg:text-[280px] leading-none tracking-tighter uppercase whitespace-nowrap text-white">
         OMNICART
@@ -34,16 +48,19 @@ export const HeroBanner: React.FC = () => {
                 <span>THE BIGGEST ARCHITECTURE SALE OF THE YEAR</span>
               </div>
               <p className="font-mono text-xs text-neutral-400 tracking-wider uppercase">
-                PRODUCTION CODE. ZERO COMPROMISES.
+                GOOD ARCHITECTURE. BAD CONSTRAINTS.
               </p>
             </div>
 
-            {/* Massive Display Title */}
-            <div className="space-y-0">
-              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9]">
+            {/* Massive Display Title with Ghost Backdrop */}
+            <div className="relative space-y-0">
+              <div className="absolute -top-6 -left-2 text-6xl sm:text-8xl lg:text-9xl font-black uppercase text-neutral-900/60 select-none pointer-events-none tracking-tighter">
+                SALE
+              </div>
+              <h1 className="relative text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-white">
                 BLACK
               </h1>
-              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-[#d4ff00]">
+              <h1 className="relative text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-[#d4ff00]">
                 FRIDAY.
               </h1>
             </div>
@@ -99,14 +116,30 @@ export const HeroBanner: React.FC = () => {
 
           {/* Right Column: Starburst Discount Badge & Blueprint Visual */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
-            {/* Starburst Discount Badge (SNKS Style) */}
-            <div className="absolute -top-6 right-2 sm:right-6 z-20">
-              <div className="relative bg-[#d4ff00] text-black font-black uppercase text-center p-4 sm:p-5 shadow-2xl rotate-6 hover:rotate-0 transition-transform">
-                <span className="block text-[10px] font-mono tracking-widest font-bold">UP TO</span>
-                <span className="block text-3xl sm:text-4xl font-black leading-none">60%</span>
-                <span className="block text-[10px] font-mono tracking-widest font-bold mt-1">
-                  OFF. NO HOLDING BACK.
-                </span>
+            {/* Starburst Discount Badge (SNKS Style Spiky Sticker) */}
+            <div className="absolute -top-8 -right-2 sm:-right-4 z-20 select-none">
+              <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center rotate-6 hover:rotate-0 transition-transform duration-300 drop-shadow-[0_10px_20px_rgba(212,255,0,0.35)]">
+                {/* 12-Spike Brutalist Starburst Shape */}
+                <svg
+                  className="absolute inset-0 w-full h-full text-[#d4ff00]"
+                  viewBox="0 0 200 200"
+                  fill="currentColor"
+                >
+                  <polygon points="100,6 118,29 146,21 156,48 185,53 182,82 198,100 182,118 185,147 156,152 146,179 118,171 100,194 82,171 54,179 44,152 15,147 18,118 2,100 18,82 15,53 44,48 54,21 82,29" />
+                </svg>
+
+                {/* Starburst Center Copy */}
+                <div className="relative z-10 text-black text-center px-4 font-black uppercase pointer-events-none">
+                  <span className="block text-[9px] sm:text-[10px] font-mono tracking-widest leading-tight">
+                    UP TO
+                  </span>
+                  <span className="block text-3xl sm:text-4xl font-black leading-none tracking-tighter my-0.5">
+                    60%
+                  </span>
+                  <span className="block text-[8px] sm:text-[9px] font-mono tracking-wider font-bold leading-tight">
+                    OFF. NO HOLDING BACK.
+                  </span>
+                </div>
               </div>
             </div>
 
