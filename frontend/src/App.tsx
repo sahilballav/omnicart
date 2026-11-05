@@ -96,79 +96,97 @@ export const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white flex flex-col justify-between selection:bg-[#d4ff00] selection:text-black transition-colors duration-200 relative">
-      {/* Dynamic Scroll-Driven Video Background (Dark & Light Mode) */}
+      {/* Dynamic Scroll-Driven Video & Motion Background (Strictly Behind Content at -z-10) */}
       <BackgroundMotionVideo />
 
       {/* System Boot Loading Screen */}
       {isBootLoading && <LoadingScreen onComplete={() => setIsBootLoading(false)} />}
 
-      <div>
-        {/* Top High-Voltage Announcement Ticker */}
-        <TopAnnouncementBar onEarlyAccessClick={handleScrollToEarlyAccess} />
+      {/* Foreground Content Shell - Strictly Stacked Above Ambient Background */}
+      <div className="relative z-10 flex flex-col min-h-screen justify-between">
+        <div>
+          {/* Top High-Voltage Announcement Ticker */}
+          <TopAnnouncementBar onEarlyAccessClick={handleScrollToEarlyAccess} />
 
-        {/* Brutalist Navigation Bar */}
-        <Navbar
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
-          categories={CATEGORIES}
-          currentView={currentView}
-          onNavigate={(view) => {
-            setCurrentView(view);
+          {/* Brutalist Navigation Bar */}
+          <Navbar
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+            categories={CATEGORIES}
+            currentView={currentView}
+            onNavigate={(view) => {
+              setCurrentView(view);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenAiAssistant={() => setIsAiAssistantOpen(true)}
+            onOpenAuthModal={() => setIsAuthModalOpen(true)}
+            onOpenAccountModal={() => setIsAccountModalOpen(true)}
+            onScrollToDrops={handleScrollToDrops}
+            onScrollToEarlyAccess={handleScrollToEarlyAccess}
+          />
+
+          {/* View Routing */}
+          {currentView === 'storefront' ? (
+            <main>
+              {/* SNKS-Style High-Impact Hero Banner */}
+              <HeroBanner />
+
+              {/* Tech Stack / Partner Strip */}
+              <BrandMarquee />
+
+              {/* Catalog Grid with Horizontal Brutalist Filters (Section 001) */}
+              <ProductGrid
+                products={products}
+                selectedCategory={selectedCategory}
+                searchQuery={searchQuery}
+                onQuickView={(prod) => setActiveModalProduct(prod)}
+                onSelectCategory={setSelectedCategory}
+              />
+
+              {/* Editorial Feature: Limited Drops / 002 */}
+              <EditorialFeature onExploreClick={handleScrollToCatalog} />
+
+              {/* High-Voltage Volt Drop Access / 003 */}
+              <InsideTrackBanner />
+
+              {/* Technical FAQ Accordion: Good To Know / 004 */}
+              <TechnicalFaq />
+            </main>
+          ) : currentView === 'admin' ? (
+            <main>
+              <AdminDashboard
+                products={products}
+                onUpdateInventory={handleUpdateInventory}
+                onNavigateStorefront={() => setCurrentView('storefront')}
+              />
+            </main>
+          ) : currentView === 'privacy' ? (
+            <main>
+              <PrivacyPolicy onBack={() => setCurrentView('storefront')} />
+            </main>
+          ) : (
+            <main>
+              <TermsConditions onBack={() => setCurrentView('storefront')} />
+            </main>
+          )}
+        </div>
+
+        {/* SNKS Brutalist Footer */}
+        <Footer
+          onNavigatePrivacy={() => {
+            setCurrentView('privacy');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          onOpenAiAssistant={() => setIsAiAssistantOpen(true)}
-          onOpenAuthModal={() => setIsAuthModalOpen(true)}
-          onOpenAccountModal={() => setIsAccountModalOpen(true)}
+          onNavigateTerms={() => {
+            setCurrentView('terms');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onScrollToCatalog={handleScrollToCatalog}
           onScrollToDrops={handleScrollToDrops}
           onScrollToEarlyAccess={handleScrollToEarlyAccess}
         />
-
-        {/* View Routing */}
-        {currentView === 'storefront' ? (
-          <main>
-            {/* SNKS-Style High-Impact Hero Banner */}
-            <HeroBanner />
-
-            {/* Tech Stack / Partner Strip */}
-            <BrandMarquee />
-
-            {/* Catalog Grid with Horizontal Brutalist Filters (Section 001) */}
-            <ProductGrid
-              products={products}
-              selectedCategory={selectedCategory}
-              searchQuery={searchQuery}
-              onQuickView={(prod) => setActiveModalProduct(prod)}
-              onSelectCategory={setSelectedCategory}
-            />
-
-            {/* Editorial Feature: Limited Drops / 002 */}
-            <EditorialFeature onExploreClick={handleScrollToCatalog} />
-
-            {/* High-Voltage Volt Drop Access / 003 */}
-            <InsideTrackBanner />
-
-            {/* Technical FAQ Accordion: Good To Know / 004 */}
-            <TechnicalFaq />
-          </main>
-        ) : currentView === 'admin' ? (
-          <main>
-            <AdminDashboard
-              products={products}
-              onUpdateInventory={handleUpdateInventory}
-              onNavigateStorefront={() => setCurrentView('storefront')}
-            />
-          </main>
-        ) : currentView === 'privacy' ? (
-          <main>
-            <PrivacyPolicy onBack={() => setCurrentView('storefront')} />
-          </main>
-        ) : (
-          <main>
-            <TermsConditions onBack={() => setCurrentView('storefront')} />
-          </main>
-        )}
       </div>
 
       {/* Floating Action Button for AI Shopping Assistant on Storefront */}
@@ -214,21 +232,6 @@ export const AppContent: React.FC = () => {
 
       {/* Toast Notification */}
       <Toast />
-
-      {/* SNKS Brutalist Footer */}
-      <Footer
-        onNavigatePrivacy={() => {
-          setCurrentView('privacy');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onNavigateTerms={() => {
-          setCurrentView('terms');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        onScrollToCatalog={handleScrollToCatalog}
-        onScrollToDrops={handleScrollToDrops}
-        onScrollToEarlyAccess={handleScrollToEarlyAccess}
-      />
     </div>
   );
 };

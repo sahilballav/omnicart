@@ -28,7 +28,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
     : 0;
 
   return (
-    <div className="bg-white dark:bg-black text-black dark:text-white rounded-none border border-neutral-200 dark:border-[#222222] hover:border-black dark:hover:border-[#444444] transition-colors flex flex-col justify-between overflow-hidden group">
+    <div className="bg-white dark:bg-black text-black dark:text-white rounded-none border border-neutral-300 dark:border-[#222222] hover:border-black dark:hover:border-[#444444] transition-all duration-200 flex flex-col justify-between overflow-hidden group shadow-xs">
       {/* Top Visual Image Container */}
       <div className="relative aspect-[16/10] overflow-hidden bg-[#0d0d0d] border-b border-neutral-200 dark:border-[#1c1c1c]">
         {!imageError && product.images && product.images.length > 0 ? (
@@ -54,12 +54,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         {/* High-Voltage Badges (SNKS style) */}
         <div className="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 z-10">
           {product.isFeatured && (
-            <span className="px-2 py-0.5 text-[10px] font-mono font-black uppercase bg-[#d4ff00] text-black">
+            <span className="px-2 py-0.5 text-[10px] font-mono font-black uppercase bg-[#d4ff00] text-black shadow-xs">
               FEATURED DROP
             </span>
           )}
           {discountPercent > 0 && (
-            <span className="px-2 py-0.5 text-[10px] font-mono font-black uppercase bg-black text-white dark:bg-white dark:text-black">
+            <span className="px-2 py-0.5 text-[10px] font-mono font-black uppercase bg-black text-white dark:bg-white dark:text-black shadow-xs">
               -{discountPercent}%
             </span>
           )}
@@ -87,29 +87,29 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         </div>
       </div>
 
-      {/* Content Container */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
+      {/* Content Container - Solid Opaque Background */}
+      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4 bg-white dark:bg-black">
         <div>
           {/* Brand & Version Index */}
           <div className="flex items-center justify-between mb-2 text-xs font-mono">
-            <span className="text-[#7d9900] dark:text-[#d4ff00] font-bold uppercase tracking-wider text-[11px]">
+            <span className="text-[#556900] dark:text-[#d4ff00] font-black uppercase tracking-wider text-[11px]">
               {product.brand}
             </span>
-            <span className="text-neutral-500 text-[10px]">
+            <span className="text-neutral-500 text-[10px] font-bold">
               {String(product.attributes.version || 'v1.0')}
             </span>
           </div>
 
-          {/* Title */}
+          {/* Title - 100% Opaque High Contrast */}
           <h3
             onClick={() => onQuickView(product)}
-            className="font-black text-black dark:text-white text-base uppercase tracking-tight leading-snug hover:text-[#7d9900] dark:hover:text-[#d4ff00] transition-colors cursor-pointer line-clamp-1 mb-1.5"
+            className="font-black text-neutral-950 dark:text-white text-base uppercase tracking-tight leading-snug hover:text-[#556900] dark:hover:text-[#d4ff00] transition-colors cursor-pointer line-clamp-1 mb-1.5"
           >
             {product.name}
           </h3>
 
-          {/* Description */}
-          <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+          {/* Description - 100% Opaque High Contrast */}
+          <p className="text-xs text-neutral-700 dark:text-neutral-300 line-clamp-2 leading-relaxed">
             {product.shortDescription}
           </p>
         </div>
@@ -118,16 +118,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         <div className="pt-3 border-t border-neutral-200 dark:border-[#1a1a1a] flex items-center justify-between gap-3">
           <div>
             <div className="flex items-baseline gap-1.5 font-mono">
-              <span className="text-lg font-black text-black dark:text-white">
+              <span className="text-lg font-black text-neutral-950 dark:text-white">
                 ${product.price.toFixed(2)}
               </span>
               {product.compareAtPrice && (
-                <span className="text-xs text-neutral-400 dark:text-neutral-600 line-through">
+                <span className="text-xs text-neutral-400 dark:text-neutral-500 line-through">
                   ${product.compareAtPrice.toFixed(2)}
                 </span>
               )}
             </div>
-            <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest block">
+            <span className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 uppercase tracking-widest block font-bold">
               INSTANT KEY GRANT
             </span>
           </div>
@@ -138,7 +138,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
             className={`px-4 py-2 font-mono text-xs font-black uppercase tracking-wider transition-colors flex items-center gap-1.5 rounded-none ${
               cartQty > 0
                 ? 'bg-neutral-200 text-black border border-black dark:bg-neutral-800 dark:text-[#d4ff00] dark:border-[#d4ff00]'
-                : 'bg-[#d4ff00] hover:bg-[#bfff00] text-black active:scale-95'
+                : 'bg-[#d4ff00] hover:bg-[#bfff00] text-black active:scale-95 shadow-xs'
             }`}
           >
             {cartQty > 0 ? (

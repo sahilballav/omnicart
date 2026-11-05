@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const { user } = useAuth();
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 text-black dark:bg-black/95 dark:text-white backdrop-blur-md border-b border-neutral-200 dark:border-[#222222] transition-colors">
+    <header className="sticky top-0 z-40 bg-white dark:bg-black text-black dark:text-white border-b border-neutral-200 dark:border-[#222222] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
           {/* Logo & Brand */}
@@ -41,10 +41,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => onNavigate('storefront')}
               className="flex items-baseline gap-1 focus:outline-none group"
             >
-              <span className="text-2xl sm:text-3xl font-black italic tracking-tighter uppercase text-black dark:text-white group-hover:text-[#7d9900] dark:group-hover:text-[#d4ff00] transition-colors">
+              <span className="text-2xl sm:text-3xl font-black italic tracking-tighter uppercase text-black dark:text-white group-hover:text-[#556900] dark:group-hover:text-[#d4ff00] transition-colors">
                 OMNICART
               </span>
-              <span className="text-[10px] font-bold text-[#7d9900] dark:text-[#d4ff00]">®</span>
+              <span className="text-[10px] font-bold text-[#556900] dark:text-[#d4ff00]">®</span>
             </button>
           </div>
 
@@ -56,9 +56,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                   const el = document.getElementById('catalog-selection');
                   el?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="px-3.5 py-1.5 rounded-full bg-[#d4ff00] text-black dark:bg-[#1c2400] dark:text-[#d4ff00] border border-black/10 dark:border-[#d4ff00]/40 flex items-center gap-1.5 transition-all shadow-xs"
+                className="px-3.5 py-1.5 rounded-full bg-[#d4ff00] text-black border border-black/20 flex items-center gap-1.5 transition-all shadow-xs"
               >
-                <Zap className="w-3 h-3 fill-black dark:fill-[#d4ff00]" />
+                <Zap className="w-3 h-3 fill-black text-black" />
                 <span>THE SALE</span>
               </button>
 

@@ -7,7 +7,7 @@ interface EditorialFeatureProps {
 
 export const EditorialFeature: React.FC<EditorialFeatureProps> = ({ onExploreClick }) => {
   return (
-    <section id="limited-drops" className="w-full bg-white/80 dark:bg-black/80 backdrop-blur-xs text-black dark:text-white border-b border-neutral-200 dark:border-[#222222] overflow-hidden transition-colors">
+    <section id="limited-drops" className="w-full bg-white dark:bg-black text-black dark:text-white border-b border-neutral-200 dark:border-[#222222] overflow-hidden transition-colors">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-stretch min-h-[520px]">
         {/* Left Side: High-Contrast Monochromatic Visual */}
         <div className="relative bg-[#0d0d0d] border-b lg:border-b-0 lg:border-r border-neutral-200 dark:border-[#222222] flex items-center justify-center p-8 sm:p-12 overflow-hidden group">

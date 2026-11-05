@@ -17,23 +17,23 @@ export const HeroBanner: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full bg-white/70 text-black dark:bg-black/75 dark:text-white overflow-hidden border-b border-neutral-200 dark:border-[#222222] transition-colors backdrop-blur-xs">
+    <section className="relative w-full bg-white text-black dark:bg-black dark:text-white overflow-hidden border-b border-neutral-200 dark:border-[#222222] transition-colors">
       {/* Editorial Vertical Side Labels (SNKS Style) */}
-      <div className="hidden xl:block absolute left-4 bottom-24 -rotate-90 origin-bottom-left text-[9px] font-mono tracking-[0.25em] text-neutral-400 dark:text-neutral-600 uppercase select-none pointer-events-none">
+      <div className="hidden xl:block absolute left-4 bottom-24 -rotate-90 origin-bottom-left text-[9px] font-mono tracking-[0.25em] text-neutral-400 dark:text-neutral-600 uppercase select-none pointer-events-none z-10">
         OMNICART CAMPAIGN / 001
       </div>
-      <div className="hidden xl:block absolute right-4 top-24 rotate-90 origin-top-right text-[9px] font-mono tracking-[0.25em] text-neutral-400 dark:text-neutral-600 uppercase select-none pointer-events-none">
+      <div className="hidden xl:block absolute right-4 top-24 rotate-90 origin-top-right text-[9px] font-mono tracking-[0.25em] text-neutral-400 dark:text-neutral-600 uppercase select-none pointer-events-none z-10">
         27 NOV - 04 DEC 2026
       </div>
 
       {/* Bottom Ticker Indicator */}
-      <div className="absolute bottom-3 right-6 hidden md:flex items-center gap-2 text-[10px] font-mono tracking-widest text-neutral-500 dark:text-neutral-500 uppercase select-none">
+      <div className="absolute bottom-3 right-6 hidden md:flex items-center gap-2 text-[10px] font-mono tracking-widest text-neutral-500 dark:text-neutral-500 uppercase select-none z-10">
         <span className="w-1.5 h-1.5 rounded-full bg-[#7d9900] dark:bg-[#d4ff00] animate-ping" />
         <span>THE CLOCK IS TICKING</span>
       </div>
 
-      {/* Background Watermark Headline */}
-      <div className="absolute -top-12 left-0 right-0 select-none pointer-events-none opacity-[0.03] dark:opacity-5 font-black text-[120px] sm:text-[220px] lg:text-[280px] leading-none tracking-tighter uppercase whitespace-nowrap text-black dark:text-white">
+      {/* Subtle Background Watermark Headline */}
+      <div className="absolute -top-12 left-0 right-0 select-none pointer-events-none opacity-[0.02] dark:opacity-[0.04] font-black text-[120px] sm:text-[220px] lg:text-[280px] leading-none tracking-tighter uppercase whitespace-nowrap text-black dark:text-white">
         OMNICART
       </div>
 

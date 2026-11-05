@@ -13,7 +13,7 @@ const TECH_PARTNERS = [
 
 export const BrandMarquee: React.FC = () => {
   return (
-    <div className="w-full bg-neutral-100/80 dark:bg-black/80 backdrop-blur-xs border-b border-neutral-200 dark:border-[#222222] py-6 px-4 sm:px-6 lg:px-8 transition-colors">
+    <div className="w-full bg-neutral-100 dark:bg-black text-black dark:text-white border-b border-neutral-200 dark:border-[#222222] py-6 px-4 sm:px-6 lg:px-8 transition-colors">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
         {/* Left Editorial Label */}
         <div className="shrink-0 text-left">
