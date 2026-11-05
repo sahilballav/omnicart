@@ -221,21 +221,21 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
 
                 <button
                   onClick={handleAddToCart}
-                  className={`w-full py-2.5 px-4 rounded-lg font-semibold text-xs flex items-center justify-center gap-2 transition-colors ${
+                  className={`w-full py-3 px-4 rounded font-mono font-bold uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-colors ${
                     justAdded
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white'
+                      ? 'bg-white text-black'
+                      : 'bg-[#d4ff00] hover:bg-[#bfff00] text-black'
                   }`}
                 >
                   {justAdded ? (
                     <>
-                      <Check className="w-4 h-4" />
-                      <span>Added to Cart</span>
+                      <Check className="w-4 h-4 stroke-[3]" />
+                      <span>Added to Bag</span>
                     </>
                   ) : (
                     <>
                       <ShoppingBag className="w-4 h-4" />
-                      <span>Add to Cart: ${(product.price * quantity).toFixed(2)}</span>
+                      <span>Add to Bag: ${(product.price * quantity).toFixed(2)}</span>
                     </>
                   )}
                 </button>

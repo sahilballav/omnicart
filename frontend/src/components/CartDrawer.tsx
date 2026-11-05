@@ -223,14 +223,14 @@ export const CartDrawer: React.FC = () => {
               <button
                 onClick={handleSimulateCheckout}
                 disabled={isCheckingOut}
-                className="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 disabled:opacity-50 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-2 transition-colors"
+                className="w-full py-3 px-4 bg-[#d4ff00] hover:bg-[#bfff00] text-black font-mono font-black uppercase tracking-wider disabled:opacity-50 text-xs flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg"
               >
                 {isCheckingOut ? (
-                  <span>Processing Checkout...</span>
+                  <span>AUTHORIZING CRYPTO TOKEN...</span>
                 ) : (
                   <>
-                    <span>Checkout</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <span>CHECKOUT ORDER</span>
+                    <ArrowRight className="w-4 h-4 stroke-[3]" />
                   </>
                 )}
               </button>

@@ -18,6 +18,11 @@ html.dark body {
   color: #f8fafc;
 }
 
+::selection {
+  background-color: #d4ff00;
+  color: #000000;
+}
+
 /* Custom modern scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

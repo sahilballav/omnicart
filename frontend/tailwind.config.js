@@ -8,6 +8,20 @@ export default {
   theme: {
     extend: {
       colors: {
+        volt: {
+          DEFAULT: '#d4ff00',
+          hover: '#c2eb00',
+          muted: '#9ec400',
+          dark: '#1c2400',
+          border: '#d4ff00',
+        },
+        carbon: {
+          950: '#000000',
+          900: '#080808',
+          800: '#141414',
+          700: '#222222',
+          600: '#333333',
+        },
         slate: {
           950: '#000000',
           900: '#000000',

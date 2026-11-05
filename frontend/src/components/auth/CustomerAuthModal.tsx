@@ -136,3 +136,4 @@ export const CustomerAuthModal: React.FC<CustomerAuthModalProps> = ({ isOpen, on
     </div>
   );
 };
+
