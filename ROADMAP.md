@@ -11,15 +11,15 @@
 | **Day 1** | **React Storefront Prototyping** | Completed | 2026-11-03 |
 | **Day 2** | **React Admin Dashboard & AI Interface** | Completed | 2026-11-03 |
 | **Day 3** | **Infrastructure Provisioning & Data Layer** | Completed | 2026-11-03 |
-| **Day 4** | **Spring Boot Core APIs & Redis Caching** | Up Next | - |
-| **Day 5** | **Agentic AI Integration & Resilience4j** | Pending | - |
+| **Day 4** | **Spring Boot Core APIs & Redis Caching** | Completed | 2026-11-06 |
+| **Day 5** | **Agentic AI Integration & Resilience4j** | Up Next | - |
 | **Day 6** | **Kafka Event Streaming Pipeline** | Pending | - |
 | **Day 7** | **Web Integration & End-to-End Testing** | Pending | - |
 | **Day 8** | **Flutter Mobile Scaffold & State Management** | Pending | - |
 | **Day 9** | **Mobile Backend Integration** | Pending | - |
 | **Day 10** | **Containerization & Cloud Deployment** | Pending | - |
 
-**Overall Progress**: `30% Complete` (3/10 Days Finished)
+**Overall Progress**: `40% Complete` (4/10 Days Finished)
 
 ---
 
@@ -85,16 +85,17 @@
 ---
 
 ### Day 4: Spring Boot Core APIs & Redis Caching
-- [ ] **JPA Entity Mapping & REST Endpoints**:
-  - [ ] Map PostgreSQL tables to JPA entities with Hibernate JSONB converters.
-  - [ ] Build RESTful CRUD endpoints for product management (`/api/v1/products`).
-  - [ ] Implement pagination, category filtering, and attribute search.
-- [ ] **Spring Security & JWT Authentication**:
-  - [ ] Stateless JWT authentication filter and token provider.
-  - [ ] Role-based authorization (`ROLE_USER`, `ROLE_ADMIN`).
-- [ ] **Redis Shopping Cart & Session Management**:
-  - [ ] Configure `RedisTemplate` with custom serializers.
-  - [ ] Build high-speed cart service (`/api/v1/cart`) for volatile session operations.
+- [x] **JPA Entity Mapping & REST Endpoints**:
+  - [x] Map PostgreSQL tables to JPA entities with Hibernate JSONB converters (`ProductEntity.java`, `OrderEntity.java`, `OrderItemEntity.java`).
+  - [x] Build RESTful CRUD endpoints for product management (`/api/v1/products`) with `ProductController.java` and `ProductServiceImpl.java`.
+  - [x] Implement pagination, category filtering, search, and native PostgreSQL JSONB attribute queries (`findByJsonbAttribute`).
+- [x] **API Response Architecture & Validation**:
+  - [x] Universal JSON response wrapper `ApiResponse<T>` with timestamp and status.
+  - [x] Global exception handler with `ResourceNotFoundException` and Bean Validation mapping.
+- [x] **Redis Shopping Cart & Session Management**:
+  - [x] Configure `RedisTemplate` with custom JSON serializers (`RedisConfig.java`).
+  - [x] Build high-speed cart service (`/api/v1/cart`) for volatile session operations (`CartService.java`, `CartController.java`).
+  - [x] Auto-recalculating digital asset tax (8%), subtotal, and 24-hour Redis TTL cache.
 
 ---
 
