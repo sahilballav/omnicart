@@ -51,3 +51,9 @@ pnpm-debug.log*
 # Docker / Local run
 *.pid
 
+# Confidential & Secret Internal Documentation (Never push to remote)
+*.docx
+*.pdf
+secret/
+docs/*.docx
+
