@@ -44,6 +44,18 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error(ex.getMessage()));
     }
 
+    @ExceptionHandler(PaymentGatewayException.class)
+    public ResponseEntity<ApiResponse<Void>> handlePaymentGatewayException(PaymentGatewayException ex) {
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body(ApiResponse.error("Downstream Payment Service Error: " + ex.getMessage()));
+    }
+
+    @ExceptionHandler(io.github.resilience4j.ratelimiter.RequestNotPermitted.class)
+    public ResponseEntity<ApiResponse<Void>> handleRateLimitExceeded(io.github.resilience4j.ratelimiter.RequestNotPermitted ex) {
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+                .body(ApiResponse.error("Resilience4j Rate limit exceeded. Please back off and retry."));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleGlobalException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

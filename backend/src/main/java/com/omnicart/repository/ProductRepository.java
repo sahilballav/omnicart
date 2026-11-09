@@ -29,5 +29,17 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String>,
     // Native PostgreSQL JSONB GIN containment query
     @Query(value = "SELECT * FROM products WHERE attributes @> CAST(:jsonCriteria AS jsonb)", nativeQuery = true)
     List<ProductEntity> findByJsonbCriteria(@Param("jsonCriteria") String jsonCriteria);
+
+    // Natural Language Search Candidate Filter
+    @Query(value = """
+        SELECT * FROM products
+        WHERE (:category IS NULL OR category = :category)
+          AND (:maxPrice IS NULL OR price <= :maxPrice)
+        ORDER BY rating DESC, review_count DESC
+        """, nativeQuery = true)
+    List<ProductEntity> findCandidatesByCategoryAndPrice(
+            @Param("category") String category,
+            @Param("maxPrice") BigDecimal maxPrice
+    );
 }
 
