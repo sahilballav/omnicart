@@ -9,7 +9,7 @@ spring:
 
   # PostgreSQL Data Source with HikariCP
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:omnicart}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:omnicart}
     username: ${DB_USER:omnicart}
     password: ${DB_PASSWORD:omnicart_secret}
     driver-class-name: org.postgresql.Driver
