@@ -45,11 +45,11 @@ public class AiAssistantController {
     @GetMapping("/prompts")
     public ResponseEntity<ApiResponse<List<Map<String, String>>>> getSamplePrompts() {
         List<Map<String, String>> samples = List.of(
-                Map.entry("label", "AWS EKS Terraform", "query", "Recommend production Terraform blueprints for AWS EKS under $200"),
-                Map.entry("label", "Multi-Agent AI", "query", "Find autonomous multi-agent orchestration frameworks with Python"),
-                Map.entry("label", "Kafka Event Streaming", "query", "High-throughput Kafka streaming architecture with Spring Boot"),
-                Map.entry("label", "Zero-Trust Security", "query", "Zero-trust JWT authentication reverse proxy with Go")
-        ).stream().map(e -> Map.of("label", e.getKey(), "query", e.getValue())).toList();
+                Map.of("label", "AWS EKS Terraform", "query", "Recommend production Terraform blueprints for AWS EKS under $200"),
+                Map.of("label", "Multi-Agent AI", "query", "Find autonomous multi-agent orchestration frameworks with Python"),
+                Map.of("label", "Kafka Event Streaming", "query", "High-throughput Kafka streaming architecture with Spring Boot"),
+                Map.of("label", "Zero-Trust Security", "query", "Zero-trust JWT authentication reverse proxy with Go")
+        );
 
         return ResponseEntity.ok(ApiResponse.success("Sample engineering prompts", samples));
     }

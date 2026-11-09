@@ -60,5 +60,25 @@ public class ProductDTO {
 
     private Instant createdAt;
     private Instant updatedAt;
+
+    public static ProductDTO fromEntity(com.omnicart.model.ProductEntity entity) {
+        if (entity == null) return null;
+        return ProductDTO.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .description(entity.getDescription())
+                .price(entity.getPrice())
+                .category(entity.getCategory())
+                .brand(entity.getBrand())
+                .rating(entity.getRating())
+                .reviewCount(entity.getReviewCount())
+                .inventoryCount(entity.getInventoryCount())
+                .images(entity.getImages())
+                .tags(entity.getTags())
+                .attributes(entity.getAttributes())
+                .createdAt(entity.getCreatedAt())
+                .updatedAt(entity.getUpdatedAt())
+                .build();
+    }
 }
 
