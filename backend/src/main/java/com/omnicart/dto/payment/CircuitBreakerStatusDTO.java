@@ -20,3 +20,4 @@ public class CircuitBreakerStatusDTO {
     private int slowCalls;
     private long notPermittedCalls;
 }
+

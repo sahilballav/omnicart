@@ -27,3 +27,4 @@ public class AiSearchIntent {
     private Map<String, String> jsonbAttributesFilter;
     private double confidenceScore;
 }
+

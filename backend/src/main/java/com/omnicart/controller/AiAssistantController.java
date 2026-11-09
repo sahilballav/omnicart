@@ -54,3 +54,4 @@ public class AiAssistantController {
         return ResponseEntity.ok(ApiResponse.success("Sample engineering prompts", samples));
     }
 }
+

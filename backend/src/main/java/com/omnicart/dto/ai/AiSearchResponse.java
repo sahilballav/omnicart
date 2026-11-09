@@ -26,3 +26,4 @@ public class AiSearchResponse {
     @Builder.Default
     private Instant generatedAt = Instant.now();
 }
+

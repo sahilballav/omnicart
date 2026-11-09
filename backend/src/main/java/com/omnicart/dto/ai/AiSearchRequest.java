@@ -22,3 +22,4 @@ public class AiSearchRequest {
     private BigDecimal maxBudget;
     private List<String> previousContext;
 }
+
