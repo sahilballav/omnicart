@@ -21,3 +21,4 @@ public class LicenseIssuedEvent {
     @Builder.Default
     private Instant issuedAt = Instant.now();
 }
+

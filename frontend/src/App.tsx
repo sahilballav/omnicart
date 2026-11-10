@@ -24,6 +24,7 @@ import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
 import { TermsConditions } from './components/legal/TermsConditions';
 import { MOCK_PRODUCTS } from './data/mockProducts';
 import { Product } from './types/product';
+import { productApi } from './api/client';
 import { Zap } from 'lucide-react';
 
 const CATEGORIES = [
@@ -46,6 +47,19 @@ export const AppContent: React.FC = () => {
   const [isBootLoading, setIsBootLoading] = useState(true);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
+
+  // Synchronize live product catalog with Spring Boot backend (PostgreSQL JSONB)
+  useEffect(() => {
+    let isMounted = true;
+    productApi.getAllProducts().then((liveProducts) => {
+      if (isMounted && liveProducts && liveProducts.length > 0) {
+        setProducts(liveProducts);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Operator console activation: URL query (?admin=true), hash (#admin), or hotkey (Ctrl+Shift+A / Ctrl+Alt+A / Cmd+Shift+A)
   useEffect(() => {

@@ -87,3 +87,4 @@ class OrderEventPipelineTest {
         assertEquals(5, metrics.getTopBlueprints().get("AgenticLLM Framework"));
     }
 }
+

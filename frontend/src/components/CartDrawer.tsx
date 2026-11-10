@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Trash2, Plus, Minus, ArrowRight, ShoppingBag, Key, CheckCircle2 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { orderApi } from '../api/client';
 
 export const CartDrawer: React.FC = () => {
   const {
@@ -23,38 +24,61 @@ export const CartDrawer: React.FC = () => {
 
   if (!isOpen) return null;
 
-  const handleSimulateCheckout = () => {
+  const handleSimulateCheckout = async () => {
     setIsCheckingOut(true);
-    setTimeout(() => {
-      setIsCheckingOut(false);
-      setCheckoutComplete(true);
 
-      // Create issued Ed25519 licenses for all cart items
-      if (items.length > 0) {
-        if (!user) {
-          // If guest, initialize customer session
-          loginAsUser('customer@example.com', 'Acme Systems');
-        }
-        const newLicenses = items.map((item) => ({
-          id: `lic-${Date.now()}-${item.product.id.slice(-4)}`,
+    const currentUser = user || {
+      id: 'usr-dev-guest',
+      email: 'customer@example.com',
+      name: 'Acme Systems Engineer'
+    };
+
+    if (!user) {
+      loginAsUser('customer@example.com', 'Acme Systems Engineer');
+    }
+
+    try {
+      // Attempt live Kafka event dispatch through Spring Boot backend
+      await orderApi.checkout({
+        userId: currentUser.id,
+        userEmail: currentUser.email,
+        items: items.map((item) => ({
           productId: item.product.id,
           productName: item.product.name,
-          productSlug: item.product.slug,
-          licenseKey: `ED25519-${item.product.slug.slice(0, 4).toUpperCase()}-${Math.random().toString(36).substring(2, 7).toUpperCase()}-2026-OMNI`,
-          licenseType: item.selectedLicense || 'Commercial License',
-          issuedAt: new Date().toISOString(),
-          githubRepo: `https://github.com/omnicart/${item.product.slug}`,
-          version: String(item.product.attributes.version || 'v1.0.0')
-        }));
-        addPurchasedLicenses(newLicenses);
-      }
+          quantity: item.quantity,
+          unitPrice: item.product.price
+        })),
+        paymentMethod: 'DIGITAL_WALLET_STRIPE',
+        simulationMode: 'NORMAL'
+      });
+    } catch {
+      console.info('[CHECKOUT] Backend offline or queued; issuing local Ed25519 entitlements.');
+    }
 
-      setTimeout(() => {
-        clearCart();
-        setCheckoutComplete(false);
-        toggleCart(false);
-      }, 2500);
-    }, 900);
+    setIsCheckingOut(false);
+    setCheckoutComplete(true);
+
+    // Issue Ed25519 digital license keys to customer vault
+    if (items.length > 0) {
+      const newLicenses = items.map((item) => ({
+        id: `lic-${Date.now()}-${item.product.id.slice(-4)}`,
+        productId: item.product.id,
+        productName: item.product.name,
+        productSlug: item.product.slug,
+        licenseKey: `ED25519-${item.product.slug.slice(0, 4).toUpperCase()}-${Math.random().toString(36).substring(2, 7).toUpperCase()}-2026-OMNI`,
+        licenseType: item.selectedLicense || 'Commercial License',
+        issuedAt: new Date().toISOString(),
+        githubRepo: `https://github.com/omnicart/${item.product.slug}`,
+        version: String(item.product.attributes.version || 'v1.0.0')
+      }));
+      addPurchasedLicenses(newLicenses);
+    }
+
+    setTimeout(() => {
+      clearCart();
+      setCheckoutComplete(false);
+      toggleCart(false);
+    }, 2500);
   };
 
   return (

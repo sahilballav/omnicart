@@ -17,3 +17,4 @@ public class OrderItemEventDTO {
     private Integer quantity;
     private BigDecimal unitPrice;
 }
+

@@ -33,3 +33,4 @@ public class OrderPlacedEvent {
     @Builder.Default
     private Map<String, Object> metadata = new HashMap<>();
 }
+

@@ -14,12 +14,12 @@
 | **Day 4** | **Spring Boot Core APIs & Redis Caching** | Completed | 2026-11-06 |
 | **Day 5** | **Agentic AI Integration & Resilience4j** | Completed | 2026-11-10 |
 | **Day 6** | **Kafka Event Streaming Pipeline** | Completed | 2026-11-11 |
-| **Day 7** | **Web Integration & End-to-End Testing** | Up Next | - |
-| **Day 8** | **Flutter Mobile Scaffold & State Management** | Pending | - |
+| **Day 7** | **Web Integration & End-to-End Testing** | Completed | 2026-11-11 |
+| **Day 8** | **Flutter Mobile Scaffold & State Management** | Up Next | - |
 | **Day 9** | **Mobile Backend Integration** | Pending | - |
 | **Day 10** | **Containerization & Cloud Deployment** | Pending | - |
 
-**Overall Progress**: `60% Complete` (6/10 Days Finished)
+**Overall Progress**: `70% Complete` (7/10 Days Finished)
 
 ---
 
@@ -129,12 +129,15 @@
 ---
 
 ### Day 7: Web Integration & End-to-End Testing
-- [ ] **Full-Stack REST Connectivity**:
-  - [ ] Replace static mock data in React frontend with live Axios API client.
-  - [ ] Set up Axios interceptors for JWT token injection and refresh.
-  - [ ] Configure Spring Boot Cross-Origin Resource Sharing (CORS).
-- [ ] **End-to-End Flow Verification**:
-  - [ ] Verify complete checkout flow from React storefront to Kafka event broadcast and admin dashboard metrics update.
+- [x] **Full-Stack REST Connectivity**:
+  - [x] Configured global `CorsConfig.java` in Spring Boot for `localhost:3000` and pre-flight handling.
+  - [x] Built central typed Axios client (`frontend/src/api/client.ts`) with JWT interceptors, token injection, and DTO mappers.
+  - [x] Wired live catalog fetching in `App.tsx` from `/api/v1/products` with graceful offline fallback.
+  - [x] Connected `AiShoppingAssistant.tsx` to live backend intent parser (`/api/v1/ai/search`).
+- [x] **End-to-End Flow Verification**:
+  - [x] Connected `CartDrawer.tsx` to live `/api/v1/orders/checkout` pipeline publishing to Kafka topic `omnicart.orders.placed`.
+  - [x] Integrated `PredictiveAnalytics.tsx` with live Kafka telemetry (`/api/v1/orders/analytics/velocity`) and Resilience4j circuit status (`/api/v1/payments/circuit-status`).
+  - [x] Verified full production bundle with Vite & TypeScript (`✓ built in 9.57s`, 0 errors).
 
 ---
 

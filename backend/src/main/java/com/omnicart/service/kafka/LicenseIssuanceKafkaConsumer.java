@@ -84,3 +84,4 @@ public class LicenseIssuanceKafkaConsumer {
         return String.format("%s-%s-%s-2026-OMNI", prefix, tag, entropy);
     }
 }
+

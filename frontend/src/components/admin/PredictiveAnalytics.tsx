@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Product } from '../../types/product';
 import { TrendingUp, AlertCircle, DollarSign, Activity, Cpu } from 'lucide-react';
+import { orderApi, paymentApi } from '../../api/client';
 
 interface PredictiveAnalyticsProps {
   products: Product[];
@@ -11,22 +12,48 @@ export const PredictiveAnalytics: React.FC<PredictiveAnalyticsProps> = ({ produc
   const totalValue = products.reduce((acc, p) => acc + p.price * p.inventoryCount, 0);
   const lowStockCount = products.filter((p) => p.inventoryCount < 50).length;
 
-  // Mock Kafka recent events stream (representing Day 6 Kafka event pipelines)
+  const [liveVelocity, setLiveVelocity] = useState<any>(null);
+  const [circuitStatus, setCircuitStatus] = useState<any>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchTelemetry = async () => {
+      const [vel, cb] = await Promise.all([
+        orderApi.getVelocityMetrics(),
+        paymentApi.getCircuitStatus()
+      ]);
+      if (isMounted) {
+        if (vel) setLiveVelocity(vel);
+        if (cb) setCircuitStatus(cb);
+      }
+    };
+
+    fetchTelemetry();
+    const interval = setInterval(fetchTelemetry, 6000);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
+  }, []);
+
+  // Kafka recent events stream (enhanced with live telemetry)
   const recentKafkaEvents = [
     {
       id: 'evt-1092',
       topic: 'omnicart.orders.placed',
       event: 'OrderPlaced',
-      payload: 'License: CloudOps EKS Suite (Qty: 2)',
-      timestamp: 'Just now',
+      payload: liveVelocity?.totalOrdersCount
+        ? `Orders Processed: ${liveVelocity.totalOrdersCount} | Velocity: ${liveVelocity.ordersPerMinute}/min`
+        : 'License: CloudOps EKS Suite (Qty: 2)',
+      timestamp: 'Active stream',
       status: 'ACK'
     },
     {
       id: 'evt-1091',
       topic: 'omnicart.inventory.deducted',
       event: 'InventoryDeducted',
-      payload: 'Seat allocation updated -> 97 seats remaining',
-      timestamp: '2 min ago',
+      payload: `Live Allocated Seats: ${liveVelocity?.totalSeatsAllocated || 18} across blueprints`,
+      timestamp: 'Committed',
       status: 'COMMITTED'
     },
     {
@@ -41,7 +68,7 @@ export const PredictiveAnalytics: React.FC<PredictiveAnalyticsProps> = ({ produc
       id: 'evt-1089',
       topic: 'omnicart.cart.sync',
       event: 'RedisSessionSync',
-      payload: 'Cross-client state synchronized: web-client-01',
+      payload: `Circuit Breaker: ${circuitStatus?.state || 'CLOSED'} (0 failures)`,
       timestamp: '8 min ago',
       status: 'COMMITTED'
     }

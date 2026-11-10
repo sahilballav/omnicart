@@ -26,3 +26,4 @@ public class CheckoutResponse {
     @Builder.Default
     private Instant timestamp = Instant.now();
 }
+

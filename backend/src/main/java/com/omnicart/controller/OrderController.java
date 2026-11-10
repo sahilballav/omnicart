@@ -56,3 +56,4 @@ public class OrderController {
         return ResponseEntity.ok(ApiResponse.success("Real-time Kafka purchasing velocity metrics", metrics));
     }
 }
+

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Product } from '../../types/product';
 import { useCart } from '../../context/CartContext';
+import { aiApi, mapBackendProductToFrontend } from '../../api/client';
 import {
   Sparkles,
   X,
@@ -84,7 +85,7 @@ export const AiShoppingAssistant: React.FC<AiShoppingAssistantProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  const handleQuery = (queryText: string) => {
+  const handleQuery = async (queryText: string) => {
     const trimmed = queryText.trim();
     if (!trimmed || isProcessing) return;
 
@@ -99,7 +100,39 @@ export const AiShoppingAssistant: React.FC<AiShoppingAssistantProps> = ({
     setInput('');
     setIsProcessing(true);
 
-    // Intent Parser Simulation
+    try {
+      // 1. Attempt live Agentic AI search via Spring Boot backend
+      const liveResult = await aiApi.search(trimmed);
+      if (liveResult && liveResult.matchedBlueprints && liveResult.matchedBlueprints.length > 0) {
+        const liveMatches: Product[] = liveResult.matchedBlueprints.map(mapBackendProductToFrontend);
+        const intent = liveResult.intent || {};
+
+        const sqlPreview = `SELECT id, name, price, attributes\nFROM products\nWHERE attributes @> '${JSON.stringify(intent.jsonbAttributesFilter || {})}'::jsonb\nORDER BY rating DESC LIMIT 3;`;
+
+        const assistantMsg: Message = {
+          id: `assistant-${Date.now()}`,
+          sender: 'assistant',
+          text: liveResult.reasoning || `Found ${liveMatches.length} blueprints matching your technical requirements.`,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          parsedQuery: {
+            intent: `AI Intent (${Math.round((intent.confidenceScore || 0.8) * 100)}% Confidence)`,
+            targetCategory: intent.detectedCategory,
+            maxPrice: intent.maxBudget ? parseFloat(intent.maxBudget) : undefined,
+            jsonbCriteria: intent.jsonbAttributesFilter,
+            sqlPreview
+          },
+          matchedProducts: liveMatches.slice(0, 3)
+        };
+
+        setMessages((prev) => [...prev, assistantMsg]);
+        setIsProcessing(false);
+        return;
+      }
+    } catch {
+      // Backend offline or rate limited; fall through to local heuristic
+    }
+
+    // 2. Client-side NLP heuristic fallback
     setTimeout(() => {
       const lower = trimmed.toLowerCase();
 

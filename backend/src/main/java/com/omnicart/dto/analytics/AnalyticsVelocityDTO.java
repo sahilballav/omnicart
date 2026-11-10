@@ -22,3 +22,4 @@ public class AnalyticsVelocityDTO {
     private Map<String, Integer> topBlueprints;
     private Instant lastEventReceived;
 }
+

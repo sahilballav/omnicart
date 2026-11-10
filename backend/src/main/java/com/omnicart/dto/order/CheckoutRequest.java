@@ -47,3 +47,4 @@ public class CheckoutRequest {
         private BigDecimal unitPrice;
     }
 }
+
