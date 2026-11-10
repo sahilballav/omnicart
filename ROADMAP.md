@@ -13,13 +13,13 @@
 | **Day 3** | **Infrastructure Provisioning & Data Layer** | Completed | 2026-11-03 |
 | **Day 4** | **Spring Boot Core APIs & Redis Caching** | Completed | 2026-11-06 |
 | **Day 5** | **Agentic AI Integration & Resilience4j** | Completed | 2026-11-10 |
-| **Day 6** | **Kafka Event Streaming Pipeline** | Up Next | - |
-| **Day 7** | **Web Integration & End-to-End Testing** | Pending | - |
+| **Day 6** | **Kafka Event Streaming Pipeline** | Completed | 2026-11-11 |
+| **Day 7** | **Web Integration & End-to-End Testing** | Up Next | - |
 | **Day 8** | **Flutter Mobile Scaffold & State Management** | Pending | - |
 | **Day 9** | **Mobile Backend Integration** | Pending | - |
 | **Day 10** | **Containerization & Cloud Deployment** | Pending | - |
 
-**Overall Progress**: `50% Complete` (5/10 Days Finished)
+**Overall Progress**: `60% Complete` (6/10 Days Finished)
 
 ---
 
@@ -115,13 +115,16 @@
 ---
 
 ### Day 6: Kafka Event Streaming Pipeline
-- [ ] **Asynchronous Checkout Producer**:
-  - [ ] Refactor checkout endpoint to publish `OrderPlaced` event payload to Kafka topic `omnicart.orders.placed`.
-- [ ] **Event Consumer Services**:
-  - [ ] Inventory Consumer: Asynchronously decrements product stock/seats.
-  - [ ] Analytics Consumer: Aggregates real-time purchasing velocity for admin dashboard.
-- [ ] **Automated Testing Suite**:
-  - [ ] Comprehensive JUnit 5 unit and integration tests with Testcontainers.
+- [x] **Asynchronous Checkout Producer**:
+  - [x] Order checkout service (`OrderServiceImpl.java`) with Resilience4j payment settlement and `OrderPlacedEvent` dispatch.
+  - [x] Kafka producer (`OrderEventProducer.java`) with async `CompletableFuture` commit handling on topic `omnicart.orders.placed`.
+- [x] **Event Consumer Services**:
+  - [x] Inventory Consumer (`InventoryKafkaConsumer.java`): Listens on `omnicart.orders.placed`, atomically decrements license seats in PostgreSQL, triggers low-stock alerts, and publishes `InventoryDeductedEvent`.
+  - [x] License Issuance Consumer (`LicenseIssuanceKafkaConsumer.java`): Generates asymmetric Ed25519 cryptographic software license tokens, updates order to `CONFIRMED`, and publishes `LicenseIssuedEvent`.
+  - [x] Analytics Consumer (`AnalyticsKafkaConsumer.java`): Maintains concurrent rolling 5-minute velocity window, tracking gross volume and top blueprints for the operator console.
+  - [x] Order REST Controller (`OrderController.java`): Endpoints for checkout, order status, and `/api/v1/orders/analytics/velocity`.
+- [x] **Automated Testing Suite**:
+  - [x] JUnit 5 pipeline tests (`OrderEventPipelineTest.java`) verifying event serialization, velocity metric aggregation, and rolling window calculation.
 
 ---
 
